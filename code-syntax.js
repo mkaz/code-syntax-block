@@ -15,7 +15,12 @@ const { registerBlockType, PlainText, BlockControls } = wp.blocks;
 import './editor.scss';
 import './style.scss';
 
-const langs = [ 'js', 'php', 'python' ];
+const langs = {
+    js:  'javascript',
+    php: 'php',
+    py:  'python',
+    go:  'golang',
+};
 
 export  default registerBlockType( 'mkaz/code-syntax', {
 	title: 'Code Syntax',
@@ -28,13 +33,13 @@ export  default registerBlockType( 'mkaz/code-syntax', {
 			source: 'property',
 			selector: 'code',
 			property: 'textContent',
-		},
+        },
         language: {
             type: 'string',
-            source: 'property',
-            selector: 'js,php,python',
-            default: ''
-        },
+            selector: 'code',
+            source: 'attribute',
+            attribute: 'lang'
+		},
 	},
 
 	supports: {
@@ -48,8 +53,9 @@ export  default registerBlockType( 'mkaz/code-syntax', {
 				<BlockControls
 					key="controls"
 					controls={
-						langs.map( ( lang ) => ( {
+						Object.keys( langs ).map( ( lang ) => ( {
 							title: lang,
+                            subscript: lang,
 							onClick: () => setAttributes( { language: lang } ),
 						} ) )
 					}
@@ -62,12 +68,13 @@ export  default registerBlockType( 'mkaz/code-syntax', {
 					placeholder={ __( 'Write code…' ) }
 					aria-label={ __( 'Code' ) }
 				/>
+                <div class="language-selected">{ langs[ attributes.language ] }</div>
 			</div>
 		];
 	},
 
 	save( { attributes } ) {
-        const lang = ( attributes.language ) ? "language-" + attributes.language : "";
-		return <pre><code class={ lang }>{ attributes.content }</code></pre>;
+        const cls = ( attributes.language ) ? "language-" + attributes.language : "";
+		return <pre><code lang={ attributes.language } className={ cls }>{ attributes.content }</code></pre>;
 	},
 } );

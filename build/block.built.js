@@ -94,7 +94,12 @@ var _wp$blocks = wp.blocks,
 
 
 
-var langs = ['js', 'php', 'python'];
+var langs = {
+	js: 'javascript',
+	php: 'php',
+	py: 'python',
+	go: 'golang'
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (registerBlockType('mkaz/code-syntax', {
 	title: 'Code Syntax',
@@ -110,9 +115,9 @@ var langs = ['js', 'php', 'python'];
 		},
 		language: {
 			type: 'string',
-			source: 'property',
-			selector: 'js,php,python',
-			default: ''
+			selector: 'code',
+			source: 'attribute',
+			attribute: 'lang'
 		}
 	},
 
@@ -129,9 +134,10 @@ var langs = ['js', 'php', 'python'];
 
 		return [isSelected && wp.element.createElement(BlockControls, {
 			key: 'controls',
-			controls: langs.map(function (lang) {
+			controls: Object.keys(langs).map(function (lang) {
 				return {
 					title: lang,
+					subscript: lang,
 					onClick: function onClick() {
 						return setAttributes({ language: lang });
 					}
@@ -147,19 +153,24 @@ var langs = ['js', 'php', 'python'];
 				},
 				placeholder: __('Write code…'),
 				'aria-label': __('Code')
-			})
+			}),
+			wp.element.createElement(
+				'div',
+				{ 'class': 'language-selected' },
+				langs[attributes.language]
+			)
 		)];
 	},
 	save: function save(_ref2) {
 		var attributes = _ref2.attributes;
 
-		var lang = attributes.language ? "language-" + attributes.language : "";
+		var cls = attributes.language ? "language-" + attributes.language : "";
 		return wp.element.createElement(
 			'pre',
 			null,
 			wp.element.createElement(
 				'code',
-				{ 'class': lang },
+				{ lang: attributes.language, className: cls },
 				attributes.content
 			)
 		);
