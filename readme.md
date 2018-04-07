@@ -3,14 +3,17 @@
 
 A WordPress plugin which extends Gutenberg adding a new code block with syntax highlighting.
 
-<img src="screenshot.png" alt="screen shot">
+
+Example:
+
+<img src="screenshot.png" title="Screenshot example in use" alt="screen shot" width="554" height="202" style="border:1px solid #333"/>
 
 
 ### Usage
 
 - Install code-syntax-block plugin to your WordPress plugins directory and activate.
 
-- When creating a new code block, select
+- When creating a new code block, select `Code Syntax`. The text color will show as red in the editor to distinquish it from the standard code block. Syntax coloring within editor view is... tricky.
 
 
 
