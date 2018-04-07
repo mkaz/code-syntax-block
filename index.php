@@ -42,7 +42,7 @@ function mkaz_code_syntax_view_assets() {
 	// files
 	$viewStylePath = 'assets/blocks.style.css';
 	$prismJsPath = 'assets/prism.js';
-	$prismCssPath = 'assets/prism-ghcolors.css';
+	$prismCssPath = 'assets/prism.css';
 
 	// enqueue view style
 	wp_enqueue_style(
