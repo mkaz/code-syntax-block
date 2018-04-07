@@ -16,10 +16,12 @@ import './editor.scss';
 import './style.scss';
 
 const langs = {
+    css: 'css',
+    go:  'go',
     js:  'javascript',
     php: 'php',
     py:  'python',
-    go:  'golang',
+    sh:  'bash',
 };
 
 export  default registerBlockType( 'mkaz/code-syntax', {
@@ -74,7 +76,7 @@ export  default registerBlockType( 'mkaz/code-syntax', {
 	},
 
 	save( { attributes } ) {
-        const cls = ( attributes.language ) ? "language-" + attributes.language : "";
+        const cls = ( attributes.language ) ? "language-" + langs[ attributes.language ]: "";
 		return <pre><code lang={ attributes.language } className={ cls }>{ attributes.content }</code></pre>;
 	},
 } );

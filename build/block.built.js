@@ -95,10 +95,12 @@ var _wp$blocks = wp.blocks,
 
 
 var langs = {
+	css: 'css',
+	go: 'go',
 	js: 'javascript',
 	php: 'php',
 	py: 'python',
-	go: 'golang'
+	sh: 'bash'
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (registerBlockType('mkaz/code-syntax', {
@@ -164,7 +166,7 @@ var langs = {
 	save: function save(_ref2) {
 		var attributes = _ref2.attributes;
 
-		var cls = attributes.language ? "language-" + attributes.language : "";
+		var cls = attributes.language ? "language-" + langs[attributes.language] : "";
 		return wp.element.createElement(
 			'pre',
 			null,
