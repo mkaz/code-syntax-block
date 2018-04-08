@@ -11,15 +11,15 @@ Example:
 
 ### Usage
 
-Install code-syntax-block plugin to your WordPress plugins directory and activate.
+Install code-syntax-block plugin to your WordPress plugins directory and activate. You can download a zip from the  [releases page](https://github.com/mkaz/code-syntax-block/releases).
 
 When creating a new code block, select `Code` block, and then in the Inspector (Block Controls on the Right) select the language for the code. The code will not change within the editor, but you'll see a small label with the selected language.
 
-On the front-end when the post is being viewed, the code will be syntax highlighted.
+On the front-end when the post is being viewed, the code will be color syntax highlighted.
 
 ### Customize
 
-The default install uses a limited set of languages from Prism (markup, css, clike, javascript, bash, git, go, php, python, jsx). If your language is not included, you can build and download a new prism.js <a href="http://prismjs.com/download.html#languages=markup+css+clike+javascript+bash+markup-templating+git+go+php+python+jsx">using this form</a>. Just replace `assets/prism.js` with the new file.
+The default install uses a limited set of languages from Prism (bash, css, clike, html/markup git, go, javascript, json, php, python, react jsx, sql). If your language is not included, you can build and download a new prism.js <a href="http://prismjs.com/download.html#languages=markup+css+clike+javascript+bash+markup-templating+git+go+php+python+jsx">using this form</a>. Just replace `assets/prism.js` with the new file. You will also need to edit the langs array in code-syntax.js and rebuild.
 
 Changing color theme, the default color theme is based off [GHColors](https://github.com/PrismJS/prism-themes/blob/master/themes/prism-ghcolors.css). You can download a new theme from the link above, or from the [Prism themes repo](https://github.com/PrismJS/prism-themes). The easiest way would be to download and customize the new css and replace `assets/prism.css`.
 
@@ -40,5 +40,5 @@ See Github issues for list of current issues with the plugin. Please feel free t
 
 Copyright (c) 2018 Marcus Kazmierczak.
 
-Licensed under <a href="https://opensource.org/licenses/GPL-2.0">GPL 2.0 or later</a>.
+Licensed under <a href="https://opensource.org/licenses/GPL-2.0"> GPL 2.0 or later </a>.
 
