@@ -26,7 +26,7 @@ Changing color theme, the default color theme is based off [GHColors](https://gi
 
 ### Contribute
 
-See Github issues for list of current issues with the plugin. Please feel free to file any additional issues or requests that you may come across.
+See Github issues for list of current issues with the plugin. Please feel free to file any additional issues or requests that you may come across. Pull requests are welcome to help extend.
 
 
 ### Colophon
@@ -34,4 +34,11 @@ See Github issues for list of current issues with the plugin. Please feel free t
 - Uses PrismJS syntax highlighter, http://prismjs.com/
 
 - Uses customized GH Colors theme, https://github.com/PrismJS/prism-themes
+
+
+### License
+
+Copyright (c) 2018 Marcus Kazmierczak.
+
+Licensed under <a href="https://opensource.org/licenses/GPL-2.0">GPL 2.0 or later</a>.
 

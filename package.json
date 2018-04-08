@@ -1,6 +1,7 @@
 {
 	"name": "mkaz-code-syntax",
 	"version": "0.2.0",
+	"license": "GPL-2.0-or-later",
 	"main": "code-syntax.js",
 	"devDependencies": {
 		"babel-core": "^6.25.0",
