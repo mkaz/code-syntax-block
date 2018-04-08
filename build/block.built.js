@@ -344,9 +344,9 @@ var addSyntaxToCodeBlock = function addSyntaxToCodeBlock(settings) {
 				React.createElement(SelectControl, {
 					label: 'Language',
 					value: attributes.language,
-					options: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(langs).map(function (lang) {
+					options: [{ label: __('Select code language'), value: '' }].concat(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_object_keys___default()(langs).map(function (lang) {
 						return { label: langs[lang], value: lang };
-					}),
+					})),
 					onChange: updateLanguage
 				})
 			), React.createElement(

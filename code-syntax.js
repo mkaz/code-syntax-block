@@ -55,9 +55,10 @@ const addSyntaxToCodeBlock = settings => {
 							label="Language"
 							value={ attributes.language }
 							options={
-								Object.keys( langs ).map( ( lang ) => ( 
+								[ { label: __( 'Select code language' ), value: '' } ].concat (
+								Object.keys( langs ).map( ( lang ) => (
 									{ label: langs[lang], value: lang }
-								) )
+								) ) )
 							}
 							onChange={ updateLanguage }
 						/>
