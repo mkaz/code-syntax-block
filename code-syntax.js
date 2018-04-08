@@ -21,11 +21,16 @@ const langs = {
 	bash:       'Bash (shell)',
 	clike:      'C-like',
 	css:        'CSS',
+	git:        'Git',
 	go:         'Go (golang)',
+	markup:     'HTML/Markup',
 	javascript: 'JavaScript',
-	markup:     'Markup',
+	json:       'JSON',
+	markdown:   'Markdown',
 	php:        'PHP',
 	python:     'Python',
+	jsx:        'React JSX',
+	sql:        'SQL',
 };
 
 const addSyntaxToCodeBlock = settings => {
