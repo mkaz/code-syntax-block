@@ -375,7 +375,7 @@ var addSyntaxToCodeBlock = function addSyntaxToCodeBlock(settings) {
 		save: function save(_ref2) {
 			var attributes = _ref2.attributes;
 
-			var cls = attributes.language ? "language-" + langs[attributes.language] : "";
+			var cls = attributes.language ? "language-" + attributes.language : "";
 			return React.createElement(
 				'pre',
 				null,

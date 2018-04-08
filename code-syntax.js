@@ -82,7 +82,7 @@ const addSyntaxToCodeBlock = settings => {
 		},
 
 		save( { attributes } ) {
-			const cls = ( attributes.language ) ? "language-" + langs[ attributes.language ]: "";
+			const cls = ( attributes.language ) ? "language-" + attributes.language : "";
 			return <pre><code lang={ attributes.language } className={ cls }>{ attributes.content }</code></pre>;
 		},
 	};
