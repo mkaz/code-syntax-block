@@ -7,7 +7,9 @@
  * WordPress dependencies
  */
 const { __ } = wp.i18n;
-const { registerBlockType, PlainText, BlockControls } = wp.blocks;
+const { addFilter } = wp.hooks;
+const { PlainText, InspectorControls } = wp.blocks;
+const { SelectControl } = wp.components;
 
 /**
  * Internal dependencies
@@ -16,67 +18,75 @@ import './editor.scss';
 import './style.scss';
 
 const langs = {
-    css: 'css',
-    go:  'go',
-    js:  'javascript',
-    php: 'php',
-    py:  'python',
-    sh:  'bash',
+	bash:       'Bash (shell)',
+	clike:      'C-like',
+	css:        'CSS',
+	go:         'Go (golang)',
+	javascript: 'JavaScript',
+	markup:     'Markup',
+	php:        'PHP',
+	python:     'Python',
 };
 
-export  default registerBlockType( 'mkaz/code-syntax', {
-	title: 'Code Syntax',
-	icon: 'editor-code',
-	category: 'formatting',
+const addSyntaxToCodeBlock = settings => {
+	if ( settings.name !== "core/code" ) {
+		return settings;
+	}
 
-	attributes: {
-		content: {
-			type: 'string',
-			source: 'property',
-			selector: 'code',
-			property: 'textContent',
-        },
-        language: {
-            type: 'string',
-            selector: 'code',
-            source: 'attribute',
-            attribute: 'lang'
+	const newCodeBlockSettings = {
+		...settings,
+
+		attributes: {
+			...settings.attributes,
+			language: {
+				type: 'string',
+				selector: 'code',
+				source: 'attribute',
+				attribute: 'lang'
+			},
 		},
-	},
 
-	supports: {
-		html: false,
-	},
+		edit( { attributes, setAttributes, isSelected, className } ) {
+			const updateLanguage = language => setAttributes({ language });
+			return [
+				isSelected && (
+					<InspectorControls>
+						<SelectControl
+							label="Language"
+							value={ attributes.language }
+							options={
+								Object.keys( langs ).map( ( lang ) => ( 
+									{ label: langs[lang], value: lang }
+								) )
+							}
+							onChange={ updateLanguage }
+						/>
+					</InspectorControls>
+				),
+				<div className={ className }>
+					<PlainText
+						value={ attributes.content }
+						onChange={ ( content ) => setAttributes( { content } ) }
+						placeholder={ __( 'Write code…' ) }
+						aria-label={ __( 'Code' ) }
+					/>
+					<div class="language-selected">{ langs[ attributes.language ] }</div>
+				</div>
+			];
+		},
 
-	edit( { attributes, setAttributes, isSelected, className } ) {
+		save( { attributes } ) {
+			const cls = ( attributes.language ) ? "language-" + langs[ attributes.language ]: "";
+			return <pre><code lang={ attributes.language } className={ cls }>{ attributes.content }</code></pre>;
+		},
+	};
 
-		return [
-			isSelected && (
-				<BlockControls
-					key="controls"
-					controls={
-						Object.keys( langs ).map( ( lang ) => ( {
-							title: lang,
-                            subscript: lang,
-							onClick: () => setAttributes( { language: lang } ),
-						} ) )
-					}
-				/>
-			),
-			<div className={ className }>
-				<PlainText
-					value={ attributes.content }
-					onChange={ ( content ) => setAttributes( { content } ) }
-					placeholder={ __( 'Write code…' ) }
-					aria-label={ __( 'Code' ) }
-				/>
-                <div class="language-selected">{ langs[ attributes.language ] }</div>
-			</div>
-		];
-	},
+	return newCodeBlockSettings;
+};
 
-	save( { attributes } ) {
-        const cls = ( attributes.language ) ? "language-" + langs[ attributes.language ]: "";
-		return <pre><code lang={ attributes.language } className={ cls }>{ attributes.content }</code></pre>;
-	},
-} );
+// Register Filter
+addFilter(
+	"blocks.registerBlockType",
+	"mkaz/code-syntax-block",
+	addSyntaxToCodeBlock
+)

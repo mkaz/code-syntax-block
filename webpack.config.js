@@ -39,7 +39,7 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-				test: /.js$/,
+				test: /\.js$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/,
 			},
