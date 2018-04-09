@@ -2,10 +2,12 @@
 /*
 Plugin Name:  Code Syntax Block
 Plugin URI:   https://github.com/mkaz/code-syntax-block
-Description:  A Gutenberg code block with syntax highlighting
+Description:  A plugin to extend Gutenberg code block with syntax highlighting
 Version:      0.3.1
 Author:       Marcus Kazmierczak
 Author URI:   https://mkaz.blog/
+License:      GPL2
+License URI:  https://www.gnu.org/licenses/gpl-2.0.html
 */
 
 
