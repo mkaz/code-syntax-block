@@ -8,8 +8,9 @@
  */
 const { __ } = wp.i18n;
 const { addFilter } = wp.hooks;
-const { PlainText, InspectorControls } = wp.blocks;
 const { SelectControl } = wp.components;
+const { PlainText } = wp.blocks;
+const { InspectorControls } = wp.editor;
 
 /**
  * Internal dependencies
