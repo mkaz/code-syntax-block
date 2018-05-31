@@ -8,9 +8,9 @@
  */
 const { __ } = wp.i18n;
 const { addFilter } = wp.hooks;
-const { SelectControl } = wp.components;
 const { PlainText } = wp.blocks;
 const { InspectorControls } = wp.editor;
+const { SelectControl, CodeEditor } = wp.components;
 
 /**
  * Internal dependencies
@@ -71,11 +71,12 @@ const addSyntaxToCodeBlock = settings => {
 					</InspectorControls>
 				),
 				<div className={ className }>
-					<PlainText
+					<CodeEditor
 						value={ attributes.content }
 						onChange={ ( content ) => setAttributes( { content } ) }
 						placeholder={ __( 'Write code…' ) }
 						aria-label={ __( 'Code' ) }
+						editorRef={ ref => attributes.editorInstance = ref }
 					/>
 					<div class="language-selected">{ langs[ attributes.language ] }</div>
 				</div>
