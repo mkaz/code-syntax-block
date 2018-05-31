@@ -53,7 +53,11 @@ const addSyntaxToCodeBlock = settings => {
 		},
 
 		edit( { attributes, setAttributes, isSelected, className } ) {
-			const updateLanguage = language => setAttributes({ language });
+			const updateLanguage = language => {
+				setAttributes({ language });
+				attributes.editorInstance.setOption('mode', language);
+			};
+			
 			return [
 				isSelected && (
 					<InspectorControls>
