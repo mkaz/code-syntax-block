@@ -53,6 +53,14 @@ const addSyntaxToCodeBlock = settings => {
 		},
 
 		edit( { attributes, setAttributes, isSelected, className } ) {
+
+			const editorSettings = () => {
+				let settings = { ...window._wpGutenbergCodeEditorSettings };
+				settings.codemirror = { ...settings.codemirror };
+				settings.codemirror.mode = attributes.language;
+				return settings;
+			};
+
 			const updateLanguage = language => {
 				setAttributes({ language });
 				attributes.editorInstance.setOption('mode', language);
@@ -80,6 +88,7 @@ const addSyntaxToCodeBlock = settings => {
 						onChange={ ( content ) => setAttributes( { content } ) }
 						placeholder={ __( 'Write code…' ) }
 						aria-label={ __( 'Code' ) }
+						settings={ editorSettings() }
 						editorRef={ ref => attributes.editorInstance = ref }
 					/>
 					<div class="language-selected">{ langs[ attributes.language ] }</div>
