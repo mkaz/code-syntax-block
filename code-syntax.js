@@ -8,8 +8,9 @@
  */
 const { __ } = wp.i18n;
 const { addFilter } = wp.hooks;
-const { PlainText, InspectorControls } = wp.blocks;
-const { SelectControl } = wp.components;
+const { PlainText } = wp.blocks;
+const { InspectorControls } = wp.editor;
+const { SelectControl, CodeEditor } = wp.components;
 
 /**
  * Internal dependencies
@@ -52,7 +53,19 @@ const addSyntaxToCodeBlock = settings => {
 		},
 
 		edit( { attributes, setAttributes, isSelected, className } ) {
-			const updateLanguage = language => setAttributes({ language });
+
+			const editorSettings = () => {
+				let settings = { ...window._wpGutenbergCodeEditorSettings };
+				settings.codemirror = { ...settings.codemirror };
+				settings.codemirror.mode = attributes.language;
+				return settings;
+			};
+
+			const updateLanguage = language => {
+				setAttributes({ language });
+				attributes.editorInstance.setOption('mode', language);
+			};
+			
 			return [
 				isSelected && (
 					<InspectorControls>
@@ -70,11 +83,13 @@ const addSyntaxToCodeBlock = settings => {
 					</InspectorControls>
 				),
 				<div className={ className }>
-					<PlainText
+					<CodeEditor
 						value={ attributes.content }
 						onChange={ ( content ) => setAttributes( { content } ) }
 						placeholder={ __( 'Write code…' ) }
 						aria-label={ __( 'Code' ) }
+						settings={ editorSettings() }
+						editorRef={ ref => attributes.editorInstance = ref }
 					/>
 					<div class="language-selected">{ langs[ attributes.language ] }</div>
 				</div>
