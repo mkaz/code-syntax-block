@@ -8,9 +8,8 @@
  */
 const { __ } = wp.i18n;
 const { addFilter } = wp.hooks;
-const { PlainText } = wp.blocks;
-const { InspectorControls } = wp.editor;
-const { SelectControl, CodeEditor } = wp.components;
+const { PlainText, InspectorControls } = wp.editor;
+const { SelectControl } = wp.components;
 
 /**
  * Internal dependencies
@@ -54,44 +53,32 @@ const addSyntaxToCodeBlock = settings => {
 
 		edit( { attributes, setAttributes, isSelected, className } ) {
 
-			const editorSettings = () => {
-				let settings = { ...window._wpGutenbergCodeEditorSettings };
-				settings.codemirror = { ...settings.codemirror };
-				settings.codemirror.mode = attributes.language;
-				return settings;
+			const updateLanguage = language => {
+				setAttributes( { language } );
 			};
 
-			const updateLanguage = language => {
-				setAttributes({ language });
-				attributes.editorInstance.setOption('mode', language);
-			};
-			
 			return [
-				isSelected && (
-					<InspectorControls>
-						<SelectControl
-							label="Language"
-							value={ attributes.language }
-							options={
-								[ { label: __( 'Select code language' ), value: '' } ].concat (
-								Object.keys( langs ).map( ( lang ) => (
-									{ label: langs[lang], value: lang }
-								) ) )
-							}
-							onChange={ updateLanguage }
-						/>
-					</InspectorControls>
-				),
+				<InspectorControls>
+					<SelectControl
+						label="Language"
+						value={ attributes.language }
+						options={
+							[ { label: __( 'Select code language' ), value: '' } ].concat (
+							Object.keys( langs ).map( ( lang ) => (
+								{ label: langs[lang], value: lang }
+							) ) )
+						}
+						onChange={ updateLanguage }
+					/>
+				</InspectorControls>,
 				<div className={ className }>
-					<CodeEditor
+					<PlainText
 						value={ attributes.content }
 						onChange={ ( content ) => setAttributes( { content } ) }
 						placeholder={ __( 'Write code…' ) }
 						aria-label={ __( 'Code' ) }
-						settings={ editorSettings() }
-						editorRef={ ref => attributes.editorInstance = ref }
 					/>
-					<div class="language-selected">{ langs[ attributes.language ] }</div>
+					<div className="language-selected">{ langs[ attributes.language ] }</div>
 				</div>
 			];
 		},
