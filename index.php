@@ -61,8 +61,6 @@ add_action( 'enqueue_block_editor_assets', 'mkaz_code_syntax_editor_assets' );
 function mkaz_code_syntax_view_assets() {
 	// Files.
 	$view_style_path = 'assets/blocks.style.css';
-	$prism_js_path   = 'assets/prism.js';
-	$prism_css_path  = 'assets/prism.css';
 
 	// Enqueue view style.
 	wp_enqueue_style(
@@ -70,23 +68,6 @@ function mkaz_code_syntax_view_assets() {
 		plugins_url( $view_style_path, __FILE__ ),
 		array(),
 		filemtime( plugin_dir_path( __FILE__ ) . $view_style_path )
-	);
-
-	// Enqueue prism style.
-	wp_enqueue_style(
-		'mkaz-code-syntax-prism-css',
-		plugins_url( $prism_css_path, __FILE__ ),
-		array(),
-		filemtime( plugin_dir_path( __FILE__ ) . $prism_css_path )
-	);
-
-	// Enqueue prism script.
-	wp_enqueue_script(
-		'mkaz-code-syntax-prism-css',
-		plugins_url( $prism_js_path, __FILE__ ),
-		array(), // No dependencies.
-		filemtime( plugin_dir_path( __FILE__ ) . $prism_js_path ),
-		true // In footer.
 	);
 }
 add_action( 'wp_enqueue_scripts', 'mkaz_code_syntax_view_assets' );
