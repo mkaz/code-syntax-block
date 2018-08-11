@@ -18,19 +18,19 @@ import './editor.scss';
 import './style.scss';
 
 const langs = {
-	bash:       'Bash (shell)',
-	clike:      'C-like',
-	css:        'CSS',
-	git:        'Git',
-	go:         'Go (golang)',
-	markup:     'HTML/Markup',
-	javascript: 'JavaScript',
-	json:       'JSON',
-	markdown:   'Markdown',
-	php:        'PHP',
-	python:     'Python',
-	jsx:        'React JSX',
-	sql:        'SQL',
+	bash:       __( 'Bash (shell)', 'code-syntax-block' ),
+	clike:      __( 'C-like', 'code-syntax-block' ),
+	css:        __( 'CSS', 'code-syntax-block' ),
+	git:        __( 'Git', 'code-syntax-block' ),
+	go:         __( 'Go (golang)', 'code-syntax-block' ),
+	markup:     __( 'HTML/Markup', 'code-syntax-block' ),
+	javascript: __( 'JavaScript', 'code-syntax-block' ),
+	json:       __( 'JSON', 'code-syntax-block' ),
+	markdown:   __( 'Markdown', 'code-syntax-block' ),
+	php:        __( 'PHP', 'code-syntax-block' ),
+	python:     __( 'Python', 'code-syntax-block' ),
+	jsx:        __( 'React JSX', 'code-syntax-block' ),
+	sql:        __( 'SQL', 'code-syntax-block' ),
 };
 
 const addSyntaxToCodeBlock = settings => {
@@ -63,7 +63,7 @@ const addSyntaxToCodeBlock = settings => {
 						label="Language"
 						value={ attributes.language }
 						options={
-							[ { label: __( 'Select code language' ), value: '' } ].concat (
+							[ { label: __( 'Select code language', 'code-syntax-block' ), value: '' } ].concat (
 							Object.keys( langs ).map( ( lang ) => (
 								{ label: langs[lang], value: lang }
 							) ) )
@@ -75,8 +75,8 @@ const addSyntaxToCodeBlock = settings => {
 					<PlainText
 						value={ attributes.content }
 						onChange={ ( content ) => setAttributes( { content } ) }
-						placeholder={ __( 'Write code…' ) }
-						aria-label={ __( 'Code' ) }
+						placeholder={ __( 'Write code…', 'code-syntax-block' ) }
+						aria-label={ __( 'Code', 'code-syntax-block' ) }
 					/>
 					<div className="language-selected">{ langs[ attributes.language ] }</div>
 				</div>
