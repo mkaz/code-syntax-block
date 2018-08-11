@@ -58,7 +58,7 @@ const addSyntaxToCodeBlock = settings => {
 			};
 
 			return [
-				<InspectorControls>
+				<InspectorControls key="controls">
 					<SelectControl
 						label="Language"
 						value={ attributes.language }
@@ -71,7 +71,7 @@ const addSyntaxToCodeBlock = settings => {
 						onChange={ updateLanguage }
 					/>
 				</InspectorControls>,
-				<div className={ className }>
+				<div key="editor-wrapper" className={ className }>
 					<PlainText
 						value={ attributes.content }
 						onChange={ ( content ) => setAttributes( { content } ) }
