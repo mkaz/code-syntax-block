@@ -17,37 +17,70 @@ const { SelectControl } = wp.components;
 import './editor.scss';
 import './style.scss';
 
-const langs = {
-	bash: __( 'Bash (shell)', 'code-syntax-block' ),
-	clike: __( 'C-like', 'code-syntax-block' ),
-	css: __( 'CSS', 'code-syntax-block' ),
-	git: __( 'Git', 'code-syntax-block' ),
-	go: __( 'Go (golang)', 'code-syntax-block' ),
-	markup: __( 'HTML/Markup', 'code-syntax-block' ),
-	javascript: __( 'JavaScript', 'code-syntax-block' ),
-	json: __( 'JSON', 'code-syntax-block' ),
-	markdown: __( 'Markdown', 'code-syntax-block' ),
-	php: __( 'PHP', 'code-syntax-block' ),
-	python: __( 'Python', 'code-syntax-block' ),
-	jsx: __( 'React JSX', 'code-syntax-block' ),
-	sql: __( 'SQL', 'code-syntax-block' )
-};
+// An array is used as opposed to an object because objects in JS do not preserve order like associative arrays in PHP.
+const languageOptions = [
+	{
+		value: 'bash',
+		label: __( 'Bash (shell)', 'code-syntax-block' )
+	},
+	{
+		value: 'cpp',
+		label: __( 'C-like', 'code-syntax-block' )
+	},
+	{
+		value: 'css',
+		label: __( 'CSS', 'code-syntax-block' )
+	},
+	{
+		value: 'diff',
+		label: __( 'Diff', 'code-syntax-block' )
+	},
+	{
+		value: 'go',
+		label: __( 'Go (golang)', 'code-syntax-block' )
+	},
+	{
+		value: 'xml',
+		label: __( 'HTML/Markup', 'code-syntax-block' )
+	},
+	{
+		value: 'javascript',
+		label: __( 'JavaScript (JSX)', 'code-syntax-block' )
+	},
+	{
+		value: 'json',
+		label: __( 'JSON', 'code-syntax-block' )
+	},
+	{
+		value: 'markdown',
+		label: __( 'Markdown', 'code-syntax-block' )
+	},
+	{
+		value: 'php',
+		label: __( 'PHP', 'code-syntax-block' )
+	},
+	{
+		value: 'python',
+		label: __( 'Python', 'code-syntax-block' )
+	},
+	{
+		value: 'sql',
+		label: __( 'SQL', 'code-syntax-block' )
+	}
+];
 
 const addSyntaxToCodeBlock = settings => {
 	if ( 'core/code' !== settings.name ) {
 		return settings;
 	}
 
-	const newCodeBlockSettings = {
+	return {
 		...settings,
 
 		attributes: {
 			...settings.attributes,
 			language: {
-				type: 'string',
-				selector: 'code',
-				source: 'attribute',
-				attribute: 'lang'
+				type: 'string'
 			}
 		},
 
@@ -63,10 +96,10 @@ const addSyntaxToCodeBlock = settings => {
 						label="Language"
 						value={ attributes.language }
 						options={
-							[ { label: __( 'Select code language', 'code-syntax-block' ), value: '' } ].concat (
-							Object.keys( langs ).map( ( lang ) => (
-								{ label: langs[lang], value: lang }
-							) ) )
+							[
+								{ label: __( 'Auto-detect', 'code-syntax-block' ), value: '' },
+								...languageOptions
+							]
 						}
 						onChange={ updateLanguage }
 					/>
@@ -78,18 +111,32 @@ const addSyntaxToCodeBlock = settings => {
 						placeholder={ __( 'Write code…', 'code-syntax-block' ) }
 						aria-label={ __( 'Code', 'code-syntax-block' ) }
 					/>
-					<div className="language-selected">{ langs[ attributes.language ] }</div>
+					<div className="language-selected">{ languageOptions[ attributes.language ] }</div>
 				</div>
 			];
 		},
 
 		save({ attributes }) {
-			const cls = ( attributes.language ) ? 'language-' + attributes.language : '';
-			return <pre><code lang={ attributes.language } className={ cls }>{ attributes.content }</code></pre>;
-		}
-	};
+			return <pre><code>{ attributes.content }</code></pre>;
+		},
 
-	return newCodeBlockSettings;
+		deprecated: [
+			...( settings.deprecated || []),
+			{
+				attributes: {
+					...settings.attributes,
+					language: {
+						type: 'string'
+					}
+				},
+
+				save: function({ attributes }) {
+					const cls = ( attributes.language ) ? 'language-' + attributes.language : '';
+					return <pre><code lang={ attributes.language } className={ cls }>{ attributes.content }</code></pre>;
+				}
+			}
+		]
+	};
 };
 
 // Register Filter

@@ -5,4 +5,26 @@ node_modules
 npm-debug.log
 yarn-error.log
 yarn.lock
-pacakge-lock.json
+package-lock.json
+/vendor/*
+!/vendor/scrivo
+/vendor/scrivo/highlight.php/*
+
+!/vendor/scrivo/highlight.php/Highlight/
+/vendor/scrivo/highlight.php/Highlight/languages/*.json
+!/vendor/scrivo/highlight.php/Highlight/languages/bash.json
+!/vendor/scrivo/highlight.php/Highlight/languages/cpp.json # Like clike.
+!/vendor/scrivo/highlight.php/Highlight/languages/css.json
+!/vendor/scrivo/highlight.php/Highlight/languages/diff.json # Can be used instead of 'git' in Prism.
+!/vendor/scrivo/highlight.php/Highlight/languages/go.json
+!/vendor/scrivo/highlight.php/Highlight/languages/javascript.json # Also jsx.
+!/vendor/scrivo/highlight.php/Highlight/languages/json.json
+!/vendor/scrivo/highlight.php/Highlight/languages/markdown.json
+!/vendor/scrivo/highlight.php/Highlight/languages/php.json
+!/vendor/scrivo/highlight.php/Highlight/languages/python.json
+!/vendor/scrivo/highlight.php/Highlight/languages/sql.json
+!/vendor/scrivo/highlight.php/Highlight/languages/xml.json # Also markup/HTML.
+
+!/vendor/scrivo/highlight.php/styles/
+/vendor/scrivo/highlight.php/styles/*
+!/vendor/scrivo/highlight.php/styles/default.css

@@ -1,14 +1,19 @@
 
-.code-syntax,
-.code-syntax code {
+.wp-block-code,
+.wp-block-code > code {
 	font-family: Menlo, Consolas, 'Liberation Mono', monospace;
 	font-size: 14px;
 	color: #009;
 }
 
-.code-syntax {
+.wp-block-code {
 	padding: .8em 1.6em;
 	overflow-x: auto !important;
 	border: 1px solid #CCC;
 	border-radius: 4px;
+}
+
+/* Override styles like https://github.com/WordPress/wordpress-develop/blob/4.9.8/src/wp-content/themes/twentysixteen/style.css#L422-L423 */
+.wp-block-code > code {
+	background-color: inherit;
 }

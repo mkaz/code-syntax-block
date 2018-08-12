@@ -27,6 +27,6 @@
 		"make-pot": "wp i18n make-pot . languages/code-syntax-block.pot --include=code-syntax.js",
 		"build": "cross-env BABEL_ENV=default NODE_ENV=production webpack; npm run make-pot",
 		"dev": "cross-env BABEL_ENV=default webpack --watch",
-		"zip": "zip -r code-syntax-block.zip index.php readme.md assets build languages"
+		"zip": "zip -r code-syntax-block.zip index.php readme.md assets build languages $( git ls-files vendor )"
 	}
 }

@@ -17,9 +17,19 @@ When creating a new code block, select `Code` block, and then in the Inspector (
 
 On the front-end when the post is being viewed, the code will be color syntax highlighted.
 
+### Customize
+
+The default install uses a limited set of languages from highlight.php (bash, cpp, css, diff, go, javascript, json, markdown, php, python, sql, xml). If your language is not included, you can modify the [`.gitignore`] to skip ignoring them you will also need to edit the `langs` array in [`code-syntax.js`](code-syntax.js) and rebuild.
+
+Changing color theme, the [default color theme](https://github.com/scrivo/highlight.php/blob/master/styles/default.css) is used from highlight.php. To use a different color scheme, just download one of the [other styles](https://github.com/scrivo/highlight.php/tree/master/styles) and then dequeue the default CSS to replace with your own.
+
+### Colophon
+
+- Uses [highlight.php syntax highlighter](https://github.com/scrivo/highlight.php)
+
 ### Contribute
 
-See Github issues for list of current issues with the plugin. Please feel free to file any additional issues or requests that you may come across. Pull requests are welcome to help extend.
+See [list of current issues](https://github.com/mkaz/code-syntax-block/issues) with the plugin. Please feel free to file any additional issues or requests that you may come across. [Pull requests](https://github.com/mkaz/code-syntax-block/pulls) are welcome to help extend.
 
 ### License
 

@@ -1,0 +1,10 @@
+{
+    "name": "mkaz/code-syntax-block",
+    "description": "A WordPress plugin which extends Gutenberg adding color syntax highlighting to the code block.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "version": "0.5.0",
+    "require": {
+        "scrivo/highlight.php": "v9.12.0.4"
+    }
+}
