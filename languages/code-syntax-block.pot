@@ -9,8 +9,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2018-08-11T22:51:33+00:00\n"
-"PO-Revision-Date: 2018-08-11T22:51:33+00:00\n"
+"POT-Creation-Date: 2018-08-12T05:06:40+00:00\n"
+"PO-Revision-Date: 2018-08-12T05:06:40+00:00\n"
 "X-Generator: WP-CLI 2.0.0\n"
 "X-Domain: code-syntax-block\n"
 
@@ -34,66 +34,62 @@ msgstr ""
 msgid "https://mkaz.blog/"
 msgstr ""
 
-#: code-syntax.js:21
+#: code-syntax.js:24
 msgid "Bash (shell)"
 msgstr ""
 
-#: code-syntax.js:22
+#: code-syntax.js:28
 msgid "C-like"
 msgstr ""
 
-#: code-syntax.js:23
+#: code-syntax.js:32
 msgid "CSS"
 msgstr ""
 
-#: code-syntax.js:24
-msgid "Git"
+#: code-syntax.js:36
+msgid "Diff"
 msgstr ""
 
-#: code-syntax.js:25
+#: code-syntax.js:40
 msgid "Go (golang)"
 msgstr ""
 
-#: code-syntax.js:26
+#: code-syntax.js:44
 msgid "HTML/Markup"
 msgstr ""
 
-#: code-syntax.js:27
-msgid "JavaScript"
+#: code-syntax.js:48
+msgid "JavaScript (JSX)"
 msgstr ""
 
-#: code-syntax.js:28
+#: code-syntax.js:52
 msgid "JSON"
 msgstr ""
 
-#: code-syntax.js:29
+#: code-syntax.js:56
 msgid "Markdown"
 msgstr ""
 
-#: code-syntax.js:30
+#: code-syntax.js:60
 msgid "PHP"
 msgstr ""
 
-#: code-syntax.js:31
+#: code-syntax.js:64
 msgid "Python"
 msgstr ""
 
-#: code-syntax.js:32
-msgid "React JSX"
-msgstr ""
-
-#: code-syntax.js:33
+#: code-syntax.js:68
 msgid "SQL"
 msgstr ""
 
-#: code-syntax.js:66
-msgid "Select code language"
+#: code-syntax.js:100
+msgid "Auto-detect"
 msgstr ""
 
-#: code-syntax.js:78
+#: code-syntax.js:111
 msgid "Write code…"
 msgstr ""
 
-#: code-syntax.js:79
+#: code-syntax.js:112
 msgid "Code"
 msgstr ""
