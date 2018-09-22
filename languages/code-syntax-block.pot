@@ -2,15 +2,15 @@
 # This file is distributed under the same license as the Code Syntax Block plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Code Syntax Block 0.4.0\n"
+"Project-Id-Version: Code Syntax Block 0.5.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/code-syntax-block\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2018-10-19T21:59:40+00:00\n"
-"PO-Revision-Date: 2018-10-19T21:59:40+00:00\n"
+"POT-Creation-Date: 2018-10-26T19:53:15+00:00\n"
+"PO-Revision-Date: 2018-10-26T19:53:15+00:00\n"
 "X-Generator: WP-CLI 2.0.1\n"
 "X-Domain: code-syntax-block\n"
 
@@ -34,66 +34,14 @@ msgstr ""
 msgid "https://mkaz.blog/"
 msgstr ""
 
-#: code-syntax.js:21
-msgid "Bash (shell)"
-msgstr ""
-
-#: code-syntax.js:22
-msgid "C-like"
-msgstr ""
-
-#: code-syntax.js:23
-msgid "CSS"
-msgstr ""
-
-#: code-syntax.js:24
-msgid "Git"
-msgstr ""
-
-#: code-syntax.js:25
-msgid "Go (golang)"
-msgstr ""
-
-#: code-syntax.js:26
-msgid "HTML/Markup"
-msgstr ""
-
-#: code-syntax.js:27
-msgid "JavaScript"
-msgstr ""
-
-#: code-syntax.js:28
-msgid "JSON"
-msgstr ""
-
-#: code-syntax.js:29
-msgid "Markdown"
-msgstr ""
-
-#: code-syntax.js:30
-msgid "PHP"
-msgstr ""
-
-#: code-syntax.js:31
-msgid "Python"
-msgstr ""
-
-#: code-syntax.js:32
-msgid "React JSX"
-msgstr ""
-
-#: code-syntax.js:33
-msgid "SQL"
-msgstr ""
-
-#: code-syntax.js:66
+#: code-syntax.js:57
 msgid "Select code language"
 msgstr ""
 
-#: code-syntax.js:78
+#: code-syntax.js:69
 msgid "Write code…"
 msgstr ""
 
-#: code-syntax.js:79
+#: code-syntax.js:70
 msgid "Code"
 msgstr ""
