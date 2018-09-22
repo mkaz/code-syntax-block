@@ -16,22 +16,7 @@ const { SelectControl } = wp.components;
  */
 import './editor.scss';
 import './style.scss';
-
-const langs = {
-	bash:       'Bash (shell)',
-	clike:      'C-like',
-	css:        'CSS',
-	git:        'Git',
-	go:         'Go (golang)',
-	markup:     'HTML/Markup',
-	javascript: 'JavaScript',
-	json:       'JSON',
-	markdown:   'Markdown',
-	php:        'PHP',
-	python:     'Python',
-	jsx:        'React JSX',
-	sql:        'SQL',
-};
+import { languages as langs } from './assets/prism-languages.json';
 
 const addSyntaxToCodeBlock = settings => {
 	if ( settings.name !== "core/code" ) {
@@ -65,7 +50,7 @@ const addSyntaxToCodeBlock = settings => {
 						options={
 							[ { label: __( 'Select code language' ), value: '' } ].concat (
 							Object.keys( langs ).map( ( lang ) => (
-								{ label: langs[lang], value: lang }
+								{ label: langs[lang].title, value: lang }
 							) ) )
 						}
 						onChange={ updateLanguage }
@@ -78,7 +63,7 @@ const addSyntaxToCodeBlock = settings => {
 						placeholder={ __( 'Write code…' ) }
 						aria-label={ __( 'Code' ) }
 					/>
-					<div className="language-selected">{ langs[ attributes.language ] }</div>
+					<div className="language-selected">{ langs[ attributes.language ].title }</div>
 				</div>
 			];
 		},
