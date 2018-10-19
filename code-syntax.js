@@ -34,7 +34,7 @@ const langs = {
 };
 
 const addSyntaxToCodeBlock = settings => {
-	if ( 'core/code' !== settings.name ) {
+	if ( settings.name !== 'core/code' ) {
 		return settings;
 	}
 

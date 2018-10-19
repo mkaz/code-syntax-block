@@ -319,7 +319,7 @@ var langs = {
 };
 
 var addSyntaxToCodeBlock = function addSyntaxToCodeBlock(settings) {
-	if ('core/code' !== settings.name) {
+	if (settings.name !== 'core/code') {
 		return settings;
 	}
 
