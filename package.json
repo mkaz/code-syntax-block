@@ -1,6 +1,6 @@
 {
 	"name": "mkaz-code-syntax",
-	"version": "0.5.0",
+	"version": "0.5.1",
 	"license": "GPL-2.0-or-later",
 	"main": "code-syntax.js",
 	"devDependencies": {
