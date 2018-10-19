@@ -3,7 +3,7 @@
  * A gutenberg block that allows inserting code with syntax highlighting.
  */
 
- /**
+/**
  * WordPress dependencies
  */
 const { __ } = wp.i18n;
@@ -18,23 +18,23 @@ import './editor.scss';
 import './style.scss';
 
 const langs = {
-	bash:       'Bash (shell)',
-	clike:      'C-like',
-	css:        'CSS',
-	git:        'Git',
-	go:         'Go (golang)',
-	markup:     'HTML/Markup',
-	javascript: 'JavaScript',
-	json:       'JSON',
-	markdown:   'Markdown',
-	php:        'PHP',
-	python:     'Python',
-	jsx:        'React JSX',
-	sql:        'SQL',
+	bash: __( 'Bash (shell)', 'code-syntax-block' ),
+	clike: __( 'C-like', 'code-syntax-block' ),
+	css: __( 'CSS', 'code-syntax-block' ),
+	git: __( 'Git', 'code-syntax-block' ),
+	go: __( 'Go (golang)', 'code-syntax-block' ),
+	markup: __( 'HTML/Markup', 'code-syntax-block' ),
+	javascript: __( 'JavaScript', 'code-syntax-block' ),
+	json: __( 'JSON', 'code-syntax-block' ),
+	markdown: __( 'Markdown', 'code-syntax-block' ),
+	php: __( 'PHP', 'code-syntax-block' ),
+	python: __( 'Python', 'code-syntax-block' ),
+	jsx: __( 'React JSX', 'code-syntax-block' ),
+	sql: __( 'SQL', 'code-syntax-block' )
 };
 
 const addSyntaxToCodeBlock = settings => {
-	if ( settings.name !== "core/code" ) {
+	if ( settings.name !== 'core/code' ) {
 		return settings;
 	}
 
@@ -48,22 +48,22 @@ const addSyntaxToCodeBlock = settings => {
 				selector: 'code',
 				source: 'attribute',
 				attribute: 'lang'
-			},
+			}
 		},
 
-		edit( { attributes, setAttributes, isSelected, className } ) {
+		edit({ attributes, setAttributes, isSelected, className }) {
 
 			const updateLanguage = language => {
-				setAttributes( { language } );
+				setAttributes({ language });
 			};
 
 			return [
-				<InspectorControls>
+				<InspectorControls key="controls">
 					<SelectControl
 						label="Language"
 						value={ attributes.language }
 						options={
-							[ { label: __( 'Select code language' ), value: '' } ].concat (
+							[ { label: __( 'Select code language', 'code-syntax-block' ), value: '' } ].concat (
 							Object.keys( langs ).map( ( lang ) => (
 								{ label: langs[lang], value: lang }
 							) ) )
@@ -71,22 +71,22 @@ const addSyntaxToCodeBlock = settings => {
 						onChange={ updateLanguage }
 					/>
 				</InspectorControls>,
-				<div className={ className }>
+				<div key="editor-wrapper" className={ className }>
 					<PlainText
 						value={ attributes.content }
-						onChange={ ( content ) => setAttributes( { content } ) }
-						placeholder={ __( 'Write code…' ) }
-						aria-label={ __( 'Code' ) }
+						onChange={ ( content ) => setAttributes({ content }) }
+						placeholder={ __( 'Write code…', 'code-syntax-block' ) }
+						aria-label={ __( 'Code', 'code-syntax-block' ) }
 					/>
 					<div className="language-selected">{ langs[ attributes.language ] }</div>
 				</div>
 			];
 		},
 
-		save( { attributes } ) {
-			const cls = ( attributes.language ) ? "language-" + attributes.language : "";
+		save({ attributes }) {
+			const cls = ( attributes.language ) ? 'language-' + attributes.language : '';
 			return <pre><code lang={ attributes.language } className={ cls }>{ attributes.content }</code></pre>;
-		},
+		}
 	};
 
 	return newCodeBlockSettings;
@@ -94,7 +94,7 @@ const addSyntaxToCodeBlock = settings => {
 
 // Register Filter
 addFilter(
-	"blocks.registerBlockType",
-	"mkaz/code-syntax-block",
+	'blocks.registerBlockType',
+	'mkaz/code-syntax-block',
 	addSyntaxToCodeBlock
-)
+);
