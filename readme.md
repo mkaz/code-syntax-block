@@ -23,6 +23,20 @@ The default install uses a limited set of languages from Prism (bash, css, clike
 
 Changing color theme, the default color theme is based off [GHColors](https://github.com/PrismJS/prism-themes/blob/master/themes/prism-ghcolors.css). You can download a new theme from the link above, or from the [Prism themes repo](https://github.com/PrismJS/prism-themes). The easiest way would be to download and customize the new css and replace `assets/prism.css`.
 
+#### Build requirements
+
+- Node dependencies (`$ npm install`)
+- [WP-CLI](https://wp-cli.org/)
+- [wp i18n](https://github.com/wp-cli/i18n-command)
+
+#### Build steps
+
+```
+$ npm run build
+$ npm run zip
+```
+
+Generated zip can be installed via Admin UI Plugins page
 
 ### Contribute
 
