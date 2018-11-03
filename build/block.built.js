@@ -305,10 +305,15 @@ var SelectControl = wp.components.SelectControl;
 
 
 
-var langs = void 0;
+var langs = {};
 
 for (var lang in __WEBPACK_IMPORTED_MODULE_4__assets_prism_languages_json__["languages"]) {
-	langs[lang] = __(__WEBPACK_IMPORTED_MODULE_4__assets_prism_languages_json__["languages"][lang].title, 'code-syntax-block');
+	if (!__WEBPACK_IMPORTED_MODULE_4__assets_prism_languages_json__["languages"].hasOwnProperty(lang)) {
+		continue;
+	}
+	if (typeof __WEBPACK_IMPORTED_MODULE_4__assets_prism_languages_json__["languages"][lang].title !== 'undefined') {
+		langs[lang] = __(__WEBPACK_IMPORTED_MODULE_4__assets_prism_languages_json__["languages"][lang].title, 'code-syntax-block');
+	}
 }
 
 var addSyntaxToCodeBlock = function addSyntaxToCodeBlock(settings) {
