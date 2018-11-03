@@ -18,10 +18,13 @@ import './editor.scss';
 import './style.scss';
 import { languages } from './assets/prism-languages.json';
 
-let langs;
+let langs = {};
 
 for ( let lang in languages ) {
-	langs[lang] = __( languages[lang].title, 'code-syntax-block' );
+	if (  ! languages.hasOwnProperty( lang ) ) { continue; }
+	if ( typeof languages[lang].title !== 'undefined' ) {
+		langs[lang] = __( languages[lang].title, 'code-syntax-block' );
+	}
 }
 
 const addSyntaxToCodeBlock = settings => {
