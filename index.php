@@ -62,6 +62,7 @@ function mkaz_code_syntax_view_assets() {
 	// Files.
 	$view_style_path = 'assets/blocks.style.css';
 	$prism_js_path   = 'assets/prism.js';
+	$prism_settings_path = 'assets/prism-settings.js';
 	$prism_css_path  = 'assets/prism.css';
 
 	// Enqueue view style.
@@ -88,5 +89,19 @@ function mkaz_code_syntax_view_assets() {
 		filemtime( plugin_dir_path( __FILE__ ) . $prism_js_path ),
 		true // In footer.
 	);
+
+	// enqueue prism settings script
+	wp_enqueue_script(
+		'mkaz-code-syntax-prism-settings',
+		plugins_url( $prism_settings_path, __FILE__ ),
+		[], // no dependencies
+		filemtime( plugin_dir_path(__FILE__) . $prism_settings_path ),
+		true // in footer
+	);
+
+	// save the plugin path
+	wp_localize_script('mkaz-code-syntax-prism-settings', 'settings', array(
+		'pluginUrl' => plugin_dir_url(__FILE__),
+	));
 }
 add_action( 'wp_enqueue_scripts', 'mkaz_code_syntax_view_assets' );

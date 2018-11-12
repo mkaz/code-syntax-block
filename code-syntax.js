@@ -16,22 +16,16 @@ const { SelectControl } = wp.components;
  */
 import './editor.scss';
 import './style.scss';
+import { languages } from './assets/prism-languages.json';
 
-const langs = {
-	bash: __( 'Bash (shell)', 'code-syntax-block' ),
-	clike: __( 'C-like', 'code-syntax-block' ),
-	css: __( 'CSS', 'code-syntax-block' ),
-	git: __( 'Git', 'code-syntax-block' ),
-	go: __( 'Go (golang)', 'code-syntax-block' ),
-	markup: __( 'HTML/Markup', 'code-syntax-block' ),
-	javascript: __( 'JavaScript', 'code-syntax-block' ),
-	json: __( 'JSON', 'code-syntax-block' ),
-	markdown: __( 'Markdown', 'code-syntax-block' ),
-	php: __( 'PHP', 'code-syntax-block' ),
-	python: __( 'Python', 'code-syntax-block' ),
-	jsx: __( 'React JSX', 'code-syntax-block' ),
-	sql: __( 'SQL', 'code-syntax-block' )
-};
+let langs = {};
+
+for ( let lang in languages ) {
+	if (  ! languages.hasOwnProperty( lang ) ) { continue; }
+	if ( typeof languages[lang].title !== 'undefined' ) {
+		langs[lang] = __( languages[lang].title, 'code-syntax-block' );
+	}
+}
 
 const addSyntaxToCodeBlock = settings => {
 	if ( settings.name !== 'core/code' ) {
