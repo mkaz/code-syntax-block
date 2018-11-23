@@ -33,7 +33,7 @@ function mkaz_code_syntax_editor_assets() {
 	wp_enqueue_script(
 		'mkaz-code-syntax',
 		plugins_url( $block_path, __FILE__ ),
-		array( 'wp-blocks', 'wp-element', 'wp-i18n' ),
+		array( 'wp-blocks', 'wp-editor', 'wp-element', 'wp-i18n' ),
 		filemtime( plugin_dir_path( __FILE__ ) . $block_path )
 	);
 
