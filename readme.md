@@ -19,11 +19,14 @@ On the front-end when the post is being viewed, the code will be color syntax hi
 
 ### Customize
 
-The default install uses a limited set of languages from Prism (bash, css, clike, html/markup git, go, javascript, json, php, python, react jsx, sql). If your language is not included, you can build and download a new prism.js <a href="http://prismjs.com/download.html#languages=markup+css+clike+javascript+bash+markup-templating+git+go+php+python+jsx">using this form</a>. Just replace `assets/prism.js` with the new file. You will also need to edit the langs array in code-syntax.js and rebuild.
+If you want to change the colors, the default color theme is based off [GHColors](https://github.com/PrismJS/prism-themes/blob/master/themes/prism-ghcolors.css). You can download a new theme from the link above, or from the [Prism themes repo](https://github.com/PrismJS/prism-themes). The easiest way to customize is to download and customize the new css and replace `assets/prism.css`.
 
-Changing color theme, the default color theme is based off [GHColors](https://github.com/PrismJS/prism-themes/blob/master/themes/prism-ghcolors.css). You can download a new theme from the link above, or from the [Prism themes repo](https://github.com/PrismJS/prism-themes). The easiest way would be to download and customize the new css and replace `assets/prism.css`.
 
-#### Build requirements
+### Build
+
+It is not necessary to build the plugin to use it, but if you want to contribute, or modify the plugin.
+
+#### Dependencies
 
 - Node dependencies (`$ npm install`)
 - [WP-CLI](https://wp-cli.org/)
