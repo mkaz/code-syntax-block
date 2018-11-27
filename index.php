@@ -26,8 +26,16 @@ add_action( 'plugins_loaded', 'mkaz_load_plugin_textdomain' );
  */
 function mkaz_code_syntax_editor_assets() {
 	// Files.
-	$block_path        = 'build/block.built.js';
+	$block_path        = 'code-syntax.js';
 	$editor_style_path = 'assets/blocks.editor.css';
+
+	// Prism Languages
+	wp_enqueue_script(
+		'mkaz-code-syntax-langs',
+		plugins_url( 'assets/prism-languages.js', __FILE__ ),
+		array(),
+		filemtime( plugin_dir_path( __FILE__ ) . 'assets/prism-languages.js' )
+	);
 
 	// Block.
 	wp_enqueue_script(
