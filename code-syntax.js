@@ -8,22 +8,18 @@
  */
 const { __ } = wp.i18n;
 const { addFilter } = wp.hooks;
+const  el = wp.element.createElement;
 const { PlainText, InspectorControls } = wp.editor;
 const { SelectControl } = wp.components;
 
-/**
- * Internal dependencies
- */
-import './editor.scss';
-import './style.scss';
-import { languages } from './assets/prism-languages.json';
+const editorStyle = { fontFamily: 'sans-serif', fontSize: '10px', color: '#999999', textAlign: 'right' };
 
 let langs = {};
 
-for ( let lang in languages ) {
-	if (  ! languages.hasOwnProperty( lang ) ) { continue; }
-	if ( typeof languages[lang].title !== 'undefined' ) {
-		langs[lang] = __( languages[lang].title, 'code-syntax-block' );
+for ( let lang in prismLanguages ) {
+	if (  ! prismLanguages.hasOwnProperty( lang ) ) { continue; }
+	if ( typeof prismLanguages[lang].title !== 'undefined' ) {
+		langs[lang] = __( prismLanguages[lang].title, 'code-syntax-block' );
 	}
 }
 
@@ -52,34 +48,40 @@ const addSyntaxToCodeBlock = settings => {
 			};
 
 			return [
-				<InspectorControls key="controls">
-					<SelectControl
-						label="Language"
-						value={ attributes.language }
-						options={
-							[ { label: __( 'Select code language', 'code-syntax-block' ), value: '' } ].concat (
-							Object.keys( langs ).map( ( lang ) => (
-								{ label: langs[lang], value: lang }
-							) ) )
-						}
-						onChange={ updateLanguage }
-					/>
-				</InspectorControls>,
-				<div key="editor-wrapper" className={ className }>
-					<PlainText
-						value={ attributes.content }
-						onChange={ ( content ) => setAttributes({ content }) }
-						placeholder={ __( 'Write code…', 'code-syntax-block' ) }
-						aria-label={ __( 'Code', 'code-syntax-block' ) }
-					/>
-					<div className="language-selected">{ langs[ attributes.language ] }</div>
-				</div>
+				el( InspectorControls, { key: 'controls' },
+					el( SelectControl, {
+						label: "Language",
+						value: attributes.language,
+						options: [ {
+								label: __( 'Select code language', 'code-syntax-block' ),
+								value: '',
+							}].concat (
+								Object.keys( langs ).map( ( lang ) => (
+									{ label: langs[lang], value: lang }
+								) )
+							),
+						onChange: updateLanguage,
+					} )
+				),
+				el( 'div', { key: 'editor-wrapper', className: className },
+					el( PlainText, {
+							value: attributes.content,
+							onChange: ( content ) => setAttributes({ content }),
+							placeholder: __( 'Write code…', 'code-syntax-block' ),
+							ariaLabel: __( 'Code', 'code-syntax-block' ),
+						}),
+					el( 'div', { style: editorStyle }, langs[ attributes.language ] )
+				)
 			];
 		},
 
 		save({ attributes }) {
 			const cls = ( attributes.language ) ? 'language-' + attributes.language : '';
-			return <pre><code lang={ attributes.language } className={ cls }>{ attributes.content }</code></pre>;
+			return el(
+				'pre',
+				{},
+				el( 'code', { lang: attributes.language, className: cls }, attributes.content )
+			);
 		}
 	};
 
