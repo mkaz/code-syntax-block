@@ -3,7 +3,7 @@
  * Plugin Name:  Code Syntax Block
  * Plugin URI:   https://github.com/mkaz/code-syntax-block
  * Description:  A plugin to extend Gutenberg code block with syntax highlighting
- * Version:      0.7.0
+ * Version:      0.8.0
  * Author:       Marcus Kazmierczak
  * Author URI:   https://mkaz.blog/
  * License:      GPL2
@@ -63,7 +63,18 @@ function mkaz_code_syntax_view_assets() {
 	$view_style_path = 'assets/blocks.style.css';
 	$prism_js_path   = 'assets/prism.js';
 	$prism_settings_path = 'assets/prism-settings.js';
+
+	// Syntax Highlighting colors
 	$prism_css_path  = 'assets/prism.css';
+	/**
+	 * Filter the URL of the Syntax Highlighting colors.
+	 * Use this filter to define your own color set.
+	 *
+	 * @since 0.8.0
+	 *
+	 * @param string $prism_css_url Absolute URL of the CSS file you want to enqueue.
+	 */
+	$prism_css_url   = apply_filters( 'mkaz_prism_css_url', plugins_url( $prism_css_path, __FILE__ ) );
 
 	// Enqueue view style.
 	wp_enqueue_style(
@@ -76,7 +87,7 @@ function mkaz_code_syntax_view_assets() {
 	// Enqueue prism style.
 	wp_enqueue_style(
 		'mkaz-code-syntax-prism-css',
-		plugins_url( $prism_css_path, __FILE__ ),
+		esc_url( $prism_css_url ),
 		array(),
 		filemtime( plugin_dir_path( __FILE__ ) . $prism_css_path )
 	);

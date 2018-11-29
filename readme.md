@@ -19,7 +19,17 @@ On the front-end when the post is being viewed, the code will be color syntax hi
 
 ### Customize
 
-If you want to change the colors, the default color theme is based off [GHColors](https://github.com/PrismJS/prism-themes/blob/master/themes/prism-ghcolors.css). You can download a new theme from the link above, or from the [Prism themes repo](https://github.com/PrismJS/prism-themes). The easiest way to customize is to download and customize the new css and replace `assets/prism.css`.
+If you want to change the colors, the default color theme is based off [GHColors](https://github.com/PrismJS/prism-themes/blob/master/themes/prism-ghcolors.css). You can download a new theme from the link above, or from the [Prism themes repo](https://github.com/PrismJS/prism-themes).
+
+To enqueue your custom file, you can use the `mkaz_prism_css_url` filter in your own plugin. Add the CSS file to your plugin, and then declare the file like so:
+
+```php
+// Define a custom stylesheet to be used to highlight code.
+function yourprefix_syntax_atom_hl() {
+       	return plugins_url( 'atom-dark-hl.css' , __FILE__ );
+}
+add_filter( 'mkaz_prism_css_url', 'yourprefix_syntax_atom_hl' );
+```
 
 
 ### Build
