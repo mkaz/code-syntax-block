@@ -41,15 +41,8 @@ function mkaz_code_syntax_editor_assets() {
 	wp_enqueue_script(
 		'mkaz-code-syntax',
 		plugins_url( $block_path, __FILE__ ),
-		array( 'wp-blocks', 'wp-editor', 'wp-element', 'wp-i18n' ),
+		array( 'wp-blocks', 'wp-editor', 'wp-element' ),
 		filemtime( plugin_dir_path( __FILE__ ) . $block_path )
-	);
-
-	// Prepare Jed locale data.
-	$locale_data = gutenberg_get_jed_locale_data( 'code-syntax-block' );
-	wp_add_inline_script(
-		'wp-i18n',
-		sprintf( 'wp.i18n.setLocaleData( %s, "code-syntax-block" );', wp_json_encode( $locale_data ) )
 	);
 
 }

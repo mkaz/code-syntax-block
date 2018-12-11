@@ -6,7 +6,6 @@
 /**
  * WordPress dependencies
  */
-const { __ } = wp.i18n;
 const { addFilter } = wp.hooks;
 const  el = wp.element.createElement;
 const { PlainText, InspectorControls } = wp.editor;
@@ -19,7 +18,7 @@ let langs = {};
 for ( let lang in prismLanguages ) {
 	if (  ! prismLanguages.hasOwnProperty( lang ) ) { continue; }
 	if ( typeof prismLanguages[lang].title !== 'undefined' ) {
-		langs[lang] = __( prismLanguages[lang].title, 'code-syntax-block' );
+		langs[lang] = prismLanguages[lang].title;
 	}
 }
 
@@ -53,7 +52,7 @@ const addSyntaxToCodeBlock = settings => {
 						label: "Language",
 						value: attributes.language,
 						options: [ {
-								label: __( 'Select code language', 'code-syntax-block' ),
+								label: 'Select code language',
 								value: '',
 							}].concat (
 								Object.keys( langs ).map( ( lang ) => (
@@ -67,8 +66,8 @@ const addSyntaxToCodeBlock = settings => {
 					el( PlainText, {
 							value: attributes.content,
 							onChange: ( content ) => setAttributes({ content }),
-							placeholder: __( 'Write code…', 'code-syntax-block' ),
-							ariaLabel: __( 'Code', 'code-syntax-block' ),
+							placeholder: 'Write code…',
+							ariaLabel: 'Code',
 						}),
 					el( 'div', { style: editorStyle }, langs[ attributes.language ] )
 				)

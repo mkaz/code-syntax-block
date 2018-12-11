@@ -32,30 +32,6 @@ add_filter( 'mkaz_prism_css_url', 'yourprefix_syntax_atom_hl' );
 ```
 
 
-### Build
-
-It is not necessary to build the plugin to use it, but if you want to contribute, or modify the plugin.
-
-#### Dependencies
-
-- Node dependencies (`$ npm install`)
-- [WP-CLI](https://wp-cli.org/)
-- [wp i18n](https://github.com/wp-cli/i18n-command)
-
-#### Build steps
-
-```
-$ npm run build
-$ npm run zip
-```
-
-Generated zip can be installed via Admin UI Plugins page
-
-### Contribute
-
-See Github issues for list of current issues with the plugin. Please feel free to file any additional issues or requests that you may come across. Pull requests are welcome to help extend.
-
-
 ### Colophon
 
 - Uses PrismJS syntax highlighter, http://prismjs.com/
