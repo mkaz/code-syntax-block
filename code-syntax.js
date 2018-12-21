@@ -11,7 +11,14 @@ const  el = wp.element.createElement;
 const { PlainText, InspectorControls } = wp.editor;
 const { SelectControl } = wp.components;
 
-const editorStyle = { fontFamily: 'sans-serif', fontSize: '10px', color: '#999999', textAlign: 'right' };
+const editorStyle = {
+    fontFamily: 'sans-serif', 
+    fontSize: '.6rem', 
+    color: '#999999', 
+    position: 'absolute',
+    top: '.3rem',
+    right: '.5rem',
+};
 
 let langs = {};
 
@@ -40,7 +47,7 @@ const addSyntaxToCodeBlock = settings => {
 			}
 		},
 
-		edit({ attributes, setAttributes, isSelected, className }) {
+		edit({ attributes, setAttributes, className }) {
 
 			const updateLanguage = language => {
 				setAttributes({ language });
@@ -55,7 +62,7 @@ const addSyntaxToCodeBlock = settings => {
 								label: 'Select code language',
 								value: '',
 							}].concat (
-								Object.keys( langs ).map( ( lang ) => (
+								Object.keys( langs ).sort().map( ( lang ) => (
 									{ label: langs[lang], value: lang }
 								) )
 							),
