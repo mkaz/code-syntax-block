@@ -3,7 +3,7 @@
  * Plugin Name:  Code Syntax Block
  * Plugin URI:   https://github.com/mkaz/code-syntax-block
  * Description:  A plugin to extend Gutenberg code block with syntax highlighting
- * Version:      0.8.1
+ * Version:      0.8.2
  * Author:       Marcus Kazmierczak
  * Author URI:   https://mkaz.blog/
  * License:      GPL2
@@ -69,9 +69,9 @@ function mkaz_code_syntax_view_assets() {
 	// Enqueue prism style.
 	wp_enqueue_style(
 		'mkaz-code-syntax-prism-css',
-		mkaz_prism_theme(),
+		mkaz_prism_theme_css(),
 		[],
-		filemtime( mkaz_prism_theme(true) )
+		mkaz_prism_theme_css_ver()
 	);
 
 	// Enqueue prism script.
@@ -100,45 +100,58 @@ function mkaz_code_syntax_view_assets() {
 add_action( 'wp_enqueue_scripts', 'mkaz_code_syntax_view_assets' );
 
 /**
- * Locate a given resource URL, either in the
- * active theme or with the default
- * 
- * @param $file The file to be located
+ * Locate a given resource URL in the active theme or with the default
+ *
+ * @param boolean $rtnPath True returns path, default false returns URL
  */
-function mkaz_prism_theme( $path = false ) {
-
-	$default_location = '/assets/prism/prism.css';
+function mkaz_prism_theme_css( $rtnPath = false ) {
 
 	/**
-	 * Filter the theme directory used for resource overrides
+	 * Filter the theme directory path used for overriding css path
 	 *
-	 * @since 0.x.x
+	 * @since 0.8.2
 	 *
-	 * @param string $path Path to the override directory, relative to the theme
+	 * @param string $path Path to the file to override, relative to the theme
 	 */
-	$override_directory = apply_filters( 'mkaz_override_directory', "prism");
-	$override_file_path = get_stylesheet_directory() . "/$override_directory/prism.css";
+	$css_rel_path = apply_filters( 'mkaz_prism_css_path', '/assets/prism/prism.css');
+	$theme_file_path = get_stylesheet_directory() . $css_rel_path;
 
-	if( file_exists( $override_file_path ) ) {
-		$prism_css = ( $path ? $override_file_path : get_stylesheet_directory_uri() . "/$override_directory/prism.css" );
+	if ( file_exists( $theme_file_path ) ) {
+		$prism_css_path = $theme_file_path;
+		$prism_css_url = get_stylesheet_directory_uri() . $css_rel_path;
 	}
 	else {
-		$prism_css = ( $path ? plugin_dir_path( __FILE__ ) . $default_location : plugins_url( $default_location, __FILE__ ) );
+		$prism_css_path = plugin_dir_path( __FILE__ ) . $css_rel_path;
+		$prism_css_url = plugins_url( $css_rel_path, __FILE__ );
 	}
 
-	// Syntax Highlighting colors
+	if ( $rtnPath ) {
+		return $prism_css_path;
+	}
+
 	/**
 	 * Filter the URL of the Syntax Highlighting colors.
 	 * Use this filter to define your own color set.
-	 * Kept for backwards compatibility
 	 *
 	 * @since 0.8.1
-	 * @deprecated since 0.x.x in favor of file overriding 
 	 *
 	 * @param string $prism_css_url Absolute URL of the default CSS file you want to enqueue.
 	 */
-	$prism_css = apply_filters( 'mkaz_prism_css_' . ( $path ? 'path' : 'url'), $prism_css );
-
-	return $prism_css;
+	return apply_filters( 'mkaz_prism_css_url', $prism_css_url );
 }
 
+/**
+ * Return timestamp for theme_css to be used in enqueue version
+ *
+ */
+function mkaz_prism_theme_css_ver() {
+	// check if full url is being used, if so return 0
+	$prism_css_url = apply_filters( 'mkaz_prism_css_url', false );
+	if ( $prism_css_url ) { return 0; }
+
+	$css_path = mkaz_prism_theme_css( true );
+	if ( file_exists( $css_path ) ) {
+		return filemtime( $css_path );
+	}
+	return 0;
+}
