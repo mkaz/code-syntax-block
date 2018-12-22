@@ -109,6 +109,7 @@ add_action( 'wp_enqueue_scripts', 'mkaz_code_syntax_view_assets' );
  */
 function mkaz_prism_theme_css( $rtnPath = false ) {
 
+	$default_path = '/assets/prism/prism.css';
 	/**
 	 * Filter the theme directory path used for overriding css path
 	 *
@@ -116,7 +117,7 @@ function mkaz_prism_theme_css( $rtnPath = false ) {
 	 *
 	 * @param string $path Path to the file to override, relative to the theme
 	 */
-	$css_rel_path = apply_filters( 'mkaz_prism_css_path', '/assets/prism/prism.css');
+	$css_rel_path = apply_filters( 'mkaz_prism_css_path', $default_path );
 	$theme_file_path = get_stylesheet_directory() . $css_rel_path;
 
 	if ( file_exists( $theme_file_path ) ) {
@@ -124,8 +125,8 @@ function mkaz_prism_theme_css( $rtnPath = false ) {
 		$prism_css_url = get_stylesheet_directory_uri() . $css_rel_path;
 	}
 	else {
-		$prism_css_path = plugin_dir_path( __FILE__ ) . $css_rel_path;
-		$prism_css_url = plugins_url( $css_rel_path, __FILE__ );
+		$prism_css_path = plugin_dir_path( __FILE__ ) . $default_path;
+		$prism_css_url = plugins_url( $default_path, __FILE__ );
 	}
 
 	if ( $rtnPath ) {
