@@ -29,14 +29,6 @@ The color theme is a single CSS file, there are a couple ways to customize:
 
 3. If you would prefer specifying a full URL, you can use the filter `mkaz_prism_css_url` and specify a full URL to the stylesheet to use.
 
-```php
-// Define a custom stylesheet to be used to highlight code.
-function yourprefix_syntax_atom_hl() {
-	return 'https://raw.githubusercontent.com/PrismJS/prism-themes/master/themes/prism-atom-dark.css';
-}
-add_filter( 'mkaz_prism_css_url', 'yourprefix_syntax_atom_hl' );
-```
-
 
 ### Colophon
 
