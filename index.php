@@ -13,6 +13,9 @@
  * @package Code_Syntax_Block
  */
 
+// version added, used in URL
+define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '0.8.2' );
+
 /**
  * Load text domain.
  */
@@ -147,11 +150,13 @@ function mkaz_prism_theme_css( $rtnPath = false ) {
 function mkaz_prism_theme_css_ver() {
 	// check if full url is being used, if so return 0
 	$prism_css_url = apply_filters( 'mkaz_prism_css_url', false );
-	if ( $prism_css_url ) { return 0; }
+	if ( $prism_css_url ) {
+		return MKAZ_CODE_SYNTAX_BLOCK_VERSION;
+	}
 
 	$css_path = mkaz_prism_theme_css( true );
 	if ( file_exists( $css_path ) ) {
 		return filemtime( $css_path );
 	}
-	return 0;
+	return MKAZ_CODE_SYNTAX_BLOCK_VERSION;
 }
