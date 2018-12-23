@@ -30,7 +30,7 @@ add_action( 'plugins_loaded', 'mkaz_load_plugin_textdomain' );
 function mkaz_code_syntax_editor_assets() {
 	// Files.
 	$block_path        = 'code-syntax.js';
-	$prism_languages_path = 'assets/prism/prism-languages.js';
+	$prism_languages_path = 'assets/prism/prism-manage.js';
 	$editor_style_path = 'assets/blocks.editor.css';
 
 	// Prism Languages
@@ -59,39 +59,39 @@ function mkaz_code_syntax_view_assets() {
 	// Files.
 	$view_style_path = 'assets/blocks.style.css';
 	$prism_js_path   = 'assets/prism/prism.js';
-	$prism_settings_path = 'assets/prism/prism-settings.js';
+	$prism_manager_path = 'assets/prism/prism-manager.js';
 
 	// Enqueue view style.
-	wp_enqueue_style(
-		'mkaz-code-syntax-css',
-		plugins_url( $view_style_path, __FILE__ ),
-		[],
-		filemtime( plugin_dir_path( __FILE__ ) . $view_style_path )
-	);
+	// wp_enqueue_style(
+	// 	'mkaz-code-syntax-css',
+	// 	plugins_url( $view_style_path, __FILE__ ),
+	// 	[],
+	// 	filemtime( plugin_dir_path( __FILE__ ) . $view_style_path )
+	// );
 
 	// Enqueue prism style.
-	wp_enqueue_style(
-		'mkaz-code-syntax-prism-css',
-		mkaz_prism_theme_css(),
-		[],
-		mkaz_prism_theme_css_ver()
-	);
+	// wp_enqueue_style(
+	// 	'mkaz-code-syntax-prism-css',
+	// 	mkaz_prism_theme_css(),
+	// 	[],
+	// 	mkaz_prism_theme_css_ver()
+	// );
 
 	// Enqueue prism script.
-	wp_enqueue_script(
-		'mkaz-code-syntax-prism-css',
-		plugins_url( $prism_js_path, __FILE__ ),
-		[], // No dependencies.
-		filemtime( plugin_dir_path( __FILE__ ) . $prism_js_path ),
-		true // In footer.
-	);
+	// wp_enqueue_script(
+	// 	'mkaz-code-syntax-prism-script',
+	// 	plugins_url( $prism_js_path, __FILE__ ),
+	// 	[], // No dependencies.
+	// 	filemtime( plugin_dir_path( __FILE__ ) . $prism_js_path ),
+	// 	true // In footer.
+	// );
 
 	// enqueue prism settings script
 	wp_enqueue_script(
 		'mkaz-code-syntax-prism-settings',
-		plugins_url( $prism_settings_path, __FILE__ ),
+		plugins_url( $prism_manager_path, __FILE__ ),
 		[], // no dependencies
-		filemtime( plugin_dir_path(__FILE__) . $prism_settings_path ),
+		filemtime( plugin_dir_path(__FILE__) . $prism_manager_path ),
 		true // in footer
 	);
 
