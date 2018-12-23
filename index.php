@@ -61,30 +61,13 @@ function mkaz_code_syntax_view_assets() {
 	$prism_js_path   = 'assets/prism/prism.js';
 	$prism_manager_path = 'assets/prism/prism-manager.js';
 
-	// Enqueue view style.
-	// wp_enqueue_style(
-	// 	'mkaz-code-syntax-css',
-	// 	plugins_url( $view_style_path, __FILE__ ),
-	// 	[],
-	// 	filemtime( plugin_dir_path( __FILE__ ) . $view_style_path )
-	// );
-
 	// Enqueue prism style.
-	// wp_enqueue_style(
-	// 	'mkaz-code-syntax-prism-css',
-	// 	mkaz_prism_theme_css(),
-	// 	[],
-	// 	mkaz_prism_theme_css_ver()
-	// );
-
-	// Enqueue prism script.
-	// wp_enqueue_script(
-	// 	'mkaz-code-syntax-prism-script',
-	// 	plugins_url( $prism_js_path, __FILE__ ),
-	// 	[], // No dependencies.
-	// 	filemtime( plugin_dir_path( __FILE__ ) . $prism_js_path ),
-	// 	true // In footer.
-	// );
+	wp_enqueue_style(
+		'mkaz-code-syntax-prism',
+		mkaz_prism_theme_css(),
+		[],
+		mkaz_prism_theme_css_ver()
+	);
 
 	// enqueue prism settings script
 	wp_enqueue_script(
@@ -125,8 +108,8 @@ function mkaz_prism_theme_css( $rtnPath = false ) {
 		$prism_css_url = get_stylesheet_directory_uri() . $css_rel_path;
 	}
 	else {
-		$prism_css_path = plugin_dir_path( __FILE__ ) . $default_path;
-		$prism_css_url = plugins_url( $default_path, __FILE__ );
+		$prism_css_path = '';
+		$prism_css_url = '';
 	}
 
 	if ( $rtnPath ) {
