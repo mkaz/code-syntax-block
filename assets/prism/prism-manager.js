@@ -27,7 +27,7 @@ function lazy_load_prism() {
     }
 
     // Load only when the plugin is not loaded with prism css
-    if (!document.getElementById('mkaz-code-syntax-prism-css-css')) {
+    if (!document.getElementById('mkaz-code-syntax-prism-css')) {
         let prismCSS = document.createElement('link');
         prismCSS.rel = 'stylesheet';
         prismCSS.href = base_path + 'prism.css?lazyload=true';
