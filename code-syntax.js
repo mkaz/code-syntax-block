@@ -2,7 +2,7 @@
  * Code Syntax Highlighting Block
  * A gutenberg block that allows inserting code with syntax highlighting.
  */
-
+( function( wp ) {
 /**
  * WordPress dependencies
  */
@@ -114,3 +114,5 @@ addFilter(
 	'mkaz/code-syntax-block',
 	addSyntaxToCodeBlock
 );
+
+} )( window.wp )
