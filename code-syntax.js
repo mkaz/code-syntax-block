@@ -10,11 +10,12 @@ const { addFilter } = wp.hooks;
 const  el = wp.element.createElement;
 const { PlainText, InspectorControls } = wp.editor;
 const { SelectControl } = wp.components;
+const { ToggleControl } = wp.components;
 
 const editorStyle = {
-    fontFamily: 'sans-serif', 
-    fontSize: '.6rem', 
-    color: '#999999', 
+    fontFamily: 'sans-serif',
+    fontSize: '.6rem',
+    color: '#999999',
     position: 'absolute',
     top: '.3rem',
     right: '.5rem',
@@ -44,12 +45,19 @@ const addSyntaxToCodeBlock = settings => {
 				selector: 'code',
 				source: 'attribute',
 				attribute: 'lang'
-			}
+			},
+      lineNumbers: {
+        type: 'boolean'
+      }
 		},
 
 		edit({ attributes, setAttributes, className }) {
+      const {
+        language,
+        lineNumbers,
+      } = attributes;
 
-			const updateLanguage = language => {
+      const updateLanguage = language => {
 				setAttributes({ language });
 			};
 
@@ -67,6 +75,11 @@ const addSyntaxToCodeBlock = settings => {
 								) )
 							),
 						onChange: updateLanguage,
+					} ),
+          el( ToggleControl, {
+						label: "Show line numbers",
+            checked: lineNumbers,
+            onChange: ( lineNumbers ) => setAttributes( { lineNumbers } ),
 					} )
 				),
 				el( 'div', { key: 'editor-wrapper', className: className },
@@ -82,7 +95,8 @@ const addSyntaxToCodeBlock = settings => {
 		},
 
 		save({ attributes }) {
-			const cls = ( attributes.language ) ? 'language-' + attributes.language : '';
+			cls = ( attributes.language ) ? 'language-' + attributes.language : '';
+			cls = ( attributes.lineNumbers ) ? cls + ' line-numbers' : cls;
 			return el(
 				'pre',
 				{},
