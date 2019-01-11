@@ -118,6 +118,51 @@
 	 font-style: italic;
  }
 
+ pre[data-line] {
+ 	position: relative;
+ 	padding: 1em 0 1em 3em;
+ }
+
+ .line-highlight {
+ 	position: absolute;
+ 	left: 0;
+ 	right: 0;
+ 	padding: inherit 0;
+ 	margin-top: 1em; /* Same as .prism’s padding-top */
+
+ 	background: hsla(24, 20%, 50%,.08);
+ 	background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
+
+ 	pointer-events: none;
+
+ 	line-height: inherit;
+ 	white-space: pre;
+ }
+
+	.line-highlight:before,
+	.line-highlight[data-end]:after {
+		content: attr(data-start);
+		position: absolute;
+		top: .4em;
+		left: .6em;
+		min-width: 1em;
+		padding: 0 .5em;
+		background-color: hsla(24, 20%, 50%,.4);
+		color: hsl(24, 20%, 95%);
+		font: bold 65%/1.5 sans-serif;
+		text-align: center;
+		vertical-align: .3em;
+		border-radius: 999px;
+		text-shadow: none;
+		box-shadow: 0 1px white;
+	}
+
+	.line-highlight[data-end]:after {
+		content: attr(data-end);
+		top: auto;
+		bottom: .4em;
+	}
+
  pre[class*="language-"].line-numbers {
  	position: relative;
  	padding-left: 3.8em;
@@ -158,4 +203,21 @@
  	display: block;
  	padding-right: 0.8em;
  	text-align: right;
+ }
+
+ div.code-toolbar > .toolbar {
+  width: 100%;
+  padding-left: 0.8em;
+  font-size: .8em;
+  border: 1px solid #e2e4e7;
+  background-color: #f0f0f0;
+  margin-bottom: -8px;
+ }
+
+ .token.comment,
+ .token.prolog,
+ .token.doctype,
+ .token.cdata {
+	 color: #999988; font-style: italic;
+   padding-left: 0;
  }
