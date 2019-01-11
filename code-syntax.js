@@ -95,9 +95,8 @@ const addSyntaxToCodeBlock = settings => {
 		},
 
 		save({ attributes }) {
-      console.log(attributes.lineNumbers);
 			cls = ( attributes.language ) ? 'language-' + attributes.language : '';
-      cls = ( attributes.lineNumbers ) ? cls + ' line-numbers' : cls + '';
+			cls = ( attributes.lineNumbers ) ? cls + ' line-numbers' : cls;
 			return el(
 				'pre',
 				{},
