@@ -13,12 +13,12 @@ const { SelectControl } = wp.components;
 const { ToggleControl } = wp.components;
 
 const editorStyle = {
-    fontFamily: 'sans-serif',
-    fontSize: '.6rem',
-    color: '#999999',
-    position: 'absolute',
-    top: '.3rem',
-    right: '.5rem',
+	fontFamily: 'sans-serif',
+	fontSize: '.6rem',
+	color: '#999999',
+	position: 'absolute',
+	top: '.3rem',
+	right: '.5rem',
 };
 
 let langs = {};
@@ -46,18 +46,18 @@ const addSyntaxToCodeBlock = settings => {
 				source: 'attribute',
 				attribute: 'lang'
 			},
-      lineNumbers: {
-        type: 'boolean'
-      }
+			lineNumbers: {
+				type: 'boolean'
+			}
 		},
 
 		edit({ attributes, setAttributes, className }) {
-      const {
-        language,
-        lineNumbers,
-      } = attributes;
+			const {
+				language,
+				lineNumbers,
+			} = attributes;
 
-      const updateLanguage = language => {
+			const updateLanguage = language => {
 				setAttributes({ language });
 			};
 
@@ -76,10 +76,10 @@ const addSyntaxToCodeBlock = settings => {
 							),
 						onChange: updateLanguage,
 					} ),
-          el( ToggleControl, {
+					el( ToggleControl, {
 						label: "Show line numbers",
-            checked: lineNumbers,
-            onChange: ( lineNumbers ) => setAttributes( { lineNumbers } ),
+						checked: lineNumbers,
+						onChange: ( lineNumbers ) => setAttributes( { lineNumbers } ),
 					} )
 				),
 				el( 'div', { key: 'editor-wrapper', className: className },
@@ -115,4 +115,4 @@ addFilter(
 	addSyntaxToCodeBlock
 );
 
-} )( window.wp )
+} )( window.wp );
