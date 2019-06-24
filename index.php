@@ -3,7 +3,7 @@
  * Plugin Name:  Code Syntax Block
  * Plugin URI:   https://github.com/mkaz/code-syntax-block
  * Description:  A plugin to extend Gutenberg code block with syntax highlighting
- * Version:      0.9.0
+ * Version:      0.9.1
  * Author:       Marcus Kazmierczak
  * Author URI:   https://mkaz.blog/
  * License:      GPL2
@@ -14,7 +14,7 @@
  */
 
 // version added, used in URL
-define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '0.9.0' );
+define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '0.9.1' );
 
 /**
  * Enqueue assets for editor portion of Gutenberg
