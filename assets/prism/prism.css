@@ -60,6 +60,8 @@
  .token.doctype,
  .token.cdata {
 	 color: #999988; font-style: italic;
+     border: none;
+     padding-left: 0;
  }
 
  .token.namespace {
