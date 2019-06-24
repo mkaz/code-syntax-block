@@ -29,6 +29,13 @@ The color theme is a single CSS file, there are a couple ways to customize:
 
 3. If you would prefer specifying a full URL, you can use the filter `mkaz_prism_css_url` and specify a full URL to the stylesheet to use.
 
+An example adding a filter to change the URL, add the following to your theme's function.php
+
+```php
+add_filter( 'mkaz_prism_css_url', function() {
+	return 'https://raw.githubusercontent.com/PrismJS/prism-themes/master/themes/prism-hopscotch.css'; 
+});
+```
 
 ### Alternatives
 
