@@ -37,7 +37,7 @@ function mkaz_code_syntax_editor_assets() {
 	wp_enqueue_script(
 		'mkaz-code-syntax',
 		plugins_url( $block_path, __FILE__ ),
-		array( 'wp-blocks', 'wp-editor', 'wp-element' ),
+		array( 'wp-blocks', 'wp-editor', 'wp-element', 'wp-i18n' ),
 		filemtime( plugin_dir_path( __FILE__ ) . $block_path )
 	);
 
@@ -71,10 +71,18 @@ function mkaz_code_syntax_view_assets() {
 
 	// Enqueue prism script.
 	wp_enqueue_script(
-		'mkaz-code-syntax-prism-css',
+		'mkaz-code-syntax-prism-js',
 		plugins_url( $prism_js_path, __FILE__ ),
 		[], // No dependencies.
 		filemtime( plugin_dir_path( __FILE__ ) . $prism_js_path ),
+		true // In footer.
+	);
+
+	wp_enqueue_script(
+		'mkaz-code-syntax-prism-js-title',
+		plugins_url( 'assets/prism/prism-title.js', __FILE__ ),
+		[], // No dependencies.
+		filemtime( plugin_dir_path( __FILE__ ) . 'assets/prism/prism-title.js' ),
 		true // In footer.
 	);
 

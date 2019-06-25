@@ -9,8 +9,14 @@
 const { addFilter } = wp.hooks;
 const  el = wp.element.createElement;
 const { PlainText, InspectorControls } = wp.editor;
-const { SelectControl } = wp.components;
-const { ToggleControl } = wp.components;
+const {
+    PanelBody,
+    SelectControl,
+    TextControl,
+    ToggleControl
+} = wp.components;
+
+const { __ } = wp.i18n;
 
 const editorStyle = {
 	fontFamily: 'sans-serif',
@@ -48,7 +54,13 @@ const addSyntaxToCodeBlock = settings => {
 			},
 			lineNumbers: {
 				type: 'boolean'
-			}
+			},
+            title: {
+                type: 'string',
+                source: 'attribute',
+                selector: 'pre',
+                attribute: 'title',
+            }
 		},
 
 		edit({ attributes, setAttributes, className }) {
@@ -63,31 +75,40 @@ const addSyntaxToCodeBlock = settings => {
 
 			return [
 				el( InspectorControls, { key: 'controls' },
-					el( SelectControl, {
-						label: "Language",
-						value: attributes.language,
-						options: [ {
-								label: 'Select code language',
-								value: '',
-							}].concat (
-								Object.keys( langs ).sort().map( ( lang ) => (
-									{ label: langs[lang], value: lang }
-								) )
-							),
-						onChange: updateLanguage,
-					} ),
-					el( ToggleControl, {
-						label: "Show line numbers",
-						checked: lineNumbers,
-						onChange: ( lineNumbers ) => setAttributes( { lineNumbers } ),
-					} )
+                    el( PanelBody, { title: __( 'Settings' ) },
+                        el( SelectControl, {
+                            label: __( 'Language' ),
+                            value: attributes.language,
+                            options: [ {
+                                    label: __( 'Select code language' ),
+                                    value: '',
+                                }].concat (
+                                    Object.keys( langs ).sort().map( ( lang ) => (
+                                        { label: langs[lang], value: lang }
+                                    ) )
+                                ),
+                            onChange: updateLanguage,
+                        } ),
+                        el( ToggleControl, {
+                            label: __( 'Show line numbers' ),
+                            checked: lineNumbers,
+                            onChange: ( lineNumbers ) => setAttributes( { lineNumbers } ),
+                        } ),
+                        el( TextControl, {
+                                label: __( 'Title for Code Block' ),
+                                value: attributes.title,
+                                onChange: ( title ) => setAttributes({ title }),
+                                placeholder: __( 'Title or File (optional)' ),
+                                ariaLabel: __( 'Title for Block' ),
+                        }),
+                    ),
 				),
 				el( 'div', { key: 'editor-wrapper', className: className },
 					el( PlainText, {
 							value: attributes.content,
 							onChange: ( content ) => setAttributes({ content }),
-							placeholder: 'Write code…',
-							ariaLabel: 'Code',
+							placeholder: __( 'Write code…' ),
+							ariaLabel: __( 'Code' ),
 						}),
 					el( 'div', { style: editorStyle }, langs[ attributes.language ] )
 				)
@@ -99,7 +120,7 @@ const addSyntaxToCodeBlock = settings => {
 			cls = ( attributes.lineNumbers ) ? cls + ' line-numbers' : cls;
 			return el(
 				'pre',
-				{},
+				{ title: attributes.title },
 				el( 'code', { lang: attributes.language, className: cls }, attributes.content )
 			);
 		}
