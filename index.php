@@ -3,7 +3,7 @@
  * Plugin Name:  Code Syntax Block
  * Plugin URI:   https://github.com/mkaz/code-syntax-block
  * Description:  A plugin to extend Gutenberg code block with syntax highlighting
- * Version:      0.9.1
+ * Version:      1.0.0
  * Author:       Marcus Kazmierczak
  * Author URI:   https://mkaz.blog/
  * License:      GPL2
@@ -14,7 +14,7 @@
  */
 
 // version added, used in URL
-define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '0.9.1' );
+define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '1.0.0' );
 
 /**
  * Enqueue assets for editor portion of Gutenberg
@@ -78,25 +78,8 @@ function mkaz_code_syntax_view_assets() {
 		true // In footer.
 	);
 
-	wp_enqueue_script(
-		'mkaz-code-syntax-prism-js-title',
-		plugins_url( 'assets/prism/prism-title.js', __FILE__ ),
-		[], // No dependencies.
-		filemtime( plugin_dir_path( __FILE__ ) . 'assets/prism/prism-title.js' ),
-		true // In footer.
-	);
-
-	// enqueue prism settings script
-	wp_enqueue_script(
-		'mkaz-code-syntax-prism-settings',
-		plugins_url( $prism_settings_path, __FILE__ ),
-		[], // no dependencies
-		filemtime( plugin_dir_path(__FILE__) . $prism_settings_path ),
-		true // in footer
-	);
-
 	// save the plugin path
-	wp_localize_script('mkaz-code-syntax-prism-settings', 'settings', array(
+	wp_localize_script('mkaz-code-syntax-prism-js', 'prism_settings', array(
 		'pluginUrl' => plugin_dir_url(__FILE__),
 	));
 }
