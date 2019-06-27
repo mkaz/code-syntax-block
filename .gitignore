@@ -1,6 +1,7 @@
 .DS_Store
 .vscode/
 dist/
+svn/
 node_modules
 npm-debug.log
 yarn-error.log
