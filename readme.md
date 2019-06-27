@@ -19,7 +19,7 @@ On the front-end when the post is being viewed, the code will be color syntax hi
 
 ### Customize
 
-The default color theme is based off [GHColors](https://github.com/PrismJS/prism-themes/blob/master/themes/prism-ghcolors.css). If you want to change the colors, you can download a new theme from the [Prism themes repo](https://github.com/PrismJS/prism-themes) or create your own.
+The default color theme is based off [One Dark](https://github.com/AGMStudio/prism-theme-one-dark). If you want to change the colors, you can download a new theme from the [Prism themes repo](https://github.com/PrismJS/prism-themes) or create your own.
 
 The color theme is a single CSS file, there are a couple ways to customize:
 
@@ -36,6 +36,8 @@ add_filter( 'mkaz_prism_css_url', function() {
 	return 'https://raw.githubusercontent.com/PrismJS/prism-themes/master/themes/prism-hopscotch.css'; 
 });
 ```
+
+Note, if you customize the theme and use the title/filename option, you will likely need to update your CSS adjusting the style targeting `prism-titlename` class.
 
 ### Alternatives
 
