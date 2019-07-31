@@ -45,7 +45,7 @@ Note, if you customize the theme and use the title/filename option, you will lik
 
 ## Alternatives
 
-Consider using [Weston Ruter's code syntax block](https://github.com/westonruter/code-syntax-block), which forked from this block. Weston's block changes the parsing engine to use `highlight.php` which renders server-side. My block uses PrismJS which renders on the front-end and requires loading an additional JS file.
+Consider using Weston Ruter's [Syntax-highlighting Code Block](https://wordpress.org/plugins/syntax-highlighting-code-block/), which forked from this block. Weston's block changes the parsing engine to use `highlight.php` which renders server-side. My block uses PrismJS which renders on the front-end and requires loading an additional JS file.
 
 Secondly, you can check out [SyntaxHighter Evolved](https://wordpress.org/plugins/syntaxhighlighter/) which is an older plugin created by my coworker Alex Mills. It recently added support for the block editor. It uses its own custom block instead of extending the core code block. The plugin is run on the front-end using the SyntaxHighlighter JS engine.
 
