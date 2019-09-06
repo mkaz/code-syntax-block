@@ -10,10 +10,10 @@ const { addFilter } = wp.hooks;
 const  el = wp.element.createElement;
 const { PlainText, InspectorControls } = wp.editor;
 const {
-    PanelBody,
-    SelectControl,
-    TextControl,
-    ToggleControl
+	PanelBody,
+	SelectControl,
+	TextControl,
+	ToggleControl
 } = wp.components;
 
 const { __ } = wp.i18n;
@@ -55,12 +55,12 @@ const addSyntaxToCodeBlock = settings => {
 			lineNumbers: {
 				type: 'boolean'
 			},
-            title: {
-                type: 'string',
-                source: 'attribute',
-                selector: 'pre',
-                attribute: 'title',
-            }
+			title: {
+				type: 'string',
+				source: 'attribute',
+				selector: 'pre',
+				attribute: 'title',
+			}
 		},
 
 		edit({ attributes, setAttributes, className }) {
@@ -75,33 +75,33 @@ const addSyntaxToCodeBlock = settings => {
 
 			return [
 				el( InspectorControls, { key: 'controls' },
-                    el( PanelBody, { title: __( 'Settings' ) },
-                        el( SelectControl, {
-                            label: __( 'Language' ),
-                            value: attributes.language,
-                            options: [ {
-                                    label: __( 'Select code language' ),
-                                    value: '',
-                                }].concat (
-                                    Object.keys( langs ).sort().map( ( lang ) => (
-                                        { label: langs[lang], value: lang }
-                                    ) )
-                                ),
-                            onChange: updateLanguage,
-                        } ),
-                        el( ToggleControl, {
-                            label: __( 'Show line numbers' ),
-                            checked: lineNumbers,
-                            onChange: ( lineNumbers ) => setAttributes( { lineNumbers } ),
-                        } ),
-                        el( TextControl, {
-                                label: __( 'Title for Code Block' ),
-                                value: attributes.title,
-                                onChange: ( title ) => setAttributes({ title }),
-                                placeholder: __( 'Title or File (optional)' ),
-                                ariaLabel: __( 'Title for Block' ),
-                        }),
-                    ),
+					el( PanelBody, { title: __( 'Settings' ) },
+						el( SelectControl, {
+							label: __( 'Language' ),
+							value: attributes.language,
+							options: [ {
+								label: __( 'Select code language' ),
+								value: '',
+							}].concat (
+								Object.keys( langs ).sort().map( ( lang ) => (
+									{ label: langs[lang], value: lang }
+								) )
+							),
+							onChange: updateLanguage,
+						} ),
+						el( ToggleControl, {
+							label: __( 'Show line numbers' ),
+							checked: lineNumbers,
+							onChange: ( lineNumbers ) => setAttributes( { lineNumbers } ),
+						} ),
+						el( TextControl, {
+							label: __( 'Title for Code Block' ),
+							value: attributes.title,
+							onChange: ( title ) => setAttributes({ title }),
+							placeholder: __( 'Title or File (optional)' ),
+							ariaLabel: __( 'Title for Block' ),
+						}),
+					),
 				),
 				el( 'div', { key: 'editor-wrapper', className: className },
 					el( PlainText, {
