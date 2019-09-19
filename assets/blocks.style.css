@@ -1,1 +1,8 @@
-.code-syntax,.code-syntax code{font-family:Menlo, Consolas, 'Liberation Mono', monospace;font-size:14px;color:#009}.code-syntax{padding:.8em 1.6em;overflow-x:auto !important;border:1px solid #CCC;border-radius:4px}
+
+/* Fix first item indent.
+   Issue: https://github.com/mkaz/code-syntax-block/issues/54
+   Picks up padding on from code definition.
+*/
+.wp-block-code code {
+    padding-left: 0;
+}
