@@ -39,6 +39,7 @@ function mkaz_code_syntax_block_get_supported_languages() {
 		"sass" => "Sass",
 		"sql" => "SQL",
 		"svg" => "SVG",
+		"swift" => "Swift",
 		"toml" => "TOML",
 		"typescript" => "TypeScript",
 		"vim" => "vim",
