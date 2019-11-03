@@ -35,7 +35,7 @@ const edit = ( { attributes, setAttributes, className } ) => (
 						label: __( 'Select code language' ),
 						value: '',
 					}].concat (
-						Object.keys(mkaz_code_syntax_languages).sort().map( ( lang ) => (
+						Object.keys(mkaz_code_syntax_languages).map( ( lang ) => (
 							{ label: mkaz_code_syntax_languages[lang], value: lang }
 						) )
 					) }
