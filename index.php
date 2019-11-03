@@ -34,7 +34,7 @@ add_action( 'enqueue_block_editor_assets', function() {
 		'mkaz-code-syntax',
 		plugins_url( 'build/index.js', __FILE__ ),
 		$asset_file['dependencies'],
-		$asset_file['version'],
+		$asset_file['version']
 	);
 
 	/**
