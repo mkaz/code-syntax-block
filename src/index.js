@@ -14,10 +14,6 @@ import { addFilter } from '@wordpress/hooks';
 import edit from './edit';
 import save from './save';
 
-/* global mkaz_code_syntax_default_lang */
-
-const defaultLang = ( mkaz_code_syntax_default_lang ) ? mkaz_code_syntax_default_lang : '';
-
 const addSyntaxToCodeBlock = ( settings ) => {
 	if ( settings.name !== 'core/code' ) {
 		return settings;
@@ -33,7 +29,6 @@ const addSyntaxToCodeBlock = ( settings ) => {
 				selector: 'code',
 				source: 'attribute',
 				attribute: 'lang',
-				default: defaultLang,
 			},
 			lineNumbers: {
 				type: 'boolean',
