@@ -3,7 +3,7 @@
  * Plugin Name:  Code Syntax Block
  * Plugin URI:   https://github.com/mkaz/code-syntax-block
  * Description:  A plugin to extend Gutenberg code block with syntax highlighting
- * Version:      1.0.1
+ * Version:      1.1.0
  * Author:       Marcus Kazmierczak
  * Author URI:   https://mkaz.blog/
  * License:      GPL2
@@ -14,40 +14,41 @@
  */
 
 // version added, used in URL
-define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '1.0.0' );
+define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '1.1.0' );
+require dirname( __FILE__ ) . '/prism-languages.php';
 
 /**
  * Enqueue assets for editor portion of Gutenberg
  */
-function mkaz_code_syntax_editor_assets() {
-	// Files.
-	$block_path        = 'code-syntax.js';
+add_action( 'enqueue_block_editor_assets', function() {
+	$asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php' );
 	$prism_languages_path = 'assets/prism/prism-languages.js';
 	$editor_style_path = 'assets/blocks.editor.css';
 
-	// Prism Languages
-	wp_enqueue_script(
-		'mkaz-code-syntax-langs',
-		plugins_url( $prism_languages_path, __FILE__ ),
-		[],
-		filemtime( plugin_dir_path( __FILE__ ) . $prism_languages_path )
-	);
+	// Prism Languages - write out as JavaScript array that makes
+	// it available to show in the editor
+	$languages = mkaz_code_syntax_block_get_supported_languages();
 
 	// Block.
 	wp_enqueue_script(
 		'mkaz-code-syntax',
-		plugins_url( $block_path, __FILE__ ),
-		array( 'wp-blocks', 'wp-editor', 'wp-element', 'wp-i18n' ),
-		filemtime( plugin_dir_path( __FILE__ ) . $block_path )
+		plugins_url( 'build/index.js', __FILE__ ),
+		$asset_file['dependencies'],
+		$asset_file['version'],
 	);
 
-}
-add_action( 'enqueue_block_editor_assets', 'mkaz_code_syntax_editor_assets' );
+	wp_add_inline_script(
+		'mkaz-code-syntax',
+		"const mkaz_code_syntax_languages = " . json_encode( $languages ) . ";",
+		'before'
+	);
+
+} );
 
 /**
  * Enqueue assets for viewing posts
  */
-function mkaz_code_syntax_view_assets() {
+add_action( 'wp_enqueue_scripts', function() {
 	// Files.
 	$view_style_path = 'assets/blocks.style.css';
 	$prism_js_path   = 'assets/prism/prism.js';
@@ -82,8 +83,7 @@ function mkaz_code_syntax_view_assets() {
 	wp_localize_script('mkaz-code-syntax-prism-js', 'prism_settings', array(
 		'pluginUrl' => plugin_dir_url(__FILE__),
 	));
-}
-add_action( 'wp_enqueue_scripts', 'mkaz_code_syntax_view_assets' );
+} );
 
 /**
  * Locate a given resource URL in the active theme or with the default
