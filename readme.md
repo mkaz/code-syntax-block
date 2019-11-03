@@ -1,15 +1,13 @@
 
 # Code Syntax Highlighting Block
 
-A WordPress plugin which extends the Gutenberg Block Editor by adding syntax highlighting to the core code block.
-
+A WordPress plugin which extends the WordPress Block Editor by adding syntax highlighting to the core code block.
 
 Example:
 
 <img src="screenshot.png" title="Screenshot example in use" alt="screen shot" width="483" height="384" style="border:1px solid #333"/>
 
 ## Install
-
 
 Available on WordPress Plugin Directory at: https://wordpress.org/plugins/code-syntax-block/
 
@@ -22,6 +20,8 @@ When creating a new code block, select `Code` block, and then in the Inspector (
 On the front-end when the post is being viewed, the code will be color syntax highlighted.
 
 ## Customize
+
+### Colors 
 
 The default color theme is based off [One Dark](https://github.com/AGMStudio/prism-theme-one-dark). If you want to change the colors, you can download a new theme from the [Prism themes repo](https://github.com/PrismJS/prism-themes) or create your own.
 
@@ -43,11 +43,43 @@ add_filter( 'mkaz_prism_css_url', function() {
 
 Note, if you customize the theme and use the title/filename option, you will likely need to update your CSS adjusting the style targeting `prism-titlename` class.
 
-## Alternatives
+### Languages
+
+Use the filter `mkaz_code_syntax_language_list` to customize the list of languages to select displayed in the editor. By default the code syntax block shows a shorter list of popular languages, but Prism supports close to 200, [see list](https://prismjs.com/#supported-languages).
+
+Use this filter to extend to support the languages you need. Additionally you can use the filter to shorten the list to just the languages you use to make it even simpler to select.
+
+Here is an example shortening the list to a smaller set:
+
+```php
+add_filter( 'mkaz_code_syntax_language_list', function() {
+	return array(
+		"shell" => "Bash/Shell",
+		"go" => "Go",
+		"html" => "HTML",
+		"js" => "JavaScript",
+		"json" => "JSON",
+		"md" => "Markdown",
+		"php" => "PHP",
+		"py" => "Python",
+		"jsx" => "React JSX",
+		"sass" => "Sass",
+		"sql" => "SQL",
+		"svg" => "SVG",
+		"toml" => "TOML",
+		"vim" => "vim",
+		"xml" => "XML",
+		"yaml" => "YAML",	
+	);
+} );
+```
+
+
+
+## Alternative
 
 Consider using Weston Ruter's [Syntax-highlighting Code Block](https://wordpress.org/plugins/syntax-highlighting-code-block/), which forked from this block. Weston's block changes the parsing engine to use `highlight.php` which renders server-side. My block uses PrismJS which renders on the front-end and requires loading an additional JS file.
 
-Secondly, you can check out [SyntaxHighter Evolved](https://wordpress.org/plugins/syntaxhighlighter/) which is an older plugin created by my coworker Alex Mills. It recently added support for the block editor. It uses its own custom block instead of extending the core code block. The plugin is run on the front-end using the SyntaxHighlighter JS engine.
 
 ## Colophon
 
