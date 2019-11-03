@@ -14,7 +14,7 @@ import { addFilter } from '@wordpress/hooks';
 import edit from './edit';
 import save from './save';
 
-const addSyntaxToCodeBlock = settings => {
+const addSyntaxToCodeBlock = ( settings ) => {
 	if ( settings.name !== 'core/code' ) {
 		return settings;
 	}
@@ -28,17 +28,17 @@ const addSyntaxToCodeBlock = settings => {
 				type: 'string',
 				selector: 'code',
 				source: 'attribute',
-				attribute: 'lang'
+				attribute: 'lang',
 			},
 			lineNumbers: {
-				type: 'boolean'
+				type: 'boolean',
 			},
 			title: {
 				type: 'string',
 				source: 'attribute',
 				selector: 'pre',
 				attribute: 'title',
-			}
+			},
 		},
 		edit,
 		save,

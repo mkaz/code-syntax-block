@@ -9,7 +9,7 @@ import {
 	PanelBody,
 	SelectControl,
 	TextControl,
-	ToggleControl
+	ToggleControl,
 } from '@wordpress/components';
 import { __ } from '@wordpress/i18n';
 
@@ -26,7 +26,7 @@ const editorStyle = {
 
 const edit = ( { attributes, setAttributes, className } ) => (
 	<>
-		<InspectorControls key='controls'>
+		<InspectorControls key="controls">
 			<PanelBody title={ __( 'Settings' ) }>
 				<SelectControl
 					label={ __( 'Language' ) }
@@ -34,9 +34,9 @@ const edit = ( { attributes, setAttributes, className } ) => (
 					options={ [ {
 						label: __( 'Select code language' ),
 						value: '',
-					}].concat (
-						Object.keys(mkaz_code_syntax_languages).map( ( lang ) => (
-							{ label: mkaz_code_syntax_languages[lang], value: lang }
+					} ].concat(
+						Object.keys( mkaz_code_syntax_languages ).map( ( lang ) => (
+							{ label: mkaz_code_syntax_languages[ lang ], value: lang }
 						) )
 					) }
 					onChange={ ( language ) => setAttributes( { language } ) }
@@ -49,15 +49,15 @@ const edit = ( { attributes, setAttributes, className } ) => (
 				<TextControl
 					label={ __( 'Title for Code Block' ) }
 					value={ attributes.title }
-					onChange={ ( title ) => setAttributes({ title }) }
+					onChange={ ( title ) => setAttributes( { title } ) }
 					placeholder={ __( 'Title or File (optional)' ) }
 				/>
 			</PanelBody>
 		</InspectorControls>
-		<div key='editor-wrapper' className={ className }>
+		<div key="editor-wrapper" className={ className }>
 			<PlainText
 				value={ attributes.content }
-				onChange={ ( content ) => setAttributes({ content }) }
+				onChange={ ( content ) => setAttributes( { content } ) }
 				placeholder={ __( 'Write code…' ) }
 			/>
 			<div style={ editorStyle }>
@@ -66,6 +66,5 @@ const edit = ( { attributes, setAttributes, className } ) => (
 		</div>
 	</>
 );
-
 
 export default edit;
