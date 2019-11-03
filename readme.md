@@ -74,6 +74,12 @@ add_filter( 'mkaz_code_syntax_language_list', function() {
 } );
 ```
 
+You can also **set a default language** using the filter `mkaz_code_syntax_default_lang`, by default no default is set requiring you to select the language. By setting a default language when inserting a code block the language will already be set, you can still change if you wish to show code not using the default language.
+
+This example would set JavaScript as the default:
+```php
+add_filter( 'mkaz_code_syntax_default_lang', function() { return 'js'; });
+```
 
 
 ## Alternative

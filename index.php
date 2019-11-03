@@ -37,9 +37,25 @@ add_action( 'enqueue_block_editor_assets', function() {
 		$asset_file['version'],
 	);
 
+	/**
+	 * Use the mkaz_code_syntax_default__lang filter to set a default language
+	 * When inserting a new code block, the language will automatically be set
+	 *
+	 * @since 1.1.0
+	 *
+	 * @param string $lang string
+	 */
+	$default_lang = apply_filters( 'mkaz_code_syntax_default_lang', '' );
+
 	wp_add_inline_script(
 		'mkaz-code-syntax',
-		"const mkaz_code_syntax_languages = " . json_encode( $languages ) . ";",
+		implode(
+			"\n",
+			array(
+				'const mkaz_code_syntax_languages = ' . json_encode( $languages ) . ';',
+				'const mkaz_code_syntax_default_lang = ' . json_encode( $default_lang ) . ';',
+			)
+		),
 		'before'
 	);
 
