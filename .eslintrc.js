@@ -1,19 +1,14 @@
+
 module.exports = {
 	root: true,
 	extends: [
-		'wordpress'
+		'plugin:@wordpress/eslint-plugin/recommended',
+		'plugin:eslint-comments/recommended',
 	],
-	env: {
-		browser: false,
-		node: true
+	plugins: [
+		'import',
+	],
+	globals: {
+		wp: 'off',
 	},
-	parserOptions: {
-		sourceType: 'module',
-		ecmaVersion: 2018,
-	},
-	settings: {
-		react: {
-			pragma: 'wp'
-		}
-	}
 };
