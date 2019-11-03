@@ -54,14 +54,14 @@ Here is an example shortening the list to a smaller set:
 ```php
 add_filter( 'mkaz_code_syntax_language_list', function() {
 	return array(
-		"shell" => "Bash/Shell",
+		"bash" => "Bash/Shell",
 		"go" => "Go",
 		"html" => "HTML",
-		"js" => "JavaScript",
+		"javascript" => "JavaScript",
 		"json" => "JSON",
-		"md" => "Markdown",
+		"markdown" => "Markdown",
 		"php" => "PHP",
-		"py" => "Python",
+		"python" => "Python",
 		"jsx" => "React JSX",
 		"sass" => "Sass",
 		"sql" => "SQL",
@@ -78,7 +78,7 @@ You can also **set a default language** using the filter `mkaz_code_syntax_defau
 
 This example would set JavaScript as the default:
 ```php
-add_filter( 'mkaz_code_syntax_default_lang', function() { return 'js'; });
+add_filter( 'mkaz_code_syntax_default_lang', function() { return 'javascript'; });
 ```
 
 
