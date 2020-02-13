@@ -65,6 +65,13 @@ add_action( 'enqueue_block_editor_assets', function() {
  * Enqueue assets for viewing posts
  */
 add_action( 'wp_enqueue_scripts', function() {
+	global $posts;
+
+	$found_block = array_reduce( $posts, function($found, $post) {
+		return $found || has_block( 'code', $post );
+	}, false );
+	if ( ! $found_block ) { return; }
+
 	// Files.
 	$view_style_path = 'assets/blocks.style.css';
 	$prism_js_path   = 'assets/prism/prism.js';
