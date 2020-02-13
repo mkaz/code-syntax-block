@@ -10,8 +10,8 @@ code[class*="language-"],
 pre[class*="language-"] {
   color: #ABB2BF;
   background: none;
-  font-family: "Fira Code", Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace !important;
-  font-size: 14px;
+  font-family: Hack, "Fira Code", Consolas, Menlo, Monaco, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+  font-size: 15px;
   line-height: 1.5;
   text-align: left;
   white-space: pre;
@@ -74,7 +74,7 @@ pre[class*="language-"] {
 .token.cdata {
   color: #5C6370;
   /* mkaz: fix for unknown theme (Issue: #46) */
-  border: none; 
+  border: none;
   /* mkaz: fix for Twenty Nineteen */
   padding-left: 0;
 }
