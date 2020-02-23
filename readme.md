@@ -11,7 +11,7 @@ Example:
 
 Available on WordPress Plugin Directory at: https://wordpress.org/plugins/code-syntax-block/
 
-You can also install the code-syntax-block plugin from your WordPress plugins page, or download a zip from the  [releases page](https://github.com/mkaz/code-syntax-block/releases) then upload and activate on your site.
+You can install the code-syntax-block plugin from your WordPress plugins page, or download a zip from the  [releases page](https://github.com/mkaz/code-syntax-block/releases) then upload and activate on your site.
 
 ## Usage
 
@@ -21,7 +21,7 @@ On the front-end when the post is being viewed, the code will be color syntax hi
 
 ## Customize
 
-### Colors 
+### Colors
 
 The default color theme is based off [One Dark](https://github.com/AGMStudio/prism-theme-one-dark). If you want to change the colors, you can download a new theme from the [Prism themes repo](https://github.com/PrismJS/prism-themes) or create your own.
 
@@ -37,7 +37,7 @@ An example adding a filter to change the URL, add the following to your theme's 
 
 ```php
 add_filter( 'mkaz_prism_css_url', function() {
-	return 'https://raw.githubusercontent.com/PrismJS/prism-themes/master/themes/prism-hopscotch.css'; 
+	return 'https://raw.githubusercontent.com/PrismJS/prism-themes/master/themes/prism-hopscotch.css';
 });
 ```
 
@@ -69,7 +69,7 @@ add_filter( 'mkaz_code_syntax_language_list', function() {
 		"toml" => "TOML",
 		"vim" => "vim",
 		"xml" => "XML",
-		"yaml" => "YAML",	
+		"yaml" => "YAML",
 	);
 } );
 ```
@@ -84,8 +84,7 @@ add_filter( 'mkaz_code_syntax_default_lang', function() { return 'javascript'; }
 
 ## Alternative
 
-Consider using Weston Ruter's [Syntax-highlighting Code Block](https://wordpress.org/plugins/syntax-highlighting-code-block/), which forked from this block. Weston's block changes the parsing engine to use `highlight.php` which renders server-side. My block uses PrismJS which renders on the front-end and requires loading an additional JS file.
-
+For server-side rendering, consider using Weston Ruter's [Syntax-highlighting Code Block](https://wordpress.org/plugins/syntax-highlighting-code-block/), it was initially forked from this block. Weston's block changes the parsing engine to use `highlight.php` that renders server-side. My block uses PrismJS which renders on the front-end and requires loading additional JS file.
 
 ## Colophon
 
@@ -96,7 +95,7 @@ Consider using Weston Ruter's [Syntax-highlighting Code Block](https://wordpress
 
 ## License
 
-Copyright (c) 2018 Marcus Kazmierczak.
+Copyright (c) 2018-2020 Marcus Kazmierczak.
 
 Licensed under <a href="https://opensource.org/licenses/GPL-2.0"> GPL 2.0 or later </a>.
 
