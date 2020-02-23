@@ -1,0 +1,12 @@
+/.git
+/.github
+/node_modules
+/src
+/.wordpress-org
+
+.distignore
+.eslintrc.js
+.gitignore
+Makefile
+package.json
+package-lock.json
