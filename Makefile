@@ -8,16 +8,18 @@ MAKEFLAGS += --no-builtin-rules
 # end
 
 # NOTE TO OTHERS:
+#
 # You don't need to use this script, it is what I use to help me
-# 1. create a plugin zip file that I upload to Github releases.
-# 2. update SVN files that I upload to WordPress Plugin directory
+# create a plugin zip file that I upload to Github releases.
 
-# You can install the plugin from there
 
-# NOTE TO FUTURE SELF: 
+# NOTE TO FUTURE SELF:
+#
 # I copy each file individually to be sure only what I want goes in
 # the plugin. For example a index.js.map file gets created during
 # development which is not needed in production.
+
+# SVN repository update for wp.org uses Github actions
 
 VERSION=$(jq -r ".version" package.json)
 
@@ -27,17 +29,6 @@ VERSION=$(jq -r ".version" package.json)
 build:
 > npm run build
 .PHONY: build
-
-svn: build
-> echo "Copying files to SVN directory"
-> rm -rf svn/trunk/assets/prism
-> cp -r assets/prism svn/trunk/assets/
-> cp assets/blocks.style.css svn/trunk/assets/
-> cp build/index.js svn/trunk/build/
-> cp build/index.asset.php svn/trunk/build/
-> cp index.php svn/trunk/
-> cp prism-languages.php svn/trunk/
-.PHONY: svn
 
 zip: build
 > echo "Building zip in dist/"
@@ -52,5 +43,5 @@ zip: build
 > cp prism-languages.php dist/code-syntax-block/
 > cp readme.md dist/code-syntax-block/
 > cd dist
-> zip -r "code-syntax-block-$(VERSION).zip" code-syntax-block
+> zip -r "code-syntax-block-${VERSION}.zip" code-syntax-block
 .PHONY: zip
