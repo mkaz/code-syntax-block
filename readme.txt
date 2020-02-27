@@ -5,7 +5,7 @@ Tags: code, code syntax, syntax highlight, code highlighting
 Requires at least: 5.0
 Tested up to: 5.3.2
 Requires PHP: 5.2.4
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -93,6 +93,14 @@ This example would set JavaScript as the default:
 
     add_filter( 'mkaz_code_syntax_default_lang', function() { return 'javascript'; });
 
+= Can I override the conditional loading, so assets always load? =
+
+Yes, use the filter `mkaz_code_syntax_force_loading` to force always loading assets, otherwise it users has_block to check.
+
+Example:
+
+	add_filter( 'mkaz_code_syntax_force_loading', '__return_true' );
+
 
 == Screenshots ==
 
@@ -100,6 +108,10 @@ This example would set JavaScript as the default:
 2. In Editor Example
 
 == Changelog ==
+
+= 1.24 =
+
+Add filter to force loading assets, regardless of has_block
 
 = 1.2.3 =
 

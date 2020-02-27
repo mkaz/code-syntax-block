@@ -77,8 +77,17 @@ add_filter( 'mkaz_code_syntax_language_list', function() {
 You can also **set a default language** using the filter `mkaz_code_syntax_default_lang`, by default no default is set requiring you to select the language. By setting a default language when inserting a code block the language will already be set, you can still change if you wish to show code not using the default language.
 
 This example would set JavaScript as the default:
+
 ```php
 add_filter( 'mkaz_code_syntax_default_lang', function() { return 'javascript'; });
+```
+
+### Conditional Loading
+
+By default the plugin will check if the current loop `has_blocks` and will only load the assets if the blocks are detected. If you need to override this, and force loading of assets using the following filter in your theme:
+
+```php
+add_filter( 'mkaz_code_syntax_force_loading', '__return_true' );
 ```
 
 
