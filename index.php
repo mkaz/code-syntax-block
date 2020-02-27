@@ -3,7 +3,7 @@
  * Plugin Name:  Code Syntax Block
  * Plugin URI:   https://github.com/mkaz/code-syntax-block
  * Description:  A plugin to extend Gutenberg code block with syntax highlighting
- * Version:      1.2.3
+ * Version:      1.2.4
  * Author:       Marcus Kazmierczak
  * Author URI:   https://mkaz.blog/
  * License:      GPL2
@@ -14,7 +14,7 @@
  */
 
 // version added, used in URL
-define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '1.2.2' );
+define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '1.2.4' );
 require dirname( __FILE__ ) . '/prism-languages.php';
 
 /**
@@ -67,10 +67,24 @@ add_action( 'enqueue_block_editor_assets', function() {
 add_action( 'wp_enqueue_scripts', function() {
 	global $posts;
 
-	$found_block = array_reduce( $posts, function($found, $post) {
-		return $found || has_block( 'code', $post );
-	}, false );
-	if ( ! $found_block ) { return; }
+	/**
+	 * Filter forces loading assets event if no block detected
+	 *
+	 * @since 1.2.4
+	 *
+	 */
+	$force_load = apply_filters( 'mkaz_code_syntax_force_loading', false );
+	// if not forcing the loading of assets check if the block
+	// is found and if no block skip loading assets
+	if ( ! $force_load ) {
+		$found_block = array_reduce( $posts, function($found, $post) {
+			return $found || has_block( 'code', $post );
+		}, false );
+
+		if ( ! $found_block ) {
+			return;
+		}
+	}
 
 	// Files.
 	$view_style_path = 'assets/blocks.style.css';
