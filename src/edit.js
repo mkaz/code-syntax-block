@@ -69,7 +69,7 @@ const edit = ( { attributes, className, isSelected, setAttributes } ) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			{ isSelected ?
+			{ isSelected || ! attributes.language ?
 				<div key="editor-wrapper" className={ className }>
 					<PlainText
 						value={ attributes.content }
