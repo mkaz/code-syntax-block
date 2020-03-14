@@ -11,10 +11,10 @@ import {
 	TextControl,
 	ToggleControl,
 } from '@wordpress/components';
-import { Component } from '@wordpress/element';
+import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
-/* global mkaz_code_syntax_languages, mkaz_code_syntax_default_lang */
+/* global mkaz_code_syntax_languages, mkaz_code_syntax_default_lang, Prism */
 
 const editorStyle = {
 	fontFamily: 'sans-serif',
@@ -25,46 +25,51 @@ const editorStyle = {
 	right: '.5rem',
 };
 
-class SyntaxEdit extends Component {
-	componentDidMount() {
-		if ( ! this.props.attributes.language && mkaz_code_syntax_default_lang ) {
-			this.props.setAttributes( { language: mkaz_code_syntax_default_lang } );
+const edit = ( { attributes, className, isSelected, setAttributes } ) => {
+	useEffect( () => {
+		if ( ! attributes.language && mkaz_code_syntax_default_lang ) {
+			setAttributes( { language: mkaz_code_syntax_default_lang } );
 		}
-	}
+		// trigger color render
+		if ( ! isSelected ) {
+			Prism.highlightAll();
+		}
+	} );
 
-	render() {
-		const { attributes, setAttributes, className } = this.props;
-
-		return (
-			<>
-				<InspectorControls key="controls">
-					<PanelBody title={ __( 'Settings' ) }>
-						<SelectControl
-							label={ __( 'Language' ) }
-							value={ attributes.language }
-							options={ [ {
-								label: __( 'Select code language' ),
-								value: '',
-							} ].concat(
-								Object.keys( mkaz_code_syntax_languages ).map( ( lang ) => (
-									{ label: mkaz_code_syntax_languages[ lang ], value: lang }
-								) )
-							) }
-							onChange={ ( language ) => setAttributes( { language } ) }
-						/>
-						<ToggleControl
-							label={ __( 'Show line numbers' ) }
-							checked={ attributes.lineNumbers }
-							onChange={ ( lineNumbers ) => setAttributes( { lineNumbers } ) }
-						/>
-						<TextControl
-							label={ __( 'Title for Code Block' ) }
-							value={ attributes.title }
-							onChange={ ( title ) => setAttributes( { title } ) }
-							placeholder={ __( 'Title or File (optional)' ) }
-						/>
-					</PanelBody>
-				</InspectorControls>
+	let cls = '';
+	cls = ( attributes.language ) ? 'language-' + attributes.language : '';
+	cls = ( attributes.lineNumbers ) ? cls + ' line-numbers' : cls;
+	return (
+		<>
+			<InspectorControls key="controls">
+				<PanelBody title={ __( 'Settings' ) }>
+					<SelectControl
+						label={ __( 'Language' ) }
+						value={ attributes.language }
+						options={ [ {
+							label: __( 'Select code language' ),
+							value: '',
+						} ].concat(
+							Object.keys( mkaz_code_syntax_languages ).map( ( lang ) => (
+								{ label: mkaz_code_syntax_languages[ lang ], value: lang }
+							) )
+						) }
+						onChange={ ( language ) => setAttributes( { language } ) }
+					/>
+					<ToggleControl
+						label={ __( 'Show line numbers' ) }
+						checked={ attributes.lineNumbers }
+						onChange={ ( lineNumbers ) => setAttributes( { lineNumbers } ) }
+					/>
+					<TextControl
+						label={ __( 'Title for Code Block' ) }
+						value={ attributes.title }
+						onChange={ ( title ) => setAttributes( { title } ) }
+						placeholder={ __( 'Title or File (optional)' ) }
+					/>
+				</PanelBody>
+			</InspectorControls>
+			{ isSelected ?
 				<div key="editor-wrapper" className={ className }>
 					<PlainText
 						value={ attributes.content }
@@ -74,10 +79,15 @@ class SyntaxEdit extends Component {
 					<div style={ editorStyle }>
 						{ mkaz_code_syntax_languages[ attributes.language ] }
 					</div>
-				</div>
-			</>
-		);
-	}
-}
+				</div> :
+				<pre title={ attributes.title }>
+					<code lang={ attributes.language } className={ cls }>
+						{ attributes.content }
+					</code>
+				</pre>
+			}
+		</>
+	);
+};
 
-export default SyntaxEdit;
+export default edit;
