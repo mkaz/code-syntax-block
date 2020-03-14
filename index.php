@@ -62,27 +62,30 @@ add_action( 'enqueue_block_editor_assets', function() {
 } );
 
 /**
- * Enqueue assets for viewing posts
+ * Enqueue assets for viewing for both front and editor.
  */
-add_action( 'wp_enqueue_scripts', function() {
-	global $posts;
+add_action( 'enqueue_block_assets', function() {
 
-	/**
-	 * Filter forces loading assets event if no block detected
-	 *
-	 * @since 1.2.4
-	 *
-	 */
-	$force_load = apply_filters( 'mkaz_code_syntax_force_loading', false );
-	// if not forcing the loading of assets check if the block
-	// is found and if no block skip loading assets
-	if ( ! $force_load ) {
-		$found_block = array_reduce( $posts, function($found, $post) {
-			return $found || has_block( 'code', $post );
-		}, false );
+	// If not in editor, check if we should load the asset files
+	if ( ! is_admin() ) {
+		global $posts;
+		/**
+		 * Filter forces loading assets event if no block detected
+		 *
+		 * @since 1.2.4
+		 *
+		 */
+		$force_load = apply_filters( 'mkaz_code_syntax_force_loading', false );
+		// if not forcing the loading of assets check if the block
+		// is found and if no block skip loading assets
+		if ( ! $force_load ) {
+			$found_block = array_reduce( $posts, function($found, $post) {
+				return $found || has_block( 'code', $post );
+			}, false );
 
-		if ( ! $found_block ) {
-			return;
+			if ( ! $found_block ) {
+				return;
+			}
 		}
 	}
 
