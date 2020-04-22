@@ -29,7 +29,14 @@ The color theme is a single CSS file, there are a couple ways to customize:
 
 1. The plugin will check the current theme for the file: `assets/prism/prism.css` and use that file if it exists. Add your customize to a file in that location, and it will be used.
 
-2. If you do not like that file location, you can use the filter `mkaz_prism_css_path` and specify a path relative to your theme to use.
+2. If you do not like that file location, you can use the filter `mkaz_prism_css_path` and specify a path relative to your theme to use. An example, creating a `prism-theme.css` file at the top-level of my theme directory:
+
+```php
+	// Use local prism theme
+	add_filter( 'mkaz_prism_css_path', function() {
+		return '/prism-theme.css';
+	});
+```
 
 3. If you would prefer specifying a full URL, you can use the filter `mkaz_prism_css_url` and specify a full URL to the stylesheet to use.
 
