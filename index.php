@@ -79,6 +79,10 @@ add_action( 'enqueue_block_assets', function() {
 		// if not forcing the loading of assets check if the block
 		// is found and if no block skip loading assets
 		if ( ! $force_load ) {
+			if ( empty( $posts ) ) {
+				return;
+			}
+
 			$found_block = array_reduce( $posts, function($found, $post) {
 				return $found || has_block( 'code', $post );
 			}, false );
