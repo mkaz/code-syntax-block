@@ -1,6 +1,6 @@
 {
   "name": "mkaz-code-syntax-block",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "license": "GPL-2.0-or-later",
   "main": "src/index.js",
   "devDependencies": {
