@@ -188,3 +188,16 @@ function mkaz_prism_theme_css_ver() {
 	}
 	return MKAZ_CODE_SYNTAX_BLOCK_VERSION;
 }
+
+// extend code tag to allow lang attribute
+add_filter( 'wp_kses_allowed_html', function( $tags ) {
+
+	if ( is_array( $tags['code'] ) ) {
+		$tags['code']['lang'] = array();
+	} else {
+		$tags['code'] = array(
+			'lang' => array(),
+		);
+	}
+    return $tags;
+}, 10, 2);
