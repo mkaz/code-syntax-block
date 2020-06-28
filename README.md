@@ -1,4 +1,4 @@
-![CI](https://github.com/binhsonnguyen/wp-syntaxism-code-block-plugin/workflows/CI/badge.svg)
+[![Build Status](https://travis-ci.com/binhsonnguyen/wp-syntaxism-code-block-plugin.svg?branch=master)](https://travis-ci.com/binhsonnguyen/wp-syntaxism-code-block-plugin)
 
 # Code Syntax Highlighting Block
 
