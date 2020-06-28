@@ -50,6 +50,6 @@ const addSyntaxToCodeBlock = ( settings ) => {
 // Register Filter
 addFilter(
 	'blocks.registerBlockType',
-	'mkaz/code-syntax-block',
+	'binhsonnguyen/syntaxism-code-block',
 	addSyntaxToCodeBlock
 );
