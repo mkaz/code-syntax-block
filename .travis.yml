@@ -9,3 +9,17 @@ jobs:
       script:
         - docker run --rm -v "$PWD":/app -w /app node:lts npm install
         - docker run --rm -v "$PWD":/app -w /app node:lts npm run build
+    - stage: deploy
+      branches:
+        only:
+          - master
+      before_script:
+        - which ssh-agent || ( apt update -y && apt install -y openssh-client )
+        - eval $(ssh-agent -s)
+        - openssl aes-256-cbc -K $encrypted_3e866d017488_key -iv $encrypted_3e866d017488_iv -in production_deploy_key.enc -out production_deploy_key -d
+        - chmod 600 production_deploy_key
+        - ssh-add production_deploy_key
+        - openssl aes-256-cbc -K $encrypted_d3d517189206_key -iv $encrypted_d3d517189206_iv -in production_public_key.enc -out production_public_key -d
+        - cat production_public_key >> ~/.ssh/known_hosts
+      script:
+        - ssh $PRODUCTION_USER@$PRODUCTION_SERVER "/bin/bash -s " < production_deploy.sh
