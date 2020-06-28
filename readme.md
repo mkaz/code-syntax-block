@@ -1,3 +1,4 @@
+![CI](https://github.com/binhsonnguyen/wp-syntaxism-code-block-plugin/workflows/CI/badge.svg)
 
 # Code Syntax Highlighting Block
 
