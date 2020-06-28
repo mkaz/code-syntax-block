@@ -2,7 +2,7 @@
 
 set -e
 
-cd /home/ubuntu/wordpress/syntaxism-code-block-plugin
+cd /home/ubuntu/wordpress/wp-syntaxism-code-block-plugin
 git fetch --all
 git checkout master
 git reset --hard origin/master
