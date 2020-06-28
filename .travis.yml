@@ -7,8 +7,8 @@ jobs:
   include:
     - stage: build
       script:
-        - docker run --rm -v "$PWD":/app -w /app node:lts npm install
-        - docker run --rm -v "$PWD":/app -w /app node:lts npm run build
+        - docker run --rm -v "$PWD":/app -w /app node:lts yarn install
+        - docker run --rm -v "$PWD":/app -w /app node:lts yarn run build
     - stage: deploy
       branches:
         only:
