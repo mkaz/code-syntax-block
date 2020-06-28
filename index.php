@@ -1,16 +1,16 @@
 <?php
 /**
- * Plugin Name:  Code Syntax Block
- * Plugin URI:   https://github.com/mkaz/code-syntax-block
+ * Plugin Name:  Syntaxism Code Block
+ * Plugin URI:   https://github.com/binhsonnguyen/wp-syntaxism-code-block
  * Description:  A plugin to extend Gutenberg code block with syntax highlighting
- * Version:      1.3.3
- * Author:       Marcus Kazmierczak
- * Author URI:   https://mkaz.blog/
+ * Version:      0.0.1
+ * Author:       Nguyen Binh Son
+ * Author URI:   https://nguyenbinhson.com
  * License:      GPL2
  * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:  code-syntax-block
+ * Text Domain:  syntaxism-code-block
  *
- * @package Code_Syntax_Block
+ * @package Syntaxism_Code_Block
  */
 
 // version added, used in URL
