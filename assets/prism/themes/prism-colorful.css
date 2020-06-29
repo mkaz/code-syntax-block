@@ -9,30 +9,28 @@ https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+c
  Twitter Handle: https://twitter.com/allonsykraken)
 */
 
-/*
-SOLARIZED HEX
---------- -------
-base03    #002b36
-base02    #073642
-base01    #586e75
-base00    #657b83
-base0     #839496
-base1     #93a1a1
-base2     #eee8d5
-base3     #fdf6e3
-yellow    #b58900
-orange    #cb4b16
-red       #dc322f
-magenta   #d33682
-violet    #6c71c4
-blue      #268bd2
-cyan      #2aa198
-green     #859900
-*/
+:root {
+	--pr-base00: #657b83;
+	--pr-base01: #586e75;
+	--pr-base02: #073642;
+	--pr-base03: #002b36;
+	--pr-base0: #839496;
+	--pr-base1: #93a1a1;
+	--pr-base2: #eee8d5;
+	--pr-base3: #fdf6e3;
+	--pr-yellow: #b58900;
+	--pr-orange: #cb4b16;
+	--pr-red: #dc322f;
+	--pr-magenta: #d33682;
+	--pr-violet: #6c71c4;
+	--pr-blue: #268bd2;
+	--pr-cyan: #2aa198;
+	--pr-green: #859900;
+}
 
 code[class*="language-"],
 pre[class*="language-"] {
-	color: #657b83; /* base00 */
+	color: var(--pr-base00); /* base00 */
 	font-family: monospace;
 	text-align: left;
 	white-space: pre;
@@ -54,12 +52,12 @@ pre[class*="language-"] {
 
 pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-	background: #073642; /* base02 */
+	background: var(--pr-base02);
 }
 
 pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
 code[class*="language-"]::selection, code[class*="language-"] ::selection {
-	background: #073642; /* base02 */
+	background: var(--pr-base02);
 }
 
 /* Code blocks */
@@ -72,7 +70,7 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background-color: #fdf6e3; /* base3 */
+	background-color: var(--pr-base3); /* base3 */
 }
 
 /* Inline code */
@@ -85,11 +83,11 @@ pre[class*="language-"] {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: #93a1a1; /* base1 */
+	color: var(--pr-base1); /* base1 */
 }
 
 .token.punctuation {
-	color: #586e75; /* base01 */
+	color: var(--pr-base01); /* base01 */
 }
 
 .token.namespace {
@@ -103,7 +101,7 @@ pre[class*="language-"] {
 .token.constant,
 .token.symbol,
 .token.deleted {
-	color: #268bd2; /* blue */
+	color: var(--pr-blue); /* blue */
 }
 
 .token.selector,
@@ -113,29 +111,29 @@ pre[class*="language-"] {
 .token.builtin,
 .token.url,
 .token.inserted {
-	color: #2aa198; /* cyan */
+	color: var(--pr-cyan); /* cyan */
 }
 
 .token.entity {
-	color: #657b83; /* base00 */
-	background: #eee8d5; /* base2 */
+	color: var(--pr-base00); /* base00 */
+	background: var(--pr-base2); /* base2 */
 }
 
 .token.atrule,
 .token.attr-value,
 .token.keyword {
-	color: #859900; /* green */
+	color: var(--pr-green); /* green */
 }
 
 .token.function,
 .token.class-name {
-	color: #b58900; /* yellow */
+	color: var(--pr-yellow); /* yellow */
 }
 
 .token.regex,
 .token.important,
 .token.variable {
-	color: #cb4b16; /* orange */
+	color: var(--pr-orange); /* orange */
 }
 
 .token.important,
