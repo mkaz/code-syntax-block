@@ -35,8 +35,7 @@ https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+c
 
 code[class*="language-"],
 pre[class*="language-"] {
-	color: var(--pr-cl-base); /* base00 */
-	font-family: monospace;
+	color: var(--pr-cl-base);
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
