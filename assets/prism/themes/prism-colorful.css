@@ -16,6 +16,7 @@ https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+c
 	--pr-cl-function: #06b;
 	--pr-cl-keyword: #080;
 	--pr-cl-number: #00d;
+	--pr-cl-string-bg: #fff0f0;
 	--pr-cl-punctuation: #555;
 
 	--pr-base02: #073642;
@@ -29,7 +30,7 @@ https://prismjs.com/download.html#themes=prism-solarizedlight&languages=markup+c
 	--pr-magenta: #d33682;
 	--pr-violet: #6c71c4;
 	/*--pr-blue: #268bd2;*/
-	--pr-cyan: #2aa198;
+	/*--pr-cyan: #2aa198;*/
 	--pr-green: #859900;
 }
 
@@ -111,7 +112,7 @@ pre[class*="language-"] {
 .token.builtin,
 .token.url,
 .token.inserted {
-	color: var(--pr-cyan); /* cyan */
+	background-color: var(--pr-cl-string-bg);
 }
 
 .token.entity {
