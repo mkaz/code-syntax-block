@@ -8,7 +8,7 @@ jobs:
     name: New tag
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@trunk
+    - uses: actions/checkout@master
     - name: Build
       run: |
         npm install
