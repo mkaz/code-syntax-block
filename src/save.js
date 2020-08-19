@@ -5,7 +5,7 @@ const save = ( { attributes } ) => {
 	cls = ( attributes.lineNumbers ) ? cls + ' line-numbers' : cls;
 	return (
 		<pre title={ attributes.title }>
-			<code lang={ attributes.language } className={ cls }>
+			<code data-lang={ attributes.language } className={ cls }>
 				{ attributes.content }
 			</code>
 		</pre>
