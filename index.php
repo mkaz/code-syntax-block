@@ -193,10 +193,10 @@ function mkaz_prism_theme_css_ver() {
 add_filter( 'wp_kses_allowed_html', function( $tags ) {
 
 	if ( is_array( $tags['code'] ) ) {
-		$tags['code']['lang'] = array();
+		$tags['code']['data-lang'] = array();
 	} else {
 		$tags['code'] = array(
-			'lang' => array(),
+			'data-lang' => array(),
 		);
 	}
     return $tags;
