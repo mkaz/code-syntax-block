@@ -28,7 +28,7 @@ const save = ( { attributes } ) => {
 	// Backward compatibility < WP 5.6
 	return (
 		<pre className="wp-block-code" title={ attributes.title }>
-			<code lang={ attributes.language } className={ cls }>
+			<code data-lang={ attributes.language } className={ cls }>
 				{ attributes.content }
 			</code>
 		</pre>
