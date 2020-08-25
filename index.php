@@ -45,7 +45,7 @@ add_action( 'enqueue_block_editor_assets', function() {
 	 *
 	 * @param string $lang string
 	 */
-	$default_lang = apply_filters( 'mkaz_code_syntax_default_lang', '' );
+    $default_lang = apply_filters( 'mkaz_code_syntax_default_lang', function() { return 'textile'; } );
 
 	wp_add_inline_script(
 		'mkaz-code-syntax',
