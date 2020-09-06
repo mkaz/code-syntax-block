@@ -38,6 +38,7 @@ function mkaz_code_syntax_block_get_supported_languages() {
 		"jsx" => "React JSX",
 		"rest" => "reST (reStructuredText)",
 		"ruby" => "Ruby",
+		"rust" => "Rust",
 		"sass" => "Sass",
 		"sql" => "SQL",
 		"svg" => "SVG",
