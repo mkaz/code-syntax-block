@@ -3,7 +3,7 @@
  * Plugin Name:  Code Syntax Block
  * Plugin URI:   https://github.com/mkaz/code-syntax-block
  * Description:  A plugin to extend Gutenberg code block with syntax highlighting
- * Version:      1.3.4
+ * Version:      1.3.5
  * Author:       Marcus Kazmierczak
  * Author URI:   https://mkaz.blog/
  * License:      GPL2
@@ -14,7 +14,7 @@
  */
 
 // version added, used in URL
-define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '1.3.4' );
+define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '1.3.5' );
 require dirname( __FILE__ ) . '/prism-languages.php';
 
 /**
@@ -137,6 +137,7 @@ add_action( 'enqueue_block_assets', function() {
 function mkaz_prism_theme_css( $rtnPath = false ) {
 
 	$default_path = '/assets/prism/prism.css';
+
 	/**
 	 * Filter the theme directory path used for overriding css path
 	 *

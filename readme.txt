@@ -3,9 +3,9 @@ Contributors: mkaz, westonruter, memuller, jazanne, jeherve, eclev91
 Donate link: https://www.paypal.me/marcuskazmierczak
 Tags: code, code syntax, syntax highlight, code highlighting
 Requires at least: 5.0
-Tested up to: 5.5
+Tested up to: 5.5.1
 Requires PHP: 5.2.4
-Stable tag: 1.3.4
+Stable tag: 1.3.5
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -108,6 +108,12 @@ Example:
 2. In Editor Example
 
 == Changelog ==
+
+= 1.3.5 =
+
+Add Rust to default language list
+Fix CSS issue with title
+Upgrade Prism to 1.21
 
 = 1.3.4 =
 
