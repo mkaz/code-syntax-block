@@ -19,32 +19,61 @@ const addSyntaxToCodeBlock = ( settings ) => {
 		return settings;
 	}
 
-	const newCodeBlockSettings = {
+	const blockAttributes = {
+		...settings.attributes,
+		language: {
+			type: 'string',
+			selector: 'code',
+			source: 'attribute',
+			attribute: 'data-lang',
+		},
+		lineNumbers: {
+			type: 'boolean',
+		},
+		title: {
+			type: 'string',
+			source: 'attribute',
+			selector: 'pre',
+			attribute: 'title',
+		},
+	};
+
+	return {
 		...settings,
 
-		attributes: {
-			...settings.attributes,
-			language: {
-				type: 'string',
-				selector: 'code',
-				source: 'attribute',
-				attribute: 'data-lang',
+		attributes: blockAttributes,
+
+		deprecated: [{
+			// old attributes
+			attributes: {
+				...blockAttributes,
+				language: {
+					type: 'string',
+					selector: 'code',
+					source: 'attribute',
+					attribute: 'lang',
+				},
 			},
-			lineNumbers: {
-				type: 'boolean',
+			migrate: ( attributes ) => { return attributes; },
+			// old save function
+			save: ( { attributes } ) => {
+				let cls = '';
+				cls = ( attributes.language ) ? 'language-' + attributes.language : '';
+				cls = ( attributes.lineNumbers ) ? cls + ' line-numbers' : cls;
+				return (
+					<pre title={ attributes.title }>
+						<code lang={ attributes.language } className={ cls }>
+							{ attributes.content }
+						</code>
+					</pre>
+				);
 			},
-			title: {
-				type: 'string',
-				source: 'attribute',
-				selector: 'pre',
-				attribute: 'title',
-			},
-		},
+		}],
+
 		edit,
 		save,
 	};
 
-	return newCodeBlockSettings;
 };
 
 // Register Filter
