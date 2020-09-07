@@ -54,11 +54,11 @@ const edit = ({ attributes, className, setAttributes }) => {
 	return (
 		<>
 			<InspectorControls key="controls">
-				<PanelBody title={__('Settings')}>
+				<PanelBody title={ __('Settings') }>
 					<SelectControl
-						label={__('Language')}
-						value={attributes.language}
-						options={[
+						label={ __('Language') }
+						value={ attributes.language }
+						options={ [
 							{
 								label: __(
 									'Select code language',
@@ -73,41 +73,41 @@ const edit = ({ attributes, className, setAttributes }) => {
 									value: lang,
 								})
 							)
-						)}
-						onChange={(language) => setAttributes({ language })}
+						) }
+						onChange={ (language) => setAttributes({ language }) }
 					/>
 					<ToggleControl
-						label={__('Show line numbers', 'code-syntax-block')}
-						checked={attributes.lineNumbers}
-						onChange={(lineNumbers) =>
+						label={ __('Show line numbers', 'code-syntax-block') }
+						checked={ attributes.lineNumbers }
+						onChange={ (lineNumbers) =>
 							setAttributes({ lineNumbers })
 						}
 					/>
 					<TextControl
-						label={__('Title for Code Block', 'code-syntax-block')}
-						value={attributes.title}
-						onChange={(title) => setAttributes({ title })}
-						placeholder={__(
+						label={ __('Title for Code Block', 'code-syntax-block') }
+						value={ attributes.title }
+						onChange={ (title) => setAttributes({ title }) }
+						placeholder={ __(
 							'Title or File (optional)',
 							'code-syntax-block'
-						)}
+						) }
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<div key="editor-wrapper" className={className}>
-				{useLightBlockWrapper ? (
+			<div key="editor-wrapper" className={ className }>
+				{ useLightBlockWrapper ? (
 					<Block.pre>
 						<PlainText
-							__experimentalVersion={2}
+							__experimentalVersion={ 2 }
 							tagName="code"
-							{...plainTextProps}
+							{ ...plainTextProps }
 						/>
 					</Block.pre>
 				) : (
-					<PlainText {...plainTextProps} />
-				)}
-				<div style={editorStyle} className="wp-block">
-					{mkaz_code_syntax_languages[attributes.language]}
+					<PlainText { ...plainTextProps } />
+				) }
+				<div style={ editorStyle } className="wp-block">
+					{ mkaz_code_syntax_languages[attributes.language] }
 				</div>
 			</div>
 		</>
