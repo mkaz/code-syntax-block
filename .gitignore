@@ -1,6 +1,7 @@
 .DS_Store
 .vscode/
 dist/
+build/
 svn/
 node_modules
 npm-debug.log
