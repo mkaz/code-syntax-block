@@ -4,7 +4,8 @@
 import {
 	InspectorControls,
 	PlainText,
-	__experimentalBlock as Block,
+	__experimentalBlock as Block, // WP 5.5
+	useBlockProps,
 } from '@wordpress/block-editor';
 import { hasBlockSupport } from '@wordpress/blocks';
 import {
@@ -18,12 +19,12 @@ import { __ } from '@wordpress/i18n';
 
 /* global mkaz_code_syntax_languages, mkaz_code_syntax_default_lang, Prism */
 
-const edit = ({ attributes, className, setAttributes }) => {
-	useEffect(() => {
-		if (!attributes.language && mkaz_code_syntax_default_lang) {
-			setAttributes({ language: mkaz_code_syntax_default_lang });
+const edit = ( { attributes, className, setAttributes } ) => {
+	useEffect( () => {
+		if ( ! attributes.language && mkaz_code_syntax_default_lang ) {
+			setAttributes( { language: mkaz_code_syntax_default_lang } );
 		}
-	}, [attributes.language]);
+	}, [ attributes.language ] );
 
 	let cls = '';
 	cls = attributes.language ? 'language-' + attributes.language : '';
@@ -38,27 +39,48 @@ const edit = ({ attributes, className, setAttributes }) => {
 		textAlign: 'right',
 	};
 
+	// GB 9.2, WP 5.6
+	const blockProps = useBlockProps && useBlockProps();
+
+	// WP 5.5 required using a lightBlockWrapper
+	// This was replaced by the blockProps above in WP 5.6
+	// to support older versions of WordPress after 5.6 release
+	// the following is needed with the OldLightBlock ternary
+	// providing the additional support for WP prior to 5.5
 	const useLightBlockWrapper = hasBlockSupport(
 		'core/code',
 		'lightBlockWrapper',
 		false
 	);
 
+	const OldLightBlock = () =>
+		useLightBlockWrapper ? (
+			<Block.pre>
+				<PlainText
+					__experimentalVersion={ 2 }
+					tagName="code"
+					{ ...plainTextProps }
+				/>
+			</Block.pre>
+		) : (
+			<PlainText { ...plainTextProps } />
+		);
+
 	const plainTextProps = {
 		value: attributes.content,
-		onChange: (content) => setAttributes({ content }),
-		placeholder: __('Write code…'),
-		'aria-label': __('Code'),
+		onChange: ( content ) => setAttributes( { content } ),
+		placeholder: __( 'Write code…' ),
+		'aria-label': __( 'Code' ),
 	};
 
 	return (
 		<>
 			<InspectorControls key="controls">
-				<PanelBody title={__('Settings')}>
+				<PanelBody title={ __( 'Settings' ) }>
 					<SelectControl
-						label={__('Language')}
-						value={attributes.language}
-						options={[
+						label={ __( 'Language' ) }
+						value={ attributes.language }
+						options={ [
 							{
 								label: __(
 									'Select code language',
@@ -67,47 +89,49 @@ const edit = ({ attributes, className, setAttributes }) => {
 								value: '',
 							},
 						].concat(
-							Object.keys(mkaz_code_syntax_languages).map(
-								(lang) => ({
-									label: mkaz_code_syntax_languages[lang],
+							Object.keys( mkaz_code_syntax_languages ).map(
+								( lang ) => ( {
+									label: mkaz_code_syntax_languages[ lang ],
 									value: lang,
-								})
+								} )
 							)
-						)}
-						onChange={(language) => setAttributes({ language })}
+						) }
+						onChange={ ( language ) =>
+							setAttributes( { language } )
+						}
 					/>
 					<ToggleControl
-						label={__('Show line numbers', 'code-syntax-block')}
-						checked={attributes.lineNumbers}
-						onChange={(lineNumbers) =>
-							setAttributes({ lineNumbers })
+						label={ __( 'Show line numbers', 'code-syntax-block' ) }
+						checked={ attributes.lineNumbers }
+						onChange={ ( lineNumbers ) =>
+							setAttributes( { lineNumbers } )
 						}
 					/>
 					<TextControl
-						label={__('Title for Code Block', 'code-syntax-block')}
-						value={attributes.title}
-						onChange={(title) => setAttributes({ title })}
-						placeholder={__(
+						label={ __(
+							'Title for Code Block',
+							'code-syntax-block'
+						) }
+						value={ attributes.title }
+						onChange={ ( title ) => setAttributes( { title } ) }
+						placeholder={ __(
 							'Title or File (optional)',
 							'code-syntax-block'
-						)}
+						) }
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<div key="editor-wrapper" className={className}>
-				{useLightBlockWrapper ? (
-					<Block.pre>
-						<PlainText
-							__experimentalVersion={2}
-							tagName="code"
-							{...plainTextProps}
-						/>
-					</Block.pre>
+			<div key="editor-wrapper" className={ className }>
+				{ blockProps ? (
+					<pre { ...blockProps }>
+						<PlainText { ...plainTextProps } />
+					</pre>
 				) : (
-					<PlainText {...plainTextProps} />
-				)}
-				<div style={editorStyle} className="wp-block">
-					{mkaz_code_syntax_languages[attributes.language]}
+					<OldLightBlock />
+				) }
+				{ /* wp-block class is used to keep item in editor bounds */ }
+				<div style={ editorStyle } className="wp-block">
+					{ mkaz_code_syntax_languages[ attributes.language ] }
 				</div>
 			</div>
 		</>
