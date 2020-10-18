@@ -53,6 +53,13 @@ const edit = ( { attributes, className, setAttributes } ) => {
 		false
 	);
 
+	const plainTextProps = {
+		value: attributes.content,
+		onChange: ( content ) => setAttributes( { content } ),
+		placeholder: __( 'Write code…' ),
+		'aria-label': __( 'Code' ),
+	};
+
 	const OldLightBlock = () =>
 		useLightBlockWrapper ? (
 			<Block.pre>
@@ -65,13 +72,6 @@ const edit = ( { attributes, className, setAttributes } ) => {
 		) : (
 			<PlainText { ...plainTextProps } />
 		);
-
-	const plainTextProps = {
-		value: attributes.content,
-		onChange: ( content ) => setAttributes( { content } ),
-		placeholder: __( 'Write code…' ),
-		'aria-label': __( 'Code' ),
-	};
 
 	return (
 		<>
