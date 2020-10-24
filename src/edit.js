@@ -3,9 +3,10 @@
  */
 import {
 	InspectorControls,
-	PlainText,
-	__experimentalBlock as Block, // WP 5.5
-	useBlockProps,
+	PlainText, // pre GB 9.2
+	RichText, // GB 9.2+
+	__experimentalBlock as ExperimentalBlock, // WP 5.5
+	useBlockProps, // GB 9.2 / WP 5.6
 } from '@wordpress/block-editor';
 import { hasBlockSupport } from '@wordpress/blocks';
 import {
@@ -39,39 +40,20 @@ const edit = ( { attributes, className, setAttributes } ) => {
 		textAlign: 'right',
 	};
 
-	// GB 9.2, WP 5.6
-	const blockProps = useBlockProps && useBlockProps();
-
-	// WP 5.5 required using a lightBlockWrapper
-	// This was replaced by the blockProps above in WP 5.6
-	// to support older versions of WordPress after 5.6 release
-	// the following is needed with the OldLightBlock ternary
-	// providing the additional support for WP prior to 5.5
-	const useLightBlockWrapper = hasBlockSupport(
-		'core/code',
-		'lightBlockWrapper',
-		false
-	);
-
-	const plainTextProps = {
-		value: attributes.content,
+	// shared props for text areas
+	const textAreaProps = {
+		value: attributes.content || '',
 		onChange: ( content ) => setAttributes( { content } ),
 		placeholder: __( 'Write code…' ),
 		'aria-label': __( 'Code' ),
 	};
 
-	const OldLightBlock = () =>
-		useLightBlockWrapper ? (
-			<Block.pre>
-				<PlainText
-					__experimentalVersion={ 2 }
-					tagName="code"
-					{ ...plainTextProps }
-				/>
-			</Block.pre>
-		) : (
-			<PlainText { ...plainTextProps } />
-		);
+	// WP 5.5 required using a lightBlockWrapper
+	const useLightBlockWrapper = hasBlockSupport(
+		'core/code',
+		'lightBlockWrapper',
+		false
+	);
 
 	return (
 		<>
@@ -121,19 +103,46 @@ const edit = ( { attributes, className, setAttributes } ) => {
 					/>
 				</PanelBody>
 			</InspectorControls>
-			<div key="editor-wrapper" className={ className }>
-				{ blockProps ? (
-					<pre { ...blockProps }>
-						<PlainText { ...plainTextProps } />
+			<>
+				{ /*
+					Since this extends the core code block, the return signature must match Gutenberg
+
+					WP5.6 / GB 9.2 - useBlockProps & RichText
+					GB 9.2: https://github.com/WordPress/gutenberg/blob/v9.2.0/packages/block-library/src/code/edit.js
+
+					WP 5.5 required using a lightBlockWrapper & PlainText
+					This was replaced by useBlockProps in WP 5.6
+					GB 7.8..9.0: https://github.com/WordPress/gutenberg/blob/v7.8.0/packages/block-library/src/code/edit.js
+
+					WP older than 5.5 PlainText with wrapper
+					GB <7.8: https://github.com/WordPress/gutenberg/blob/v7.7.0/packages/block-library/src/code/edit.js
+				*/ }
+				{ useBlockProps ? (
+					<pre { ...useBlockProps() }>
+						<RichText
+							{ ...textAreaProps }
+							preserveWhiteSpace={ true }
+						/>
 					</pre>
+				) : useLightBlockWrapper ? (
+					<ExperimentalBlock.pre>
+						<PlainText
+							{ ...textAreaProps }
+							__experimentalVersion={ 2 }
+							tagName="code"
+						/>
+					</ExperimentalBlock.pre>
 				) : (
-					<OldLightBlock />
+					<div key="editor-wrapper" className={ className }>
+						<PlainText { ...textAreaProps } />
+					</div>
 				) }
-				{ /* wp-block class is used to keep item in editor bounds */ }
+
+				{ /* Language label, uses wp-block class to keep within editor bounds */ }
 				<div style={ editorStyle } className="wp-block">
 					{ mkaz_code_syntax_languages[ attributes.language ] }
 				</div>
-			</div>
+			</>
 		</>
 	);
 };
