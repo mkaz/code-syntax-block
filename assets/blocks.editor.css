@@ -1,0 +1,9 @@
+
+.mkaz-code-syntax-block__lang_label {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 0.6rem;
+	color: #999999;
+	margin: -1.5rem auto 1.0rem auto;
+	padding-right: 16px;
+	text-align: right;
+}

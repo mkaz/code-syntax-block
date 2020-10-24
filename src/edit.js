@@ -31,15 +31,6 @@ const edit = ( { attributes, className, setAttributes } ) => {
 	cls = attributes.language ? 'language-' + attributes.language : '';
 	cls = attributes.lineNumbers ? cls + ' line-numbers' : cls;
 
-	const editorStyle = {
-		fontFamily: 'sans-serif',
-		fontSize: '.6rem',
-		color: '#999999',
-		margin: '-1.5rem auto 1.0rem auto',
-		paddingRight: '16px',
-		textAlign: 'right',
-	};
-
 	// shared props for text areas
 	const textAreaProps = {
 		value: attributes.content || '',
@@ -139,7 +130,7 @@ const edit = ( { attributes, className, setAttributes } ) => {
 				) }
 
 				{ /* Language label, uses wp-block class to keep within editor bounds */ }
-				<div style={ editorStyle } className="wp-block">
+				<div className="wp-block mkaz-code-syntax-block__lang_label">
 					{ mkaz_code_syntax_languages[ attributes.language ] }
 				</div>
 			</>
