@@ -144,7 +144,7 @@ add_action( 'enqueue_block_assets', function() {
  */
 function mkaz_prism_theme_css( $rtnPath = false ) {
 
-	$default_path = '/assets/prism/prism.css';
+	$default_path = '/assets/prism-a11y-dark.css';
 
 	/**
 	 * Filter the theme directory path used for overriding css path
