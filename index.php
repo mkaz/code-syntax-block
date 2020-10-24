@@ -37,6 +37,14 @@ add_action( 'enqueue_block_editor_assets', function() {
 		$asset_file['version']
 	);
 
+	// Enqueue view style.
+	wp_enqueue_style(
+		'mkaz-code-syntax-editor-css',
+		plugins_url( $editor_style_path, __FILE__ ),
+		[],
+		filemtime( plugin_dir_path( __FILE__ ) . $editor_style_path )
+	);
+
 	/**
 	 * Use the mkaz_code_syntax_default__lang filter to set a default language
 	 * When inserting a new code block, the language will automatically be set
