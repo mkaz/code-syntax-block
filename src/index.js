@@ -6,7 +6,6 @@
 /**
  * WordPress dependencies
  */
-import { withSelect } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
 
 /**
@@ -14,7 +13,6 @@ import { addFilter } from '@wordpress/hooks';
  */
 import edit from './edit';
 import save from './save';
-import store from './store';
 
 const addSyntaxToCodeBlock = ( settings ) => {
 	if ( settings.name !== 'core/code' ) {
