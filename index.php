@@ -14,7 +14,9 @@
  */
 
 // version added, used in URL
-define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '1.3.6' );
+const MKAZ_CODE_SYNTAX_BLOCK_VERSION = '1.3.6';
+const MKAZ_CODE_SYNTAX_DEFAULT_SCHEME = 'prism-a11y-dark';
+const MKAZ_CODE_SYNTAX_COLOR_SCHEMES = ['prism-a11y-dark', 'prism-ghcolors', 'prism-nord', 'prism-onedark'];
 require dirname( __FILE__ ) . '/prism-languages.php';
 require dirname( __FILE__ ) . '/rest-api.php';
 

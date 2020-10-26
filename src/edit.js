@@ -50,6 +50,14 @@ const edit = ( { attributes, className, setAttributes } ) => {
 			label: 'One Dark',
 			value: 'prism-onedark',
 		},
+		{
+			label: 'GH Colors (Light)',
+			value: 'prism-ghcolors',
+		},
+		{
+			label: 'Nord',
+			value: 'prism-nord',
+		},
 	];
 
 	const updateColorScheme = ( colorScheme ) => {
