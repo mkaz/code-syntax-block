@@ -1,6 +1,7 @@
 /**
  * WordPress dependencies
  */
+import apiFetch from '@wordpress/api-fetch';
 import {
 	InspectorControls,
 	PlainText, // pre GB 9.2
@@ -15,24 +16,31 @@ import {
 	TextControl,
 	ToggleControl,
 } from '@wordpress/components';
-import { withSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /* global mkaz_code_syntax_languages, mkaz_code_syntax_default_lang, Prism */
 
-const edit = ( { attributes, className, colorScheme, setAttributes } ) => {
+const edit = ( { attributes, className, setAttributes } ) => {
 	useEffect( () => {
 		if ( ! attributes.language && mkaz_code_syntax_default_lang ) {
 			setAttributes( { language: mkaz_code_syntax_default_lang } );
 		}
 	}, [ attributes.language ] );
 
-	let cls = '';
-	cls = attributes.language ? 'language-' + attributes.language : '';
-	cls = attributes.lineNumbers ? cls + ' line-numbers' : cls;
+	// Onload fetch color scheme option
+	useEffect( () => {
+		apiFetch( {
+			path: '/mkaz/code-syntax/v1/get/color-scheme/',
+		} )
+			.then( ( response ) => {
+				setAttributes( { colorScheme: response } );
+			} )
+			.catch( ( error ) => {
+				console.log( 'Error fetching color scheme option: ', error );
+			} );
+	}, [ attributes.colorScheme ] );
 
-	console.log( 'Color Scheme: ', colorScheme );
 	const schemes = [
 		{
 			label: 'A11y Dark',
@@ -43,6 +51,21 @@ const edit = ( { attributes, className, colorScheme, setAttributes } ) => {
 			value: 'prism-onedark',
 		},
 	];
+
+	const updateColorScheme = ( colorScheme ) => {
+		let path = '/mkaz/code-syntax/v1/set/color-scheme/' + colorScheme;
+		apiFetch( { path } )
+			.then( () => {
+				setAttributes( { colorScheme } );
+			} )
+			.catch( ( error ) => {
+				console.log( 'Error updating color scheme option: ', error );
+			} );
+	};
+
+	let cls = '';
+	cls = attributes.language ? 'language-' + attributes.language : '';
+	cls = attributes.lineNumbers ? cls + ' line-numbers' : cls;
 
 	// shared props for text areas
 	const textAreaProps = {
@@ -114,7 +137,7 @@ const edit = ( { attributes, className, colorScheme, setAttributes } ) => {
 					</p>
 					<SelectControl
 						label={ __( 'Schemes' ) }
-						value={ attributes.color_scheme }
+						value={ attributes.colorScheme }
 						options={ [
 							{
 								label: __(
@@ -129,7 +152,7 @@ const edit = ( { attributes, className, colorScheme, setAttributes } ) => {
 								value: scheme.value,
 							} ) )
 						) }
-						onChange={ ( scheme ) => '' }
+						onChange={ updateColorScheme }
 					/>
 				</PanelBody>
 			</InspectorControls>
@@ -177,7 +200,4 @@ const edit = ( { attributes, className, colorScheme, setAttributes } ) => {
 	);
 };
 
-export default withSelect( ( select ) => {
-	const colorScheme = select( 'mkaz/code-syntax/data' ).getColorScheme();
-	return { colorScheme };
-} )( edit );
+export default edit;

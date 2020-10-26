@@ -16,6 +16,7 @@
 // version added, used in URL
 define( 'MKAZ_CODE_SYNTAX_BLOCK_VERSION', '1.3.6' );
 require dirname( __FILE__ ) . '/prism-languages.php';
+require dirname( __FILE__ ) . '/rest-api.php';
 
 /**
  * Enqueue assets for editor portion of Gutenberg
@@ -148,7 +149,7 @@ function mkaz_prism_theme_css( $rtnPath = false ) {
 
 	/**
 	 * Site option overrides theme, because the site option can be set by the user.
-	 * However, we do want the theme override the default.
+	 * However, we will want the theme to be able to override the default.
 	 * @since 2.0.0
 	 */
 	$option = get_option( 'mkaz-code-syntax-color-scheme', 'prism-a11y-dark' );
@@ -180,8 +181,6 @@ function mkaz_prism_theme_css( $rtnPath = false ) {
 		$prism_css_path = plugin_dir_path( __FILE__ ) . $default_path;
 		$prism_css_url = plugins_url( $default_path, __FILE__ );
 	}
-
-
 
 	if ( $rtnPath ) {
 		return $prism_css_path;
@@ -228,42 +227,3 @@ add_filter( 'wp_kses_allowed_html', function( $tags ) {
 	}
     return $tags;
 }, 10, 2);
-
-
-add_action( 'rest_api_init', function() {
-
-	// GET retrieve option
-	register_rest_route(
-		'mkaz/code-syntax/v1',
-		'/get/color-scheme/',
-		array(
-			'callback' => function () {
-				return get_option( 'mkaz-code-syntax-color-scheme', 'prism-a11y-dark' );
-			},
-			'methods'             => 'GET',
-			// 'permission_callback' => function () {
-			// 	return current_user_can( 'edit_posts' );
-			// },
-		)
-	);
-	// Update option
-	register_rest_route(
-		'mkaz/code-syntax/v1',
-		'/set/color-scheme/(?P<scheme>([A-Za-z0-9\_\-])+)/',
-		array(
-			'callback' => function ( $request ) {
-				$scheme = isset( $request['scheme'] ) ? esc_attr( $request['scheme'] ) : null;
-				if ( $scheme ) {
-					$rtn = update_option( 'mkaz-code-syntax-color-scheme', $scheme );
-				} else {
-					$rtn = "No color scheme specified.";
-				}
-				return $scheme;
-			},
-			'methods'             => 'GET',
-			// 'permission_callback' => function () {
-			// 	return current_user_can( 'edit_posts' );
-			// },
-		)
-	);
-} );
