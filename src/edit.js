@@ -15,12 +15,13 @@ import {
 	TextControl,
 	ToggleControl,
 } from '@wordpress/components';
+import { withSelect } from '@wordpress/data';
 import { useEffect } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 
 /* global mkaz_code_syntax_languages, mkaz_code_syntax_default_lang, Prism */
 
-const edit = ( { attributes, className, setAttributes } ) => {
+const edit = ( { attributes, className, colorScheme, setAttributes } ) => {
 	useEffect( () => {
 		if ( ! attributes.language && mkaz_code_syntax_default_lang ) {
 			setAttributes( { language: mkaz_code_syntax_default_lang } );
@@ -30,6 +31,18 @@ const edit = ( { attributes, className, setAttributes } ) => {
 	let cls = '';
 	cls = attributes.language ? 'language-' + attributes.language : '';
 	cls = attributes.lineNumbers ? cls + ' line-numbers' : cls;
+
+	console.log( 'Color Scheme: ', colorScheme );
+	const schemes = [
+		{
+			label: 'A11y Dark',
+			value: 'prism-a11y-dark',
+		},
+		{
+			label: 'One Dark',
+			value: 'prism-onedark',
+		},
+	];
 
 	// shared props for text areas
 	const textAreaProps = {
@@ -93,6 +106,32 @@ const edit = ( { attributes, className, setAttributes } ) => {
 						) }
 					/>
 				</PanelBody>
+				<PanelBody
+					title={ __( 'Global Color Scheme', 'code-syntax-block' ) }
+				>
+					<p>
+						Color scheme applies to all code blocks across the site.
+					</p>
+					<SelectControl
+						label={ __( 'Schemes' ) }
+						value={ attributes.color_scheme }
+						options={ [
+							{
+								label: __(
+									'Pick color scheme',
+									'code-syntax-block'
+								),
+								value: '',
+							},
+						].concat(
+							schemes.map( ( scheme ) => ( {
+								label: scheme.label,
+								value: scheme.value,
+							} ) )
+						) }
+						onChange={ ( scheme ) => '' }
+					/>
+				</PanelBody>
 			</InspectorControls>
 			<>
 				{ /*
@@ -138,4 +177,7 @@ const edit = ( { attributes, className, setAttributes } ) => {
 	);
 };
 
-export default edit;
+export default withSelect( ( select ) => {
+	const colorScheme = select( 'mkaz/code-syntax/data' ).getColorScheme();
+	return { colorScheme };
+} )( edit );
