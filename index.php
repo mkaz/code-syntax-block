@@ -25,7 +25,6 @@ require dirname( __FILE__ ) . '/rest-api.php';
  */
 add_action( 'enqueue_block_editor_assets', function() {
 	$asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php' );
-	$prism_languages_path = 'assets/prism/prism-languages.js';
 	$editor_style_path = 'assets/blocks.editor.css';
 
 	// Prism Languages - write out as JavaScript array that makes
@@ -146,7 +145,7 @@ add_action( 'enqueue_block_assets', function() {
  * @param boolean $rtnPath True returns path, default false returns URL
  */
 function mkaz_prism_theme_css( $rtnPath = false ) {
-	
+
 	$default_path = '/assets/prism-a11y-dark.css';
 
 	/**
@@ -155,7 +154,7 @@ function mkaz_prism_theme_css( $rtnPath = false ) {
 	 * @since 2.0.0
 	 */
 	$option = get_option( 'mkaz-code-syntax-color-scheme', 'prism-a11y-dark' );
-	
+
 	// confirm file exists
 	if ( $option ) {
 		$option_rel_path  = '/assets/' . $option . '.css';
@@ -164,7 +163,7 @@ function mkaz_prism_theme_css( $rtnPath = false ) {
 			$default_path = $option_rel_path;
 		}
 	}
-	
+
 	/**
 	 * Filter the theme directory path used for overriding css path
 	 *
