@@ -4,8 +4,8 @@ Donate link: https://www.paypal.me/marcuskazmierczak
 Tags: code, code syntax, syntax highlight, code highlighting
 Requires at least: 5.0
 Tested up to: 5.5.1
-Requires PHP: 5.2.4
-Stable tag: 1.3.6
+Requires PHP: 5.6
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,12 +36,11 @@ The Code Syntax Block plugin uses the Prism autoloader plugin to support all of 
 
 = How to customize the color scheme? =
 
-
-The default color theme is [One Dark](https://github.com/AGMStudio/prism-theme-one-dark) based off Atom's One Dark theme . If you want to change the colors, you can download a new theme from the [Prism themes repo](https://github.com/PrismJS/prism-themes) or create your own.
+The default color theme is [A11y Dark](https://github.com/PrismJS/prism-themes/blob/master/themes/prism-a11y-dark.css) optimized for accessibility. If you want to change the colorscheme, you can select in the editor from a few different themes shipped with the plugin. You can also use a theme from the [Prism themes repo](https://github.com/PrismJS/prism-themes) or create your own.
 
 The color theme is a single CSS file, there are a couple ways to customize:
 
-1. The plugin will check the current theme for the file: `assets/prism/prism.css` and use that file if it exists. Add your customize to a file in that location, and it will be used.
+1. The plugin will check the current theme for the file: `assets/prism/prism.css` and use that file if it exists. Add your custom file in that location, and it will be used.
 
 2. If you do not like that file location, you can use the filter `mkaz_prism_css_path` and specify a path relative to your theme to use.
 
@@ -49,9 +48,9 @@ The color theme is a single CSS file, there are a couple ways to customize:
 
 An example adding a filter to change the URL, add the following to your theme's function.php
 
-    add_filter( 'mkaz_prism_css_url', function() {
-        return 'https://raw.githubusercontent.com/PrismJS/prism-themes/master/themes/prism-hopscotch.css';
-    });
+	add_filter( 'mkaz_prism_css_url', function() {
+		return 'https://raw.githubusercontent.com/PrismJS/prism-themes/master/themes/prism-hopscotch.css';
+});
 
 Note: if you use the title/filename feature and customize the CSS, you will need to apply your own style targeting the prism-titlename class.
 
@@ -108,6 +107,12 @@ Example:
 2. In Editor Example
 
 == Changelog ==
+
+= 2.0.0 =
+
+Upgrade Prism to 1.22
+Add Color Scheme options
+Fix for WP 5.6 / GB 9.2
 
 = 1.3.6 =
 
