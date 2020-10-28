@@ -36,12 +36,13 @@ zip: build
 > mkdir -p dist/code-syntax-block/assets
 > mkdir -p dist/code-syntax-block/build
 > cp -r assets/prism dist/code-syntax-block/assets/
-> cp assets/blocks.style.css dist/code-syntax-block/assets
+> cp assets/*.css dist/code-syntax-block/assets
 > cp build/index.js dist/code-syntax-block/build/
 > cp build/index.asset.php dist/code-syntax-block/build/
 > cp index.php dist/code-syntax-block/
+> cp rest-api.php dist/code-syntax-block/
 > cp prism-languages.php dist/code-syntax-block/
 > cp readme.md dist/code-syntax-block/
 > cd dist
-> zip -r "code-syntax-block-${VERSION}.zip" code-syntax-block
+> zip -r code-syntax-block-${VERSION}.zip code-syntax-block
 .PHONY: zip
