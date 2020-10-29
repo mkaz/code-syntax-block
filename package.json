@@ -10,8 +10,8 @@
   "devDependencies": {
     "@wordpress/eslint-plugin": "^7.3.0",
     "@wordpress/prettier-config": "^0.4.0",
-    "@wordpress/scripts": "^12.3.0",
-    "eslint": "^4.19.1",
+    "@wordpress/scripts": "^12.4.0",
+    "eslint": "^7.12.1",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.22.1"
   },
