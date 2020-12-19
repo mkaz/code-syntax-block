@@ -167,11 +167,15 @@ function mkaz_prism_theme_css( $rtnPath = false ) {
 	/**
 	 * Filter the theme directory path used for overriding css path
 	 *
+	 * @fix 2.0.3 - Hardcode value to assets/prism/prism.css instead of default
+	 * In 2.0.0 the default path was changed to a11y and support site option,
+	 * but previous themes and docs instruct to look for this path.
+	 *
 	 * @since 0.8.2
 	 *
 	 * @param string $path Path to the file to override, relative to the theme
 	 */
-	$css_rel_path = apply_filters( 'mkaz_prism_css_path', $default_path );
+	$css_rel_path = apply_filters( 'mkaz_prism_css_path', "/assets/prism/prism.css" );
 	$theme_file_path = get_stylesheet_directory() . $css_rel_path;
 
 	if ( file_exists( $theme_file_path ) ) {
