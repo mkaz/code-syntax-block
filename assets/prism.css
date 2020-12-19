@@ -1,0 +1,212 @@
+/**
+ * a11y-dark theme for JavaScript, CSS, and HTML
+ * Based on the okaidia theme: https://github.com/PrismJS/prism/blob/gh-pages/themes/prism-okaidia.css
+ * @author ericwbailey
+ */
+
+ code[class*="language-"],
+ pre[class*="language-"] {
+	 color: #f8f8f2;
+	 background: none;
+	 font-family: Hack, "Fira Code", Consolas, Menlo, Monaco, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
+	 text-align: left;
+	 white-space: pre;
+	 word-spacing: normal;
+	 word-break: normal;
+	 word-wrap: normal;
+	 line-height: 1.5;
+
+	 -moz-tab-size: 4;
+	 -o-tab-size: 4;
+	 tab-size: 4;
+
+	 -webkit-hyphens: none;
+	 -moz-hyphens: none;
+	 -ms-hyphens: none;
+	 hyphens: none;
+ }
+
+ /* Code blocks */
+ pre[class*="language-"] {
+	 padding: 1em;
+	 margin: 0.5em auto;
+	 overflow: auto;
+	 border-radius: 0.3em;
+ }
+
+ :not(pre) > code[class*="language-"],
+ pre[class*="language-"] {
+	 background: #2b2b2b;
+ }
+
+ /* Inline code */
+ :not(pre) > code[class*="language-"] {
+	 padding: 0.1em;
+	 border-radius: 0.3em;
+	 white-space: normal;
+ }
+
+ .token.comment,
+ .token.prolog,
+ .token.doctype,
+ .token.cdata {
+	 color: #d4d0ab;
+ }
+
+ .token.punctuation {
+	 color: #fefefe;
+ }
+
+ .token.property,
+ .token.tag,
+ .token.constant,
+ .token.symbol,
+ .token.deleted {
+	 color: #ffa07a;
+ }
+
+ .token.boolean,
+ .token.number {
+	 color: #00e0e0;
+ }
+
+ .token.selector,
+ .token.attr-name,
+ .token.string,
+ .token.char,
+ .token.builtin,
+ .token.inserted {
+	 color: #abe338;
+ }
+
+ .token.operator,
+ .token.entity,
+ .token.url,
+ .language-css .token.string,
+ .style .token.string,
+ .token.variable {
+	 color: #00e0e0;
+ }
+
+ .token.atrule,
+ .token.attr-value,
+ .token.function {
+	 color: #ffd700;
+ }
+
+ .token.keyword {
+	 color: #00e0e0;
+ }
+
+ .token.regex,
+ .token.important {
+	 color: #ffd700;
+ }
+
+ .token.important,
+ .token.bold {
+	 font-weight: bold;
+ }
+
+ .token.italic {
+	 font-style: italic;
+ }
+
+ .token.entity {
+	 cursor: help;
+ }
+
+ @media screen and (-ms-high-contrast: active) {
+	 code[class*="language-"],
+	 pre[class*="language-"] {
+		 color: windowText;
+		 background: window;
+	 }
+
+	 :not(pre) > code[class*="language-"],
+	 pre[class*="language-"] {
+		 background: window;
+	 }
+
+	 .token.important {
+		 background: highlight;
+		 color: window;
+		 font-weight: normal;
+	 }
+
+	 .token.atrule,
+	 .token.attr-value,
+	 .token.function,
+	 .token.keyword,
+	 .token.operator,
+	 .token.selector {
+		 font-weight: bold;
+	 }
+
+	 .token.attr-value,
+	 .token.comment,
+	 .token.doctype,
+	 .token.function,
+	 .token.keyword,
+	 .token.operator,
+	 .token.property,
+	 .token.string {
+		 color: highlight;
+	 }
+
+	 .token.attr-value,
+	 .token.url {
+		 font-weight: normal;
+	 }
+ }
+
+
+pre.line-numbers {
+	position: relative;
+	padding-left: 3.8em;
+	counter-reset: linenumber;
+}
+
+pre.line-numbers > code {
+	position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	font-size: 100%;
+	left: -3.8em;
+	width: 3em; /* works for line-numbers below 1000 lines */
+	letter-spacing: -1px;
+	border-right: 0;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+}
+
+.line-numbers-rows > span {
+	pointer-events: none;
+	display: block;
+	counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+	content: counter(linenumber);
+	color: #5C6370;
+	display: block;
+	padding-right: 0.8em;
+	text-align: right;
+}
+
+.prism-titlename {
+	margin: -14px -12px 24px -12px;
+	padding: 4px 16px;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-weight: bold;
+	color: orange;
+	background-color: #444;
+}
