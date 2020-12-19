@@ -11,7 +11,6 @@ pre[class*="language-"] {
   color: #ABB2BF;
   background: none;
   font-family: Hack, "Fira Code", Consolas, Menlo, Monaco, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
-  font-size: 15px;
   line-height: 1.5;
   text-align: left;
   white-space: pre;
