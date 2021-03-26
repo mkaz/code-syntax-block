@@ -6,6 +6,11 @@
  * @author Lea Verou
  *
  */
+
+pre.wp-block-code code {
+  color: #ABB2BF;
+}
+
 code[class*="language-"],
 pre[class*="language-"] {
   color: #ABB2BF;
