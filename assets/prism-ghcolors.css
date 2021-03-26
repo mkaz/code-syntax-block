@@ -5,6 +5,7 @@
 
 pre.wp-block-code code {
 	color: #393A34;
+	overflow-x: initial;
 }
 
 code[class*="language-"],

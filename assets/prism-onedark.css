@@ -9,6 +9,7 @@
 
 pre.wp-block-code code {
   color: #ABB2BF;
+  overflow-x: initial;
 }
 
 code[class*="language-"],
