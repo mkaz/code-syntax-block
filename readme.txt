@@ -3,9 +3,9 @@ Contributors: mkaz, westonruter, memuller, jazanne, jeherve, eclev91
 Donate link: https://www.paypal.me/marcuskazmierczak
 Tags: code, code syntax, syntax highlight, code highlighting
 Requires at least: 5.0
-Tested up to: 5.6
+Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 2.0.2
+Stable tag: 2.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -107,6 +107,12 @@ Example:
 2. In Editor Example
 
 == Changelog ==
+
+= 2.0.3 =
+
+Compatibility fixes with TwentyTwentyOne theme
+- Fixes default text when dark mode enabled
+- Fixes linenumbers
 
 = 2.0.2 =
 
