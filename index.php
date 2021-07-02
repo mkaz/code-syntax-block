@@ -18,7 +18,7 @@
 const MKAZ_CODE_SYNTAX_BLOCK_VERSION = '2.0.3';
 const MKAZ_CODE_SYNTAX_DEFAULT_SCHEME = 'prism-a11y-dark';
 const MKAZ_CODE_SYNTAX_COLOR_SCHEMES = ['prism-a11y-dark', 'prism-ghcolors', 'prism-nord', 'prism-onedark'];
-const jsdelivr_URL = "https://cdn.jsdelivr.net/gh/AH-dark/code-syntax-block/";
+const jsdelivr_URL = "https://cdn.jsdelivr.net/gh/AH-dark/code-syntax-block@trunk/";
 require dirname(__FILE__) . '/prism-languages.php';
 require dirname(__FILE__) . '/rest-api.php';
 
