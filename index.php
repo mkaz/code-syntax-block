@@ -18,7 +18,7 @@
 const MKAZ_CODE_SYNTAX_BLOCK_VERSION = '2.0.3';
 const MKAZ_CODE_SYNTAX_DEFAULT_SCHEME = 'prism-a11y-dark';
 const MKAZ_CODE_SYNTAX_COLOR_SCHEMES = ['prism-a11y-dark', 'prism-ghcolors', 'prism-nord', 'prism-onedark'];
-const jsdelivr_URL = "https://cdn.jsdelivr.net/gh/AH-dark/code-syntax-block@trunk/";
+const Code_Syntax_Block_jsdelivr_URL = "https://cdn.jsdelivr.net/gh/AH-dark/code-syntax-block@trunk/";
 require dirname(__FILE__) . '/prism-languages.php';
 require dirname(__FILE__) . '/rest-api.php';
 
@@ -44,9 +44,9 @@ add_action('enqueue_block_editor_assets', function () {
 	// Enqueue view style.
 	wp_enqueue_style(
 		'mkaz-code-syntax-editor-css',
-		jsdelivr_URL . $editor_style_path,
+		Code_Syntax_Block_jsdelivr_URL . $editor_style_path,
 		[],
-		filemtime(jsdelivr_URL . $editor_style_path)
+		filemtime(Code_Syntax_Block_jsdelivr_URL . $editor_style_path)
 	);
 
 	/**
@@ -112,9 +112,9 @@ add_action('enqueue_block_assets', function () {
 	// Enqueue view style.
 	wp_enqueue_style(
 		'mkaz-code-syntax-css',
-		jsdelivr_URL . $view_style_path,
+		Code_Syntax_Block_jsdelivr_URL . $view_style_path,
 		[],
-		filemtime(jsdelivr_URL . $view_style_path)
+		filemtime(Code_Syntax_Block_jsdelivr_URL . $view_style_path)
 	);
 
 	// Enqueue prism style.
@@ -128,9 +128,9 @@ add_action('enqueue_block_assets', function () {
 	// Enqueue prism script.
 	wp_enqueue_script(
 		'mkaz-code-syntax-prism-js',
-		jsdelivr_URL . $prism_js_path,
+		Code_Syntax_Block_jsdelivr_URL . $prism_js_path,
 		[], // No dependencies.
-		filemtime(jsdelivr_URL . $prism_js_path),
+		filemtime(Code_Syntax_Block_jsdelivr_URL . $prism_js_path),
 		true // In footer.
 	);
 
@@ -160,7 +160,7 @@ function mkaz_prism_theme_css($rtnPath = false)
 	// confirm file exists
 	if ($option) {
 		$option_rel_path  = '/assets/' . $option . '.css';
-		$option_file_path = jsdelivr_URL . $option_rel_path;
+		$option_file_path = Code_Syntax_Block_jsdelivr_URL . $option_rel_path;
 		if (file_exists($option_file_path)) {
 			$default_path = $option_rel_path;
 		}
@@ -178,14 +178,14 @@ function mkaz_prism_theme_css($rtnPath = false)
 	 * @param string $path Path to the file to override, relative to the theme
 	 */
 	$css_rel_path = apply_filters('mkaz_prism_css_path', "assets/prism/prism.css");
-	$theme_file_path = jsdelivr_URL . $css_rel_path;
+	$theme_file_path = Code_Syntax_Block_jsdelivr_URL . $css_rel_path;
 
 	if (file_exists($theme_file_path)) {
 		$prism_css_path = $theme_file_path;
-		$prism_css_url = jsdelivr_URL . $css_rel_path;
+		$prism_css_url = Code_Syntax_Block_jsdelivr_URL . $css_rel_path;
 	} else {
-		$prism_css_path = jsdelivr_URL . $default_path;
-		$prism_css_url = jsdelivr_URL . $default_path;
+		$prism_css_path = Code_Syntax_Block_jsdelivr_URL . $default_path;
+		$prism_css_url = Code_Syntax_Block_jsdelivr_URL . $default_path;
 	}
 
 	if ($rtnPath) {
