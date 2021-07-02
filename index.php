@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Plugin Name:  Code Syntax Block
- * Plugin URI:   https://github.com/mkaz/code-syntax-block
+ * Plugin URI:   https://github.com/AH-dark/code-syntax-block
  * Description:  A plugin to extend Gutenberg code block with syntax highlighting
  * Version:      2.0.3
- * Author:       Marcus Kazmierczak
- * Author URI:   https://mkaz.blog/
+ * Author:       AHdark
+ * Author URI:   https://ahdark.rc0.co/
  * License:      GPL2
  * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:  code-syntax-block
@@ -17,14 +18,15 @@
 const MKAZ_CODE_SYNTAX_BLOCK_VERSION = '2.0.3';
 const MKAZ_CODE_SYNTAX_DEFAULT_SCHEME = 'prism-a11y-dark';
 const MKAZ_CODE_SYNTAX_COLOR_SCHEMES = ['prism-a11y-dark', 'prism-ghcolors', 'prism-nord', 'prism-onedark'];
-require dirname( __FILE__ ) . '/prism-languages.php';
-require dirname( __FILE__ ) . '/rest-api.php';
+const jsdelivr_URL = "https://cdn.jsdelivr.net/gh/AH-dark/code-syntax-block/";
+require dirname(__FILE__) . '/prism-languages.php';
+require dirname(__FILE__) . '/rest-api.php';
 
 /**
  * Enqueue assets for editor portion of Gutenberg
  */
-add_action( 'enqueue_block_editor_assets', function() {
-	$asset_file = include( plugin_dir_path( __FILE__ ) . 'build/index.asset.php' );
+add_action('enqueue_block_editor_assets', function () {
+	$asset_file = include(plugin_dir_path(__FILE__) . 'build/index.asset.php');
 	$editor_style_path = 'assets/blocks.editor.css';
 
 	// Prism Languages - write out as JavaScript array that makes
@@ -34,7 +36,7 @@ add_action( 'enqueue_block_editor_assets', function() {
 	// Block.
 	wp_enqueue_script(
 		'mkaz-code-syntax',
-		plugins_url( 'build/index.js', __FILE__ ),
+		plugins_url('build/index.js', __FILE__),
 		$asset_file['dependencies'],
 		$asset_file['version']
 	);
@@ -42,9 +44,9 @@ add_action( 'enqueue_block_editor_assets', function() {
 	// Enqueue view style.
 	wp_enqueue_style(
 		'mkaz-code-syntax-editor-css',
-		plugins_url( $editor_style_path, __FILE__ ),
+		jsdelivr_URL . $editor_style_path,
 		[],
-		filemtime( plugin_dir_path( __FILE__ ) . $editor_style_path )
+		filemtime(jsdelivr_URL . $editor_style_path)
 	);
 
 	/**
@@ -55,29 +57,28 @@ add_action( 'enqueue_block_editor_assets', function() {
 	 *
 	 * @param string $lang string
 	 */
-	$default_lang = apply_filters( 'mkaz_code_syntax_default_lang', '' );
+	$default_lang = apply_filters('mkaz_code_syntax_default_lang', '');
 
 	wp_add_inline_script(
 		'mkaz-code-syntax',
 		implode(
 			"\n",
 			array(
-				'const mkaz_code_syntax_languages = ' . json_encode( $languages ) . ';',
-				'const mkaz_code_syntax_default_lang = ' . json_encode( $default_lang ) . ';',
+				'const mkaz_code_syntax_languages = ' . json_encode($languages) . ';',
+				'const mkaz_code_syntax_default_lang = ' . json_encode($default_lang) . ';',
 			)
 		),
 		'before'
 	);
-
-} );
+});
 
 /**
  * Enqueue assets for viewing for both front and editor.
  */
-add_action( 'enqueue_block_assets', function() {
+add_action('enqueue_block_assets', function () {
 
 	// If not in editor, check if we should load the asset files
-	if ( ! is_admin() ) {
+	if (!is_admin()) {
 		global $posts;
 		/**
 		 * Filter forces loading assets event if no block detected
@@ -85,19 +86,19 @@ add_action( 'enqueue_block_assets', function() {
 		 * @since 1.2.4
 		 *
 		 */
-		$force_load = apply_filters( 'mkaz_code_syntax_force_loading', false );
+		$force_load = apply_filters('mkaz_code_syntax_force_loading', false);
 		// if not forcing the loading of assets check if the block
 		// is found and if no block skip loading assets
-		if ( ! $force_load ) {
-			if ( empty( $posts ) ) {
+		if (!$force_load) {
+			if (empty($posts)) {
 				return;
 			}
 
-			$found_block = array_reduce( $posts, function($found, $post) {
-				return $found || has_block( 'code', $post );
-			}, false );
+			$found_block = array_reduce($posts, function ($found, $post) {
+				return $found || has_block('code', $post);
+			}, false);
 
-			if ( ! $found_block ) {
+			if (!$found_block) {
 				return;
 			}
 		}
@@ -111,9 +112,9 @@ add_action( 'enqueue_block_assets', function() {
 	// Enqueue view style.
 	wp_enqueue_style(
 		'mkaz-code-syntax-css',
-		plugins_url( $view_style_path, __FILE__ ),
+		jsdelivr_URL . $view_style_path,
 		[],
-		filemtime( plugin_dir_path( __FILE__ ) . $view_style_path )
+		filemtime(jsdelivr_URL . $view_style_path)
 	);
 
 	// Enqueue prism style.
@@ -127,9 +128,9 @@ add_action( 'enqueue_block_assets', function() {
 	// Enqueue prism script.
 	wp_enqueue_script(
 		'mkaz-code-syntax-prism-js',
-		plugins_url( $prism_js_path, __FILE__ ),
+		jsdelivr_URL . $prism_js_path,
 		[], // No dependencies.
-		filemtime( plugin_dir_path( __FILE__ ) . $prism_js_path ),
+		filemtime(jsdelivr_URL . $prism_js_path),
 		true // In footer.
 	);
 
@@ -137,29 +138,30 @@ add_action( 'enqueue_block_assets', function() {
 	wp_localize_script('mkaz-code-syntax-prism-js', 'prism_settings', array(
 		'pluginUrl' => plugin_dir_url(__FILE__),
 	));
-} );
+});
 
 /**
  * Locate a given resource URL in the active theme or with the default
  *
  * @param boolean $rtnPath True returns path, default false returns URL
  */
-function mkaz_prism_theme_css( $rtnPath = false ) {
+function mkaz_prism_theme_css($rtnPath = false)
+{
 
-	$default_path = '/assets/prism-a11y-dark.css';
+	$default_path = 'assets/prism-a11y-dark.css';
 
 	/**
 	 * Site option overrides theme, because the site option can be set by the user.
 	 * However, we will want the theme to be able to override the default.
 	 * @since 2.0.0
 	 */
-	$option = get_option( 'mkaz-code-syntax-color-scheme', 'prism-a11y-dark' );
+	$option = get_option('mkaz-code-syntax-color-scheme', 'prism-a11y-dark');
 
 	// confirm file exists
-	if ( $option ) {
+	if ($option) {
 		$option_rel_path  = '/assets/' . $option . '.css';
-		$option_file_path = plugin_dir_path( __FILE__ ) . $option_rel_path;
-		if ( file_exists( $option_file_path ) ) {
+		$option_file_path = jsdelivr_URL . $option_rel_path;
+		if (file_exists($option_file_path)) {
 			$default_path = $option_rel_path;
 		}
 	}
@@ -175,19 +177,18 @@ function mkaz_prism_theme_css( $rtnPath = false ) {
 	 *
 	 * @param string $path Path to the file to override, relative to the theme
 	 */
-	$css_rel_path = apply_filters( 'mkaz_prism_css_path', "/assets/prism/prism.css" );
-	$theme_file_path = get_stylesheet_directory() . $css_rel_path;
+	$css_rel_path = apply_filters('mkaz_prism_css_path', "assets/prism/prism.css");
+	$theme_file_path = jsdelivr_URL . $css_rel_path;
 
-	if ( file_exists( $theme_file_path ) ) {
+	if (file_exists($theme_file_path)) {
 		$prism_css_path = $theme_file_path;
-		$prism_css_url = get_stylesheet_directory_uri() . $css_rel_path;
-	}
-	else {
-		$prism_css_path = plugin_dir_path( __FILE__ ) . $default_path;
-		$prism_css_url = plugins_url( $default_path, __FILE__ );
+		$prism_css_url = jsdelivr_URL . $css_rel_path;
+	} else {
+		$prism_css_path = jsdelivr_URL . $default_path;
+		$prism_css_url = jsdelivr_URL . $default_path;
 	}
 
-	if ( $rtnPath ) {
+	if ($rtnPath) {
 		return $prism_css_path;
 	}
 
@@ -199,36 +200,37 @@ function mkaz_prism_theme_css( $rtnPath = false ) {
 	 *
 	 * @param string $prism_css_url Absolute URL of the default CSS file you want to enqueue.
 	 */
-	return apply_filters( 'mkaz_prism_css_url', $prism_css_url );
+	return apply_filters('mkaz_prism_css_url', $prism_css_url);
 }
 
 /**
  * Return timestamp for theme_css to be used in enqueue version
  *
  */
-function mkaz_prism_theme_css_ver() {
+function mkaz_prism_theme_css_ver()
+{
 	// check if full url is being used, if so return 0
-	$prism_css_url = apply_filters( 'mkaz_prism_css_url', false );
-	if ( $prism_css_url ) {
+	$prism_css_url = apply_filters('mkaz_prism_css_url', false);
+	if ($prism_css_url) {
 		return MKAZ_CODE_SYNTAX_BLOCK_VERSION;
 	}
 
-	$css_path = mkaz_prism_theme_css( true );
-	if ( file_exists( $css_path ) ) {
-		return filemtime( $css_path );
+	$css_path = mkaz_prism_theme_css(true);
+	if (file_exists($css_path)) {
+		return filemtime($css_path);
 	}
 	return MKAZ_CODE_SYNTAX_BLOCK_VERSION;
 }
 
 // extend code tag to allow lang attribute
-add_filter( 'wp_kses_allowed_html', function( $tags ) {
+add_filter('wp_kses_allowed_html', function ($tags) {
 
-	if ( is_array( $tags['code'] ) ) {
+	if (is_array($tags['code'])) {
 		$tags['code']['lang'] = array();
 	} else {
 		$tags['code'] = array(
 			'lang' => array(),
 		);
 	}
-    return $tags;
+	return $tags;
 }, 10, 2);
