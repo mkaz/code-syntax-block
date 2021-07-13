@@ -183,6 +183,8 @@ const edit = ( { attributes, className, setAttributes } ) => {
 						<RichText
 							{ ...textAreaProps }
 							preserveWhiteSpace={ true }
+							allowedFormats={ [] }
+							withoutInteractiveFormatting={ true }
 						/>
 					</pre>
 				) : useLightBlockWrapper ? (
