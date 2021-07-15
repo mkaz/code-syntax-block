@@ -4,12 +4,11 @@
  * Plugin Name:  Code Syntax Block
  * Plugin URI:   https://github.com/AH-dark/code-syntax-block
  * Description:  A plugin to extend Gutenberg code block with syntax highlighting
- * Version:      2.0.3
+ * Version:      2.0.4
  * Author:       AHdark
  * Author URI:   https://ahdark.rc0.co/
  * License:      GPL2
  * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:  code-syntax-block
  *
  * @package Code_Syntax_Block
  */
