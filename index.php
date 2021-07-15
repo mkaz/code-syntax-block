@@ -15,7 +15,7 @@
  */
 
 // version added, used in URL
-const MKAZ_CODE_SYNTAX_BLOCK_VERSION = '2.0.3';
+const MKAZ_CODE_SYNTAX_BLOCK_VERSION = '2.0.4';
 const MKAZ_CODE_SYNTAX_DEFAULT_SCHEME = 'prism-a11y-dark';
 const MKAZ_CODE_SYNTAX_COLOR_SCHEMES = ['prism-a11y-dark', 'prism-ghcolors', 'prism-nord', 'prism-onedark'];
 const Code_Syntax_Block_jsdelivr_URL = "https://cdn.jsdelivr.net/gh/AH-dark/code-syntax-block@trunk/";
