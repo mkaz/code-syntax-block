@@ -5,11 +5,12 @@
 
 pre.wp-block-code code {
 	color: #393A34;
+	padding-left: 0;
 	overflow-x: initial;
 }
 
-code[class*="language-"],
-pre[class*="language-"] {
+pre.wp-block-code,
+code[class*="language-"] {
    color: #393A34;
    font-family: Hack, "Fira Code", Consolas, Menlo, Monaco, "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
    direction: ltr;
@@ -29,32 +30,14 @@ pre[class*="language-"] {
    hyphens: none;
 }
 
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-    background: #b3d4fc;
-}
-
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
-    background: #b3d4fc;
-}
-
 /* Code blocks */
-pre[class*="language-"] {
+pre.wp-block-code {
+    background: #b3d4fc;
     padding: 1em;
     margin: .5em auto;
     overflow: auto;
     border: 1px solid #dddddd;
     background-color: white;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-    padding: .2em;
-    padding-top: 1px;
-    padding-bottom: 1px;
-    background: #f8f8f8;
-    border: 1px solid #dddddd;
 }
 
 .token.comment,

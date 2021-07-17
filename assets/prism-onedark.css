@@ -9,6 +9,7 @@
 
 pre.wp-block-code code {
   color: #ABB2BF;
+  padding-left: 0;
   overflow-x: initial;
 }
 
@@ -46,7 +47,8 @@ code[class*="language-"]::selection, code[class*="language-"] ::selection {
   }
 }
 /* Code blocks */
-pre[class*="language-"] {
+pre.wp-block-code {
+  background: #282c34;
   padding: 1rem;
   margin: 0.5em auto;
   overflow: auto;
@@ -58,18 +60,6 @@ pre[class*="language-"] {
 .entry .entry-content .wp-block-code {
   border-radius: 8px !important;
   border: none;
-}
-
-:not(pre) > code[class*="language-"],
-pre[class*="language-"] {
-  background: #282c34;
-}
-
-/* Inline code */
-:not(pre) > code[class*="language-"] {
-  padding: .1em;
-  border-radius: .3em;
-  white-space: normal;
 }
 
 .token.comment,
