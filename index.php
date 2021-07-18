@@ -17,7 +17,7 @@
 const MKAZ_CODE_SYNTAX_BLOCK_VERSION = '2.1.0';
 const MKAZ_CODE_SYNTAX_DEFAULT_SCHEME = 'prism-a11y-dark';
 const MKAZ_CODE_SYNTAX_COLOR_SCHEMES = ['prism-a11y-dark', 'prism-ghcolors', 'prism-nord', 'prism-onedark'];
-const MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR = "https://cdn.jsdelivr.net/gh/AH-dark/code-syntax-block@" . MKAZ_CODE_SYNTAX_BLOCK_VERSION;
+const MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR = "https://cdn.jsdelivr.net/gh/AH-dark/code-syntax-block@" . MKAZ_CODE_SYNTAX_BLOCK_VERSION . "/";
 require dirname(__FILE__) . '/prism-languages.php';
 require dirname(__FILE__) . '/rest-api.php';
 
