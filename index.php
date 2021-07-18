@@ -35,7 +35,7 @@ add_action('enqueue_block_editor_assets', function () {
 	// Block.
 	wp_enqueue_script(
 		'mkaz-code-syntax',
-		MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR . 'build/index.js',
+		plugins_url('build/index.js', __FILE__),
 		$asset_file['dependencies'],
 		$asset_file['version']
 	);
