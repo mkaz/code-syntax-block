@@ -5,10 +5,12 @@ name: Blild CI
 
 on:
   push:
-    branches: [ trunk ]
-    tags: [ "*" ]
+    branches: 
+    - trunk 
+    - release/*
   pull_request:
-    branches: [ trunk ]
+    branches:  
+    - trunk 
 
 jobs:
   build:
