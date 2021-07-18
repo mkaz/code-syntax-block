@@ -23,6 +23,12 @@ jobs:
         npm install
         npm run build
     
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
+      with:
+        filename: 'code-syntax-block.zip'
+        exclusions: '*.git/*  *.wordpress-org/* src/* Makefile *.json .*'
+
     - uses: actions/upload-artifact@v2
       with:
         name: wordpress-package.zip
