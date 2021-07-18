@@ -5,8 +5,8 @@
  * Plugin URI:   https://github.com/AH-dark/code-syntax-block
  * Description:  A plugin to extend Gutenberg code block with syntax highlighting
  * Version:      2.1.0
- * Author:       Marcus Kazmierczak
- * Author URI:   https://mkaz.blog/
+ * Author:       AH-dark
+ * Author URI:   https://ahdark.rc0.co
  * License:      GPL2
  * License URI:  https://www.gnu.org/licenses/gpl-2.0.html
  *
@@ -17,7 +17,7 @@
 const MKAZ_CODE_SYNTAX_BLOCK_VERSION = '2.1.0';
 const MKAZ_CODE_SYNTAX_DEFAULT_SCHEME = 'prism-a11y-dark';
 const MKAZ_CODE_SYNTAX_COLOR_SCHEMES = ['prism-a11y-dark', 'prism-ghcolors', 'prism-nord', 'prism-onedark'];
-const Code_Syntax_Block_jsdelivr_URL = "https://cdn.jsdelivr.net/gh/AH-dark/code-syntax-block@2.0.4/";
+const MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR = "https://cdn.jsdelivr.net/gh/AH-dark/code-syntax-block@" . MKAZ_CODE_SYNTAX_BLOCK_VERSION;
 require dirname(__FILE__) . '/prism-languages.php';
 require dirname(__FILE__) . '/rest-api.php';
 
@@ -35,7 +35,7 @@ add_action('enqueue_block_editor_assets', function () {
 	// Block.
 	wp_enqueue_script(
 		'mkaz-code-syntax',
-		plugins_url('build/index.js', __FILE__),
+		MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR . 'build/index.js',
 		$asset_file['dependencies'],
 		$asset_file['version']
 	);
@@ -43,9 +43,9 @@ add_action('enqueue_block_editor_assets', function () {
 	// Enqueue view style.
 	wp_enqueue_style(
 		'mkaz-code-syntax-editor-css',
-		Code_Syntax_Block_jsdelivr_URL . $editor_style_path,
+		MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR . $editor_style_path,
 		[],
-		filemtime(Code_Syntax_Block_jsdelivr_URL . $editor_style_path)
+		filemtime(MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR . $editor_style_path)
 	);
 
 	/**
@@ -118,9 +118,9 @@ add_action('wp_enqueue_scripts', function () {
 	// Enqueue prism script.
 	wp_enqueue_script(
 		'mkaz-code-syntax-prism-js',
-		Code_Syntax_Block_jsdelivr_URL . $prism_js_path,
+		MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR . $prism_js_path,
 		[], // No dependencies.
-		filemtime(Code_Syntax_Block_jsdelivr_URL . $prism_js_path),
+		filemtime(MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR . $prism_js_path),
 		true // In footer.
 	);
 
@@ -150,7 +150,7 @@ function mkaz_prism_theme_css($rtnPath = false)
 	// confirm file exists
 	if ($option) {
 		$option_rel_path  = '/assets/' . $option . '.css';
-		$option_file_path = Code_Syntax_Block_jsdelivr_URL . $option_rel_path;
+		$option_file_path = MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR . $option_rel_path;
 		if (file_exists($option_file_path)) {
 			$default_path = $option_rel_path;
 		}
@@ -168,14 +168,14 @@ function mkaz_prism_theme_css($rtnPath = false)
 	 * @param string $path Path to the file to override, relative to the theme
 	 */
 	$css_rel_path = apply_filters('mkaz_prism_css_path', "assets/prism/prism.css");
-	$theme_file_path = Code_Syntax_Block_jsdelivr_URL . $css_rel_path;
+	$theme_file_path = MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR . $css_rel_path;
 
 	if (file_exists($theme_file_path)) {
 		$prism_css_path = $theme_file_path;
-		$prism_css_url = Code_Syntax_Block_jsdelivr_URL . $css_rel_path;
+		$prism_css_url = MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR . $css_rel_path;
 	} else {
-		$prism_css_path = Code_Syntax_Block_jsdelivr_URL . $default_path;
-		$prism_css_url = Code_Syntax_Block_jsdelivr_URL . $default_path;
+		$prism_css_path = MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR . $default_path;
+		$prism_css_url = MKAZ_CODE_SYNTAX_BLOCK_JSDELIVR . $default_path;
 	}
 
 	if ($rtnPath) {
