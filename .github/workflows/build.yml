@@ -31,5 +31,5 @@ jobs:
 
     - uses: actions/upload-artifact@v2
       with:
-        name: wordpress-package.zip
+        name: code-syntax-block.zip
         path: ./
