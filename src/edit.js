@@ -21,12 +21,12 @@ import { __ } from '@wordpress/i18n';
 
 /* global mkaz_code_syntax_languages, mkaz_code_syntax_default_lang, Prism */
 
-const edit = ( { attributes, className, setAttributes } ) => {
+const Edit = ( { attributes, className, setAttributes } ) => {
 	useEffect( () => {
-		if ( ! attributes.language && mkaz_code_syntax_default_lang ) {
-			setAttributes( { language: mkaz_code_syntax_default_lang } );
+		if ( ! attributes.datalang && mkaz_code_syntax_default_lang ) {
+			setAttributes( { datalang: mkaz_code_syntax_default_lang } );
 		}
-	}, [ attributes.language ] );
+	}, [ attributes.datalang ] );
 
 	// Onload fetch color scheme option
 	useEffect( () => {
@@ -61,7 +61,7 @@ const edit = ( { attributes, className, setAttributes } ) => {
 	];
 
 	const updateColorScheme = ( colorScheme ) => {
-		let path = '/mkaz/code-syntax/v1/set/color-scheme/' + colorScheme;
+		const path = '/mkaz/code-syntax/v1/set/color-scheme/' + colorScheme;
 		apiFetch( { path } )
 			.then( () => {
 				setAttributes( { colorScheme } );
@@ -70,10 +70,6 @@ const edit = ( { attributes, className, setAttributes } ) => {
 				console.log( 'Error updating color scheme option: ', error );
 			} );
 	};
-
-	let cls = '';
-	cls = attributes.language ? 'language-' + attributes.language : '';
-	cls = attributes.lineNumbers ? cls + ' line-numbers' : cls;
 
 	// shared props for text areas
 	const textAreaProps = {
@@ -96,7 +92,7 @@ const edit = ( { attributes, className, setAttributes } ) => {
 				<PanelBody title={ __( 'Settings' ) }>
 					<SelectControl
 						label={ __( 'Language' ) }
-						value={ attributes.language }
+						value={ attributes.datalang }
 						options={ [
 							{
 								label: __(
@@ -113,8 +109,8 @@ const edit = ( { attributes, className, setAttributes } ) => {
 								} )
 							)
 						) }
-						onChange={ ( language ) =>
-							setAttributes( { language } )
+						onChange={ ( datalang ) =>
+							setAttributes( { datalang } )
 						}
 					/>
 					<ToggleControl
@@ -204,11 +200,11 @@ const edit = ( { attributes, className, setAttributes } ) => {
 
 				{ /* Language label, uses wp-block class to keep within editor bounds */ }
 				<div className="wp-block mkaz-code-syntax-block__lang_label">
-					{ mkaz_code_syntax_languages[ attributes.language ] }
+					{ mkaz_code_syntax_languages[ attributes.datalang ] }
 				</div>
 			</>
 		</>
 	);
 };
 
-export default edit;
+export default Edit;
