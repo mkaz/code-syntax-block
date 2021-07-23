@@ -11,8 +11,6 @@ import { addFilter } from '@wordpress/hooks';
 /**
  * Internal dependencies
  */
-import blockAttributes from './block-attributes';
-import deprecated from './deprecated';
 import edit from './edit';
 import save from './save';
 
@@ -23,8 +21,67 @@ const addSyntaxToCodeBlock = ( settings ) => {
 
 	return {
 		...settings,
-		attributes: { ...blockAttributes },
-		deprecated: [ deprecated ],
+		attributes: {
+			content: {
+				type: 'string',
+				source: 'html',
+				selector: 'code',
+			},
+			datalang: {
+				type: 'string',
+				selector: 'code',
+				source: 'attribute',
+				attribute: 'data-lang',
+			},
+			lineNumbers: {
+				type: 'boolean',
+			},
+			title: {
+				type: 'string',
+				source: 'attribute',
+				selector: 'pre',
+				attribute: 'title',
+			},
+		},
+		deprecated: [
+			{
+				// old attributes
+				attributes: {
+					...settings.attributes,
+					language: {
+						type: 'string',
+						selector: 'code',
+						source: 'attribute',
+						attribute: 'lang',
+					},
+				},
+				migrate: ( attributes ) => {
+					return {
+						...attributes,
+						datalang: attributes.language,
+					};
+				},
+				// old save function
+				save: ( { attributes } ) => {
+					let cls = '';
+					cls = attributes.language
+						? 'language-' + attributes.language
+						: '';
+					cls = attributes.lineNumbers ? cls + ' line-numbers' : cls;
+
+					return (
+						<pre>
+							<code
+								lang={ attributes.language }
+								className={ cls }
+							>
+								{ attributes.content }
+							</code>
+						</pre>
+					);
+				},
+			},
+		],
 		edit,
 		save,
 	};
