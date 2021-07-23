@@ -5,7 +5,7 @@ import { RichText, useBlockProps } from '@wordpress/block-editor';
 
 const save = ( { attributes } ) => {
 	let cls = '';
-	cls = attributes.language ? 'language-' + attributes.language : '';
+	cls = attributes.datalang ? 'language-' + attributes.datalang : '';
 	cls = attributes.lineNumbers ? cls + ' line-numbers' : cls;
 
 	// WP 5.6 / GB 9.2
@@ -17,7 +17,7 @@ const save = ( { attributes } ) => {
 					<RichText.Content
 						tagName="code"
 						value={ attributes.content }
-						lang={ attributes.language }
+						data-lang={ attributes.datalang }
 						className={ cls }
 					/>
 				</pre>
@@ -28,7 +28,7 @@ const save = ( { attributes } ) => {
 	// Backward compatibility < WP 5.6
 	return (
 		<pre className="wp-block-code" title={ attributes.title }>
-			<code lang={ attributes.language } className={ cls }>
+			<code data-lang={ attributes.datalang } className={ cls }>
 				{ attributes.content }
 			</code>
 		</pre>

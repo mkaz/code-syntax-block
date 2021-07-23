@@ -19,16 +19,19 @@ const addSyntaxToCodeBlock = ( settings ) => {
 		return settings;
 	}
 
-	const newCodeBlockSettings = {
+	return {
 		...settings,
-
 		attributes: {
-			...settings.attributes,
-			language: {
+			content: {
+				type: 'string',
+				source: 'html',
+				selector: 'code',
+			},
+			datalang: {
 				type: 'string',
 				selector: 'code',
 				source: 'attribute',
-				attribute: 'lang',
+				attribute: 'data-lang',
 			},
 			lineNumbers: {
 				type: 'boolean',
@@ -40,11 +43,48 @@ const addSyntaxToCodeBlock = ( settings ) => {
 				attribute: 'title',
 			},
 		},
+		deprecated: [
+			{
+				// old attributes
+				attributes: {
+					...settings.attributes,
+					language: {
+						type: 'string',
+						selector: 'code',
+						source: 'attribute',
+						attribute: 'lang',
+					},
+				},
+				migrate: ( attributes ) => {
+					return {
+						...attributes,
+						datalang: attributes.language,
+					};
+				},
+				// old save function
+				save: ( { attributes } ) => {
+					let cls = '';
+					cls = attributes.language
+						? 'language-' + attributes.language
+						: '';
+					cls = attributes.lineNumbers ? cls + ' line-numbers' : cls;
+
+					return (
+						<pre>
+							<code
+								lang={ attributes.language }
+								className={ cls }
+							>
+								{ attributes.content }
+							</code>
+						</pre>
+					);
+				},
+			},
+		],
 		edit,
 		save,
 	};
-
-	return newCodeBlockSettings;
 };
 
 // Register Filter
