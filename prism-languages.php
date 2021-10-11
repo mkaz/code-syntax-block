@@ -10,6 +10,7 @@ function mkaz_code_syntax_block_get_supported_languages() {
 		"apacheconf" => "Apache Config",
 		"bash" => "Bash/Shell",
 		"basic" => "BASIC",
+		"bbcode" => "BBcode",
 		"c" => "C-like",
 		"csharp" => "C#",
 		"cpp" => "C++",
