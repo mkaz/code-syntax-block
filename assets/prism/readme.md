@@ -16,3 +16,7 @@ The prism/components directory contains the contents of https://github.com/Prism
 3. Append `cat prism-settings.js >> prism.js`
 4. Append `cat prism-title.js >> prism.js`
 5. [Download grammars](https://prismjs.com/plugins/autoloader/) and update prism-components/
+
+	- Clone https://github.com/prismjs/prism
+	- cp prism/components/* ./prism-components/
+	- Remove non-minified JS ( ls -1 | rg -v .min.js | xargs rm )
