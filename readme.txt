@@ -2,7 +2,7 @@
 Contributors: mkaz, westonruter, memuller, jazanne, jeherve, eclev91
 Donate link: https://www.paypal.me/marcuskazmierczak
 Tags: code, code syntax, syntax highlight, code highlighting
-Requires at least: 5.0
+Requires at least: 5.6
 Tested up to: 5.8.1
 Requires PHP: 5.6
 Stable tag: 2.2.0
