@@ -8,6 +8,7 @@ function mkaz_code_syntax_block_get_supported_languages() {
 	
 	$languages = array(
 		"apacheconf" => "Apache Config",
+		"adoc" => "Asciidoc",
 		"bash" => "Bash/Shell",
 		"basic" => "BASIC",
 		"c" => "C-like",
@@ -36,7 +37,6 @@ function mkaz_code_syntax_block_get_supported_languages() {
 		"properties" => ".properties",
 		"python" => "Python",
 		"jsx" => "React JSX",
-		"rest" => "reST (reStructuredText)",
 		"ruby" => "Ruby",
 		"rust" => "Rust",
 		"sass" => "Sass",
@@ -48,7 +48,6 @@ function mkaz_code_syntax_block_get_supported_languages() {
 		"vim" => "vim",
 		"visual-basic" => "Visual Basic",
 		"wasm" => "WebAssembly",
-		"wiki" => "Wiki markup",
 		"xml" => "XML",
 		"yaml" => "YAML",
 	);
