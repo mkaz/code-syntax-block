@@ -21,7 +21,7 @@ MAKEFLAGS += --no-builtin-rules
 
 # SVN repository update for wp.org uses Github actions
 
-VERSION=$(jq -r ".version" package.json)
+VERSION:=$(jq -r ".version" package.json)
 
 # TODO: add check package.json version and PHP plugin version match
 
