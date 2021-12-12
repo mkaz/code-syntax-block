@@ -4,7 +4,7 @@
 	font-size: 0.85rem;
 	margin-top: 1rem;
 	/* label is above text area so we want to bring closer */
-	margin-bottom: -2rem !important;
+	margin-bottom: -1rem !important;
 	text-align: right;
 }
 
@@ -12,4 +12,24 @@
 	color: #333;
 	background-color: #eee;
 	padding: 8px;
+}
+
+pre.wp-block-code {
+	color: #f8f8f2;
+	background: #282c34;
+	font-family: Hack, 'Fira Code', Consolas, Menlo, Monaco, 'Andale Mono',
+		'Lucida Console', 'Lucida Sans Typewriter', 'DejaVu Sans Mono',
+		'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L',
+		'Courier New', Courier, monospace;
+	padding: 1em;
+	margin: 0.5em auto;
+	overflow: auto;
+	border-radius: 0.3em;
+}
+
+pre.wp-block-code code {
+	color: #f8f8f2;
+	padding-left: 0;
+	border: none;
+	overflow-x: initial;
 }
