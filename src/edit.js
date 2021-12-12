@@ -165,6 +165,14 @@ const edit = ( { attributes, className, setAttributes } ) => {
 				</PanelBody>
 			</InspectorControls>
 			<>
+				{ /* Language label, uses wp-block class to keep within editor bounds */ }
+				<div className="wp-block mkaz-code-syntax-block__lang_label">
+					<span>
+						&lt;
+						{ mkaz_code_syntax_languages[ attributes.language ] }
+						&gt;
+					</span>
+				</div>
 				{ /*
 					Since this extends the core code block, the return signature must match Gutenberg
 
@@ -201,11 +209,6 @@ const edit = ( { attributes, className, setAttributes } ) => {
 						<PlainText { ...textAreaProps } />
 					</div>
 				) }
-
-				{ /* Language label, uses wp-block class to keep within editor bounds */ }
-				<div className="wp-block mkaz-code-syntax-block__lang_label">
-					{ mkaz_code_syntax_languages[ attributes.language ] }
-				</div>
 			</>
 		</>
 	);
