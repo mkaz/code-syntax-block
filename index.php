@@ -128,7 +128,7 @@ add_action( 'wp_enqueue_scripts', function() {
 } );
 
 /**
- * Locate a given resource URL in the active theme or with the default
+ * Locate a given resource URL in the active theme or with the default.
  *
  * @param boolean $rtnPath True returns path, default false returns URL
  */
@@ -191,11 +191,14 @@ function mkaz_prism_theme_css( $rtnPath = false ) {
 }
 
 /**
- * Return timestamp for theme_css to be used in enqueue version
+ * Return version or timestamp for theme_css to be used in enqueue version,
+ * otherwise plugin version used for cache busting CSS enqueue.
+ *
+ * @return string
  *
  */
 function mkaz_prism_theme_css_ver() {
-	// check if full url is being used, if so return 0
+	// Check if full url is being used, if so return version.
 	$prism_css_url = apply_filters( 'mkaz_prism_css_url', false );
 	if ( $prism_css_url ) {
 		return MKAZ_CODE_SYNTAX_BLOCK_VERSION;
