@@ -128,6 +128,9 @@ pre.line-numbers {
 
 pre.line-numbers > code {
 	position: relative;
+	/* Padding can be tweaked by themes, but if top padding is off
+	/* the line numbers don't align with the row. */
+	padding-top: 0 !important;
 }
 
 .line-numbers .line-numbers-rows {
