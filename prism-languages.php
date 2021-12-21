@@ -21,6 +21,7 @@ function mkaz_code_syntax_block_get_supported_languages() {
 		"fsharp" => "F#",
 		"graphql" => "GraphQL",
 		"go" => "Go",
+		"gml" => "GameMaker Language",
 		"haskell" => "Haskell",
 		"markup" => "HTML",
 		"java" => "Java",
