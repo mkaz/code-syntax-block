@@ -23,8 +23,6 @@ pre.wp-block-code code {
 		Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 	font-size: 0.85rem;
 	margin-top: 1rem;
-	/* label is above text area so we want to bring closer */
-	margin-bottom: -1rem !important;
 	text-align: right;
 }
 
