@@ -6,7 +6,11 @@ pre.wp-block-code {
 		'Bitstream Vera Sans Mono', 'Liberation Mono', 'Nimbus Mono L',
 		'Courier New', Courier, monospace;
 	padding: 1em;
-	margin: 0.5em auto;
+	/* Avoid block gap adding too much space between labels and code */
+	margin-top: 0.5rem !important;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1rem;
 	overflow: auto;
 	border-radius: 0.3em;
 }
@@ -18,11 +22,19 @@ pre.wp-block-code code {
 	overflow-x: initial;
 }
 
+/* Twentytwenty adds style using this rule to code block in editor */
+.editor-styles-wrapper .wp-block-code {
+	color: #f8f8f2;
+	background: #282c34;
+}
+
 .mkaz-code-syntax-block__labels {
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
 		Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
 	font-size: 0.85rem;
 	margin-top: 1rem;
+	/* Twentytwenty adds margin to all wp-block */
+	margin-bottom: 0; 
 	text-align: right;
 }
 
