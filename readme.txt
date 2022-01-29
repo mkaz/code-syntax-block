@@ -3,7 +3,7 @@ Contributors: mkaz, westonruter, memuller, jazanne, jeherve, eclev91
 Donate link: https://www.paypal.me/marcuskazmierczak
 Tags: code, code syntax, syntax highlight, code highlighting
 Requires at least: 5.6
-Tested up to: 5.8.1
+Tested up to: 5.9
 Requires PHP: 5.6
 Stable tag: 2.2.0
 License: GPLv2 or later
@@ -107,6 +107,16 @@ Example:
 2. In Editor Example
 
 == Changelog ==
+
+= 3.0.0
+
+- Remove support pre WP 5.6
+- Editor view: Show dark background
+- Editor view: Show labels above code block
+- Publish view: Fix line number alignment
+- Publish view: Remove border from code Twentytwentytwo
+- Chore: Update dependencies
+
 
 = 2.2.0
 
