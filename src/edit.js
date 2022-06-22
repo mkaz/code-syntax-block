@@ -29,49 +29,6 @@ const edit = ( { attributes, setAttributes } ) => {
 		}
 	}, [ language ] );
 
-	// Onload fetch color scheme option
-	useEffect( () => {
-		apiFetch( {
-			path: '/mkaz/code-syntax/v1/get/color-scheme/',
-		} )
-			.then( ( response ) => {
-				setAttributes( { colorScheme: response } );
-			} )
-			.catch( ( error ) => {
-				console.log( 'Error fetching color scheme option: ', error );
-			} );
-	}, [ colorScheme ] );
-
-	const schemes = [
-		{
-			label: 'A11y Dark',
-			value: 'prism-a11y-dark',
-		},
-		{
-			label: 'One Dark',
-			value: 'prism-onedark',
-		},
-		{
-			label: 'GH Colors (Light)',
-			value: 'prism-ghcolors',
-		},
-		{
-			label: 'Nord',
-			value: 'prism-nord',
-		},
-	];
-
-	const updateColorScheme = ( scheme ) => {
-		let path = '/mkaz/code-syntax/v1/set/color-scheme/' + scheme;
-		apiFetch( { path } )
-			.then( () => {
-				setAttributes( { colorScheme: scheme } );
-			} )
-			.catch( ( error ) => {
-				console.log( 'Error updating color scheme option: ', error );
-			} );
-	};
-
 	/* Show line numbers within editor view. */
 	const myProps = lineNumbers ? { 'line-numbers': 'true' } : {};
 	const blockProps = useBlockProps( { ...myProps } );
@@ -136,27 +93,8 @@ const edit = ( { attributes, setAttributes } ) => {
 					title={ __( 'Global Color Scheme', 'code-syntax-block' ) }
 				>
 					<p>
-						Color scheme applies to all code blocks across the site.
+						The global color scheme is now set in the Dashboard settings menu.
 					</p>
-					<SelectControl
-						label={ __( 'Schemes' ) }
-						value={ colorScheme }
-						options={ [
-							{
-								label: __(
-									'Pick color scheme',
-									'code-syntax-block'
-								),
-								value: '',
-							},
-						].concat(
-							schemes.map( ( scheme ) => ( {
-								label: scheme.label,
-								value: scheme.value,
-							} ) )
-						) }
-						onChange={ updateColorScheme }
-					/>
 				</PanelBody>
 			</InspectorControls>
 			<>

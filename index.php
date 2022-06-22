@@ -16,9 +16,15 @@
 // version added, used in URL
 const MKAZ_CODE_SYNTAX_BLOCK_VERSION = '3.0.0';
 const MKAZ_CODE_SYNTAX_DEFAULT_SCHEME = 'prism-a11y-dark';
-const MKAZ_CODE_SYNTAX_COLOR_SCHEMES = ['prism-a11y-dark', 'prism-ghcolors', 'prism-nord', 'prism-onedark'];
+const MKAZ_CODE_SYNTAX_COLOR_SCHEMES = array(
+	'prism-a11y-dark' => 'A11y Dark',
+	'prism-ghcolors' => 'GitHub (Light)',
+	'prism-nord' => 'Nord',
+	'prism-onedark' => 'One Dark'
+);
+
 require dirname( __FILE__ ) . '/prism-languages.php';
-require dirname( __FILE__ ) . '/rest-api.php';
+require dirname( __FILE__ ) . '/settings.php';
 
 /**
  * Enqueue assets for editor portion of Gutenberg
