@@ -3,9 +3,9 @@ Contributors: mkaz, westonruter, memuller, jazanne, jeherve, eclev91
 Donate link: https://www.paypal.me/marcuskazmierczak
 Tags: code, code syntax, syntax highlight, code highlighting
 Requires at least: 5.6
-Tested up to: 5.9
+Tested up to: 6.0
 Requires PHP: 5.6
-Stable tag: 3.0.0
+Stable tag: 3.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,7 +36,7 @@ The Code Syntax Block plugin uses the Prism autoloader plugin to support all of 
 
 = How to customize the color scheme? =
 
-The default color theme is [A11y Dark](https://github.com/PrismJS/prism-themes/blob/master/themes/prism-a11y-dark.css) optimized for accessibility. If you want to change the colorscheme, you can select in the editor from a few different themes shipped with the plugin. You can also use a theme from the [Prism themes repo](https://github.com/PrismJS/prism-themes) or create your own.
+The default color theme is [A11y Dark](https://github.com/PrismJS/prism-themes/blob/master/themes/prism-a11y-dark.css) optimized for accessibility. If you want to change the colorscheme, you can select from the plugin settings page a few different themes shipped with the plugin. You can also use a theme from the [Prism themes repo](https://github.com/PrismJS/prism-themes) or create your own.
 
 The color theme is a single CSS file, there are a couple ways to customize:
 
@@ -86,11 +86,7 @@ Here is an example shortening the list to a smaller set:
 
 = Can I set a default language so I don't have to select each time? =
 
-Yes, use the filter `mkaz_code_syntax_default_lang` to set a default language when inserting a code block. You can still change if you wish to show code not using the default language.
-
-This example would set JavaScript as the default:
-
-    add_filter( 'mkaz_code_syntax_default_lang', function() { return 'javascript'; });
+Yes, on the plugin settings page in the dashboard you can set a default language when inserting a code block. You can still change if you wish to show code not using the default language.
 
 = Can I override the conditional loading, so assets always load? =
 
@@ -107,6 +103,13 @@ Example:
 2. In Editor Example
 
 == Changelog ==
+
+= 3.1.0
+
+- Add plugin settings page
+- Move global scheme setting to settings
+- Move default language to settings
+- Ugrade Prism to v1.28.0
 
 = 3.0.0
 

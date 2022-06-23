@@ -23,7 +23,7 @@ On the front-end when the post is being viewed, the code will be color syntax hi
 
 ### Colors
 
-The default color theme is based off [One Dark](https://github.com/AGMStudio/prism-theme-one-dark). If you want to change the colors, you can download a new theme from the [Prism themes repo](https://github.com/PrismJS/prism-themes) or create your own.
+The default color theme is [A11y Dark](https://github.com/PrismJS/prism-themes/blob/master/themes/prism-a11y-dark.css) optimized for accessibility. If you want to change the colorscheme, you can select from the plugin settings page a few different themes shipped with the plugin. You can also use a theme from the [Prism themes repo](https://github.com/PrismJS/prism-themes) or create your own.
 
 The color theme is a single CSS file, there are a couple ways to customize:
 
@@ -81,13 +81,8 @@ add_filter( 'mkaz_code_syntax_language_list', function() {
 } );
 ```
 
-You can also **set a default language** using the filter `mkaz_code_syntax_default_lang`, by default no default is set requiring you to select the language. By setting a default language when inserting a code block the language will already be set, you can still change if you wish to show code not using the default language.
+You can also **set a default language** on the plugin settings page. If you set a default language when inserting a code block the language will be selected by default, you can still change if you wish to show code not using the default language. For the default language value, use an alias from the [supported languages list](https://prismjs.com/#supported-languages).
 
-By adding the following to your theme's function.php would set JavaScript as the default:
-
-```php
-add_filter( 'mkaz_code_syntax_default_lang', function() { return 'javascript'; });
-```
 
 ### Conditional Loading
 
