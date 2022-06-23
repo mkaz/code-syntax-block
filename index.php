@@ -53,16 +53,8 @@ add_action( 'enqueue_block_editor_assets', function() {
 		filemtime( plugin_dir_path( __FILE__ ) . $editor_style_path )
 	);
 
-	/**
-	 * Use the mkaz_code_syntax_default__lang filter to set a default language
-	 * When inserting a new code block, the language will automatically be set
-	 *
-	 * @since 1.1.0
-	 *
-	 * @param string $lang string
-	 */
-	$default_lang = apply_filters( 'mkaz_code_syntax_default_lang', '' );
 
+	$default_lang = get_option( 'mkaz-code-syntax-default-lang', '' );
 	wp_add_inline_script(
 		'mkaz-code-syntax',
 		implode(
