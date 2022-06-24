@@ -30,7 +30,7 @@ add_action( 'admin_init', function() {
 		__( 'Color Scheme', 'mkaz_code_syntax_block' ),
 		'mkaz_code_syntax_block_color_scheme_field_callback',
 		'mkaz_code_syntax_block_settings',						// Section
-		'mkaz_code_syntax_block_color_scheme',					// Setting
+		'mkaz_code_syntax_block_color_scheme'					// Setting
 	);
 
 	add_settings_field(
@@ -38,7 +38,7 @@ add_action( 'admin_init', function() {
 		__( 'Default Language', 'mkaz_code_syntax_block' ),
 		'mkaz_code_syntax_block_default_lang_field_callback',
 		'mkaz_code_syntax_block_settings',						// Section
-		'mkaz_code_syntax_block_color_scheme',					// Setting
+		'mkaz_code_syntax_block_color_scheme'					// Setting
 	);
 });
 
